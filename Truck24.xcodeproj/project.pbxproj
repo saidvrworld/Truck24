@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF231E979256009A0F67 /* AppDelegate.swift */; };
+		90AFCF261E979256009A0F67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF251E979256009A0F67 /* ViewController.swift */; };
+		90AFCF291E979256009A0F67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF271E979256009A0F67 /* Main.storyboard */; };
+		90AFCF2B1E979256009A0F67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF2A1E979256009A0F67 /* Assets.xcassets */; };
+		90AFCF2E1E979256009A0F67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF2C1E979256009A0F67 /* LaunchScreen.storyboard */; };
+		90AFCF391E979256009A0F67 /* Truck24Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF381E979256009A0F67 /* Truck24Tests.swift */; };
+		90AFCF441E979256009A0F67 /* Truck24UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF431E979256009A0F67 /* Truck24UITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		90AFCF351E979256009A0F67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90AFCF181E979256009A0F67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90AFCF1F1E979256009A0F67;
+			remoteInfo = Truck24;
+		};
+		90AFCF401E979256009A0F67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90AFCF181E979256009A0F67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90AFCF1F1E979256009A0F67;
+			remoteInfo = Truck24;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		90AFCF201E979256009A0F67 /* Truck24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Truck24.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCF231E979256009A0F67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		90AFCF251E979256009A0F67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		90AFCF281E979256009A0F67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		90AFCF2A1E979256009A0F67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		90AFCF2D1E979256009A0F67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		90AFCF2F1E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90AFCF341E979256009A0F67 /* Truck24Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Truck24Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCF381E979256009A0F67 /* Truck24Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truck24Tests.swift; sourceTree = "<group>"; };
+		90AFCF3A1E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Truck24UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCF431E979256009A0F67 /* Truck24UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truck24UITests.swift; sourceTree = "<group>"; };
+		90AFCF451E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90AFCF1D1E979256009A0F67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF311E979256009A0F67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF3C1E979256009A0F67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90AFCF171E979256009A0F67 = {
+			isa = PBXGroup;
+			children = (
+				90AFCF221E979256009A0F67 /* Truck24 */,
+				90AFCF371E979256009A0F67 /* Truck24Tests */,
+				90AFCF421E979256009A0F67 /* Truck24UITests */,
+				90AFCF211E979256009A0F67 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		90AFCF211E979256009A0F67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90AFCF201E979256009A0F67 /* Truck24.app */,
+				90AFCF341E979256009A0F67 /* Truck24Tests.xctest */,
+				90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90AFCF221E979256009A0F67 /* Truck24 */ = {
+			isa = PBXGroup;
+			children = (
+				90AFCF231E979256009A0F67 /* AppDelegate.swift */,
+				90AFCF251E979256009A0F67 /* ViewController.swift */,
+				90AFCF271E979256009A0F67 /* Main.storyboard */,
+				90AFCF2A1E979256009A0F67 /* Assets.xcassets */,
+				90AFCF2C1E979256009A0F67 /* LaunchScreen.storyboard */,
+				90AFCF2F1E979256009A0F67 /* Info.plist */,
+			);
+			path = Truck24;
+			sourceTree = "<group>";
+		};
+		90AFCF371E979256009A0F67 /* Truck24Tests */ = {
+			isa = PBXGroup;
+			children = (
+				90AFCF381E979256009A0F67 /* Truck24Tests.swift */,
+				90AFCF3A1E979256009A0F67 /* Info.plist */,
+			);
+			path = Truck24Tests;
+			sourceTree = "<group>";
+		};
+		90AFCF421E979256009A0F67 /* Truck24UITests */ = {
+			isa = PBXGroup;
+			children = (
+				90AFCF431E979256009A0F67 /* Truck24UITests.swift */,
+				90AFCF451E979256009A0F67 /* Info.plist */,
+			);
+			path = Truck24UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90AFCF1F1E979256009A0F67 /* Truck24 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24" */;
+			buildPhases = (
+				90AFCF1C1E979256009A0F67 /* Sources */,
+				90AFCF1D1E979256009A0F67 /* Frameworks */,
+				90AFCF1E1E979256009A0F67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Truck24;
+			productName = Truck24;
+			productReference = 90AFCF201E979256009A0F67 /* Truck24.app */;
+			productType = "com.apple.product-type.application";
+		};
+		90AFCF331E979256009A0F67 /* Truck24Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24Tests" */;
+			buildPhases = (
+				90AFCF301E979256009A0F67 /* Sources */,
+				90AFCF311E979256009A0F67 /* Frameworks */,
+				90AFCF321E979256009A0F67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90AFCF361E979256009A0F67 /* PBXTargetDependency */,
+			);
+			name = Truck24Tests;
+			productName = Truck24Tests;
+			productReference = 90AFCF341E979256009A0F67 /* Truck24Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		90AFCF3E1E979256009A0F67 /* Truck24UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24UITests" */;
+			buildPhases = (
+				90AFCF3B1E979256009A0F67 /* Sources */,
+				90AFCF3C1E979256009A0F67 /* Frameworks */,
+				90AFCF3D1E979256009A0F67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90AFCF411E979256009A0F67 /* PBXTargetDependency */,
+			);
+			name = Truck24UITests;
+			productName = Truck24UITests;
+			productReference = 90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90AFCF181E979256009A0F67 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Khusan Saidvaliev";
+				TargetAttributes = {
+					90AFCF1F1E979256009A0F67 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 8F7GJ2ANG4;
+						ProvisioningStyle = Automatic;
+					};
+					90AFCF331E979256009A0F67 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 8F7GJ2ANG4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 90AFCF1F1E979256009A0F67;
+					};
+					90AFCF3E1E979256009A0F67 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 8F7GJ2ANG4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 90AFCF1F1E979256009A0F67;
+					};
+				};
+			};
+			buildConfigurationList = 90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "Truck24" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 90AFCF171E979256009A0F67;
+			productRefGroup = 90AFCF211E979256009A0F67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90AFCF1F1E979256009A0F67 /* Truck24 */,
+				90AFCF331E979256009A0F67 /* Truck24Tests */,
+				90AFCF3E1E979256009A0F67 /* Truck24UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90AFCF1E1E979256009A0F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AFCF2E1E979256009A0F67 /* LaunchScreen.storyboard in Resources */,
+				90AFCF2B1E979256009A0F67 /* Assets.xcassets in Resources */,
+				90AFCF291E979256009A0F67 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF321E979256009A0F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF3D1E979256009A0F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90AFCF1C1E979256009A0F67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AFCF261E979256009A0F67 /* ViewController.swift in Sources */,
+				90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF301E979256009A0F67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AFCF391E979256009A0F67 /* Truck24Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AFCF3B1E979256009A0F67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AFCF441E979256009A0F67 /* Truck24UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		90AFCF361E979256009A0F67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90AFCF1F1E979256009A0F67 /* Truck24 */;
+			targetProxy = 90AFCF351E979256009A0F67 /* PBXContainerItemProxy */;
+		};
+		90AFCF411E979256009A0F67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90AFCF1F1E979256009A0F67 /* Truck24 */;
+			targetProxy = 90AFCF401E979256009A0F67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		90AFCF271E979256009A0F67 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90AFCF281E979256009A0F67 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		90AFCF2C1E979256009A0F67 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90AFCF2D1E979256009A0F67 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		90AFCF461E979256009A0F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		90AFCF471E979256009A0F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		90AFCF491E979256009A0F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		90AFCF4A1E979256009A0F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		90AFCF4C1E979256009A0F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truck24.app/Truck24";
+			};
+			name = Debug;
+		};
+		90AFCF4D1E979256009A0F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truck24.app/Truck24";
+			};
+			name = Release;
+		};
+		90AFCF4F1E979256009A0F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Truck24;
+			};
+			name = Debug;
+		};
+		90AFCF501E979256009A0F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
+				INFOPLIST_FILE = Truck24UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Truck24;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "Truck24" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AFCF461E979256009A0F67 /* Debug */,
+				90AFCF471E979256009A0F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AFCF491E979256009A0F67 /* Debug */,
+				90AFCF4A1E979256009A0F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AFCF4C1E979256009A0F67 /* Debug */,
+				90AFCF4D1E979256009A0F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AFCF4F1E979256009A0F67 /* Debug */,
+				90AFCF501E979256009A0F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90AFCF181E979256009A0F67 /* Project object */;
+}
