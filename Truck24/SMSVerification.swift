@@ -75,6 +75,7 @@ class SMSVerification: UIViewController {
                 let success = dataBody?["success"] as! Bool
                 let registered = dataBody?["registered"] as! Int
                 let userName = dataBody?["userName"] as? String
+                AppData.token = (dataBody?["token"] as? String)!
                 if(success){
                     print("Success sms Code Verification")
                     successCode = true
@@ -108,7 +109,7 @@ class SMSVerification: UIViewController {
         }else{
             if(successCode){
                 if(isRegistrated){
-                    
+                    GoToNearList()
                 }else{
                     GoToRegistration()
                 }
@@ -116,6 +117,14 @@ class SMSVerification: UIViewController {
                 ShowError(errorType: "smsError")
             }
         }
+    }
+    
+    func GoToNearList() {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
     func GoToRegistration() {

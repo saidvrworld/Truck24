@@ -7,18 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 
 class CarData{
     
     
     
-    func MakeRequest(urlstring: String,token:String,long: String,lat: String)->[CarShort]{
-        var carList:[CarShort]!
+    func MakeRequest(table: UITableView,urlAddress: String,token:String,long: String,lat: String){
+        
         let parameters = "long="+long+"&lat="+lat+"&token="+token
         print(parameters)
-        let url = URL(string: urlstring)!
-        var request = URLRequest(url: url)
+        print(urlAddress)
+        let url = URL(string: urlAddress)
+        var request = URLRequest(url: (url)!)
         request.httpMethod = "POST"
         
         request.httpBody = parameters.data(using: .utf8)
@@ -30,12 +32,12 @@ class CarData{
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                carList = self.ManageResponse(response:responseJSON)
+                AppData.CarList = self.ManageResponse(response:responseJSON)
+                table.reloadData()
             }
         }
         
         task.resume()
-        return carList
         
     }
     
@@ -46,7 +48,7 @@ class CarData{
 
             for carObj in array {
                 let dataBody = carObj as? [String: Any]
-                
+                print(dataBody)
                 carList.append(ParseCar(dataBody! as [String : AnyObject]))
                 
             }
@@ -63,7 +65,7 @@ class CarData{
         newCar.carId = car["carId"] as! Int
         newCar.carImageUrl = car["carImageUrl"] as! String
         newCar.carName = car["carName"] as! String
-        newCar.distance = car["distance"] as! Float
+        newCar.distance = car["distance"] as! String
         newCar.rate = car["rate"] as! Double
 
         return newCar
