@@ -24,6 +24,11 @@
 		908A63691E9934D20015F4AF /* VSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A63681E9934D20015F4AF /* VSMapView.swift */; };
 		908A636B1E9940270015F4AF /* CarFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A636A1E9940270015F4AF /* CarFilter.swift */; };
 		908A636D1E994CDE0015F4AF /* AddPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A636C1E994CDE0015F4AF /* AddPublication.swift */; };
+		908A636F1E9A22B20015F4AF /* rectangle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A636E1E9A22B20015F4AF /* rectangle_orange.png */; };
+		908A63711E9A25400015F4AF /* PubDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A63701E9A25400015F4AF /* PubDetails.swift */; };
+		908A63741E9A393D0015F4AF /* placeLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63721E9A393D0015F4AF /* placeLocation.png */; };
+		908A63751E9A393D0015F4AF /* trackLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63731E9A393D0015F4AF /* trackLocation.png */; };
+		908A63771E9A39860015F4AF /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63761E9A39860015F4AF /* myLocation.png */; };
 		90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF231E979256009A0F67 /* AppDelegate.swift */; };
 		90AFCF261E979256009A0F67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF251E979256009A0F67 /* ViewController.swift */; };
 		90AFCF291E979256009A0F67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF271E979256009A0F67 /* Main.storyboard */; };
@@ -103,6 +108,11 @@
 		908A63681E9934D20015F4AF /* VSMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSMapView.swift; sourceTree = "<group>"; };
 		908A636A1E9940270015F4AF /* CarFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarFilter.swift; sourceTree = "<group>"; };
 		908A636C1E994CDE0015F4AF /* AddPublication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPublication.swift; sourceTree = "<group>"; };
+		908A636E1E9A22B20015F4AF /* rectangle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rectangle_orange.png; path = Cach/rectangle_orange.png; sourceTree = SOURCE_ROOT; };
+		908A63701E9A25400015F4AF /* PubDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubDetails.swift; sourceTree = "<group>"; };
+		908A63721E9A393D0015F4AF /* placeLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeLocation.png; path = Cach/placeLocation.png; sourceTree = SOURCE_ROOT; };
+		908A63731E9A393D0015F4AF /* trackLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trackLocation.png; path = Cach/trackLocation.png; sourceTree = SOURCE_ROOT; };
+		908A63761E9A39860015F4AF /* myLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myLocation.png; path = Cach/myLocation.png; sourceTree = SOURCE_ROOT; };
 		90AFCF201E979256009A0F67 /* Truck24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Truck24.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCF231E979256009A0F67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90AFCF251E979256009A0F67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +261,7 @@
 				908A63681E9934D20015F4AF /* VSMapView.swift */,
 				908A636A1E9940270015F4AF /* CarFilter.swift */,
 				908A636C1E994CDE0015F4AF /* AddPublication.swift */,
+				908A63701E9A25400015F4AF /* PubDetails.swift */,
 			);
 			name = manage_scripts;
 			sourceTree = "<group>";
@@ -274,6 +285,10 @@
 		90AFCF9C1E97956C009A0F67 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				908A63761E9A39860015F4AF /* myLocation.png */,
+				908A63721E9A393D0015F4AF /* placeLocation.png */,
+				908A63731E9A393D0015F4AF /* trackLocation.png */,
+				908A636E1E9A22B20015F4AF /* rectangle_orange.png */,
 				908A63641E9930EF0015F4AF /* location.png */,
 				908A635E1E9927800015F4AF /* myPubs.png */,
 				908A635F1E9927800015F4AF /* nearest.png */,
@@ -417,6 +432,7 @@
 			files = (
 				90AFCFDC1E97DB38009A0F67 /* car.png in Resources */,
 				90AFCFE61E97DB38009A0F67 /* number.png in Resources */,
+				908A63741E9A393D0015F4AF /* placeLocation.png in Resources */,
 				908A63611E9927800015F4AF /* nearest.png in Resources */,
 				90AFCFDB1E97DB38009A0F67 /* call_icon.png in Resources */,
 				90AFCFE91E97DB38009A0F67 /* star-grey.png in Resources */,
@@ -426,6 +442,7 @@
 				90AFCFE21E97DB38009A0F67 /* filter.png in Resources */,
 				90AFCFEA1E97DB38009A0F67 /* Track.png in Resources */,
 				90AFCFEB1E97DB38009A0F67 /* Unchecked.jpeg in Resources */,
+				908A63751E9A393D0015F4AF /* trackLocation.png in Resources */,
 				90AFCFED1E97DB38009A0F67 /* UserIntro.jpeg in Resources */,
 				90AFCFDE1E97DB38009A0F67 /* checkBlack.png in Resources */,
 				90AFCFDF1E97DB38009A0F67 /* Checked.jpeg in Resources */,
@@ -436,10 +453,12 @@
 				90AFCFEE1E97DB38009A0F67 /* weight.png in Resources */,
 				90AFCFE71E97DB38009A0F67 /* rectangle.png in Resources */,
 				90606AE01E990C6C00471D87 /* image_placeholder.png in Resources */,
+				908A636F1E9A22B20015F4AF /* rectangle_orange.png in Resources */,
 				90AFCFE81E97DB38009A0F67 /* star-gold.png in Resources */,
 				908A63651E9930EF0015F4AF /* location.png in Resources */,
 				90AFCFE01E97DB38009A0F67 /* date.png in Resources */,
 				90AFCF291E979256009A0F67 /* Main.storyboard in Resources */,
+				908A63771E9A39860015F4AF /* myLocation.png in Resources */,
 				90AFCFE11E97DB38009A0F67 /* driverIntro.jpg in Resources */,
 				90AFCFE31E97DB38009A0F67 /* husan-ios.png in Resources */,
 				908A63601E9927800015F4AF /* myPubs.png in Resources */,
@@ -481,6 +500,7 @@
 				908A63691E9934D20015F4AF /* VSMapView.swift in Sources */,
 				90AFCF611E9792C6009A0F67 /* Agreement.swift in Sources */,
 				90AFCF691E9792C6009A0F67 /* PopUpViewController.swift in Sources */,
+				908A63711E9A25400015F4AF /* PubDetails.swift in Sources */,
 				90AFCF721E9792F1009A0F67 /* CarShort.swift in Sources */,
 				90AFCF661E9792C6009A0F67 /* Inroduction.swift in Sources */,
 				90AFCF261E979256009A0F67 /* ViewController.swift in Sources */,

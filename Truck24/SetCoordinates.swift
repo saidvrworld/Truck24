@@ -22,8 +22,13 @@ class SetCoordinates: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotationOnLongPress(gesture:)))
+        longPressGesture.minimumPressDuration = 1.0
+        self.mapView.addGestureRecognizer(longPressGesture)
+        
+        //let initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
        // centerMapOnLocation(location: initialLocation)
+        
         let car = CarPlacement(title: "Kamaz",
                               locationName: "Крытый вверх",
                               coordinate: CLLocationCoordinate2D(latitude: 41.353516, longitude: 69.289002))
@@ -69,6 +74,13 @@ class SetCoordinates: UIViewController {
         centerMapOnLocation(location: newLoc)
         curLocation = newLoc
         AppData.currentLocation = curLocation
+        
+        let car = CarPlacement(title: "Kamaz",
+                               locationName: "Крытый вверх",
+                               coordinate: CLLocationCoordinate2D(latitude: curLocation.coordinate.latitude, longitude: curLocation.coordinate.longitude))
+        
+        mapView.addAnnotation(car)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +94,26 @@ class SetCoordinates: UIViewController {
             self.present(nextViewController, animated:true, completion:nil)
        
     }
+    
+    func addAnnotationOnLongPress(gesture: UILongPressGestureRecognizer) {
+        
+        if gesture.state == .ended {
+            let point = gesture.location(in: self.mapView)
+            let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
+            print(coordinate)
+            
+            let getLat: CLLocationDegrees = coordinate.latitude
+            var getLon: CLLocationDegrees = coordinate.longitude
+            var newLoc: CLLocation =  CLLocation(latitude: getLat, longitude: getLon)
+            AppData.currentLocation = newLoc
+            
+            var annotation = MyPlacement(locationName: "Yunus", coordinate: coordinate)
+
+            self.mapView.addAnnotation(annotation)
+        }
+    }
+    
+    
     
     
     
