@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 import MapKit
 
 extension UIViewController: MKMapViewDelegate {
@@ -28,30 +28,34 @@ extension UIViewController: MKMapViewDelegate {
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
             }
-            view.image = annotation.imageName
+            view.image = UIImage(named: "placeLocation.png")!
             return view
         }
         else if let annotation = annotation as? MyPlacement {
             let identifier = "myLocation"
-            var view: MKPinAnnotationView
+            var view: MKAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-                as? MKPinAnnotationView { // 2
+                as? MKAnnotationView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
                 // 3
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
             }
             
-            view.image = annotation.imageName
+            view.image = UIImage(named: "placeLocation.png")!
+
             return view
         }
         return nil
     }
     
+    
+        
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
                  calloutAccessoryControlTapped control: UIControl!) {
         let location = view.annotation as! CarPlacement

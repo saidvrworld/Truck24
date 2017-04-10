@@ -82,6 +82,7 @@ class SMSVerification: UIViewController {
                     if(registered == 1){
                         isRegistrated = true
                         AppData.userName = userName!
+                        print(AppData.userName)
                     }
                     else{
                         isRegistrated = false

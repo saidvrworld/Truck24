@@ -20,6 +20,9 @@ class AddPublication: UIViewController {
     
     var executionDate: String!
     
+    @IBOutlet weak var toAddress: UILabel!
+    @IBOutlet weak var fromAddress: UILabel!
+
     @IBOutlet weak var SuccessView: UIView!
     @IBOutlet weak var LoadingView: UIView!
     @IBOutlet weak var DateView: UIDatePicker!
@@ -32,20 +35,36 @@ class AddPublication: UIViewController {
     }
     
     @IBAction func SetFromLocation(_ sender: Any) {
-        
+        AppData.waitingForLoc = "FromLoc"
+        GoToSetCoordinate()
     }
     
     @IBAction func SetToLocation(_ sender: Any) {
-        
+        AppData.waitingForLoc = "ToLoc"
+        GoToSetCoordinate()
     }
     
     @IBAction func SetDate(_ sender: Any) {
         
     }
     
+    
+    func GoToSetCoordinate() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SetCoordinates") as! SetCoordinates
+        self.present(nextViewController, animated:true, completion:nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(AppData.fromLocation != nil){
+            pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
+        }
+        if(AppData.toLocation != nil){
+        pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
+        }
         
     }
     

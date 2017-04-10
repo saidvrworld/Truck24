@@ -22,7 +22,9 @@ class MyPublications: UIViewController{
 
     
     override func viewDidLoad() {
-        pubMananger.GetMyPub(table: tableView,urlAddress: AppData.getPublicationsUrl, token: AppData.token)
+        if(AppData.PubList.count == 0){
+            pubMananger.GetMyPub(table: tableView,urlAddress: AppData.getPublicationsUrl, token: AppData.token)
+        }
         super.viewDidLoad()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -58,13 +60,15 @@ class MyPublications: UIViewController{
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
         
         let currentCell = tableView.cellForRow(at: indexPath!) as! PubCell
+        AppData.selectedPubId = currentCell.pubId
+        GoToDetailsInfo()
     }
     
     
     func GoToDetailsInfo() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarDetails") as! CarDetails
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
         self.present(nextViewController, animated:true, completion:nil)
     }
     

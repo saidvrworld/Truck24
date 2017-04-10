@@ -29,6 +29,10 @@
 		908A63741E9A393D0015F4AF /* placeLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63721E9A393D0015F4AF /* placeLocation.png */; };
 		908A63751E9A393D0015F4AF /* trackLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63731E9A393D0015F4AF /* trackLocation.png */; };
 		908A63771E9A39860015F4AF /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63761E9A39860015F4AF /* myLocation.png */; };
+		908A63791E9A44B00015F4AF /* NearCarMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A63781E9A44B00015F4AF /* NearCarMap.swift */; };
+		908A637B1E9A45380015F4AF /* PubWayOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637A1E9A45380015F4AF /* PubWayOnMap.swift */; };
+		908A637D1E9A99610015F4AF /* OffersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637C1E9A99600015F4AF /* OffersList.swift */; };
+		908A637F1E9A99860015F4AF /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637E1E9A99860015F4AF /* OfferCell.swift */; };
 		90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF231E979256009A0F67 /* AppDelegate.swift */; };
 		90AFCF261E979256009A0F67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF251E979256009A0F67 /* ViewController.swift */; };
 		90AFCF291E979256009A0F67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF271E979256009A0F67 /* Main.storyboard */; };
@@ -71,6 +75,21 @@
 		90AFCFEC1E97DB38009A0F67 /* user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD71E97DB38009A0F67 /* user_icon.png */; };
 		90AFCFED1E97DB38009A0F67 /* UserIntro.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */; };
 		90AFCFEE1E97DB38009A0F67 /* weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD91E97DB38009A0F67 /* weight.png */; };
+		90E5DF511E9B4319001BBB6F /* circle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF4F1E9B4319001BBB6F /* circle_orange.png */; };
+		90E5DF521E9B4319001BBB6F /* rectangle_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF501E9B4319001BBB6F /* rectangle_grey.png */; };
+		90E5DF541E9B590A001BBB6F /* OrderListForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */; };
+		90E5DF561E9B595B001BBB6F /* OrderForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF551E9B595B001BBB6F /* OrderForDriver.swift */; };
+		90E5DF581E9B5A58001BBB6F /* OrderForDriverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF571E9B5A58001BBB6F /* OrderForDriverData.swift */; };
+		90E5DF5A1E9B8970001BBB6F /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF591E9B8970001BBB6F /* OrderDetails.swift */; };
+		90E5DF5C1E9BDA00001BBB6F /* OfferDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF5B1E9BDA00001BBB6F /* OfferDetails.swift */; };
+		90E5DF5E1E9BDCFA001BBB6F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF5D1E9BDCFA001BBB6F /* Settings.swift */; };
+		90E5DF601E9BE158001BBB6F /* draw-back-sam.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF5F1E9BE158001BBB6F /* draw-back-sam.jpg */; };
+		90E5DF661E9BE324001BBB6F /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF611E9BE324001BBB6F /* done.png */; };
+		90E5DF671E9BE324001BBB6F /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF621E9BE324001BBB6F /* help.png */; };
+		90E5DF681E9BE324001BBB6F /* inProcess.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF631E9BE324001BBB6F /* inProcess.png */; };
+		90E5DF691E9BE324001BBB6F /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF641E9BE324001BBB6F /* setting.png */; };
+		90E5DF6A1E9BE324001BBB6F /* user_icon_whte.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF651E9BE324001BBB6F /* user_icon_whte.png */; };
+		90E5DF6C1E9BF08F001BBB6F /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF6B1E9BF08F001BBB6F /* list.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +132,10 @@
 		908A63721E9A393D0015F4AF /* placeLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeLocation.png; path = Cach/placeLocation.png; sourceTree = SOURCE_ROOT; };
 		908A63731E9A393D0015F4AF /* trackLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trackLocation.png; path = Cach/trackLocation.png; sourceTree = SOURCE_ROOT; };
 		908A63761E9A39860015F4AF /* myLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myLocation.png; path = Cach/myLocation.png; sourceTree = SOURCE_ROOT; };
+		908A63781E9A44B00015F4AF /* NearCarMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearCarMap.swift; sourceTree = "<group>"; };
+		908A637A1E9A45380015F4AF /* PubWayOnMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubWayOnMap.swift; sourceTree = "<group>"; };
+		908A637C1E9A99600015F4AF /* OffersList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersList.swift; sourceTree = "<group>"; };
+		908A637E1E9A99860015F4AF /* OfferCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		90AFCF201E979256009A0F67 /* Truck24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Truck24.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCF231E979256009A0F67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90AFCF251E979256009A0F67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +184,21 @@
 		90AFCFD71E97DB38009A0F67 /* user_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_icon.png; path = Cach/user_icon.png; sourceTree = SOURCE_ROOT; };
 		90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = UserIntro.jpeg; path = Cach/UserIntro.jpeg; sourceTree = SOURCE_ROOT; };
 		90AFCFD91E97DB38009A0F67 /* weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weight.png; path = Cach/weight.png; sourceTree = SOURCE_ROOT; };
+		90E5DF4F1E9B4319001BBB6F /* circle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle_orange.png; path = Cach/circle_orange.png; sourceTree = SOURCE_ROOT; };
+		90E5DF501E9B4319001BBB6F /* rectangle_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rectangle_grey.png; path = Cach/rectangle_grey.png; sourceTree = SOURCE_ROOT; };
+		90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListForDriver.swift; sourceTree = "<group>"; };
+		90E5DF551E9B595B001BBB6F /* OrderForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderForDriver.swift; sourceTree = "<group>"; };
+		90E5DF571E9B5A58001BBB6F /* OrderForDriverData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderForDriverData.swift; sourceTree = "<group>"; };
+		90E5DF591E9B8970001BBB6F /* OrderDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
+		90E5DF5B1E9BDA00001BBB6F /* OfferDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetails.swift; sourceTree = "<group>"; };
+		90E5DF5D1E9BDCFA001BBB6F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		90E5DF5F1E9BE158001BBB6F /* draw-back-sam.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "draw-back-sam.jpg"; path = "Cach/draw-back-sam.jpg"; sourceTree = SOURCE_ROOT; };
+		90E5DF611E9BE324001BBB6F /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = done.png; path = Cach/done.png; sourceTree = SOURCE_ROOT; };
+		90E5DF621E9BE324001BBB6F /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help.png; path = Cach/help.png; sourceTree = SOURCE_ROOT; };
+		90E5DF631E9BE324001BBB6F /* inProcess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = inProcess.png; path = Cach/inProcess.png; sourceTree = SOURCE_ROOT; };
+		90E5DF641E9BE324001BBB6F /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting.png; path = Cach/setting.png; sourceTree = SOURCE_ROOT; };
+		90E5DF651E9BE324001BBB6F /* user_icon_whte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_icon_whte.png; path = Cach/user_icon_whte.png; sourceTree = SOURCE_ROOT; };
+		90E5DF6B1E9BF08F001BBB6F /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = Cach/list.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +300,13 @@
 				908A636A1E9940270015F4AF /* CarFilter.swift */,
 				908A636C1E994CDE0015F4AF /* AddPublication.swift */,
 				908A63701E9A25400015F4AF /* PubDetails.swift */,
+				908A63781E9A44B00015F4AF /* NearCarMap.swift */,
+				908A637A1E9A45380015F4AF /* PubWayOnMap.swift */,
+				908A637C1E9A99600015F4AF /* OffersList.swift */,
+				90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */,
+				90E5DF591E9B8970001BBB6F /* OrderDetails.swift */,
+				90E5DF5B1E9BDA00001BBB6F /* OfferDetails.swift */,
+				90E5DF5D1E9BDCFA001BBB6F /* Settings.swift */,
 			);
 			name = manage_scripts;
 			sourceTree = "<group>";
@@ -278,6 +323,9 @@
 				90606AE11E991A8200471D87 /* PublicationData.swift */,
 				90606AE31E991A9100471D87 /* Publication.swift */,
 				908A63661E99325F0015F4AF /* CarPlacement.swift */,
+				908A637E1E9A99860015F4AF /* OfferCell.swift */,
+				90E5DF551E9B595B001BBB6F /* OrderForDriver.swift */,
+				90E5DF571E9B5A58001BBB6F /* OrderForDriverData.swift */,
 			);
 			name = data_scripts;
 			sourceTree = "<group>";
@@ -285,6 +333,15 @@
 		90AFCF9C1E97956C009A0F67 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				90E5DF6B1E9BF08F001BBB6F /* list.png */,
+				90E5DF611E9BE324001BBB6F /* done.png */,
+				90E5DF621E9BE324001BBB6F /* help.png */,
+				90E5DF631E9BE324001BBB6F /* inProcess.png */,
+				90E5DF641E9BE324001BBB6F /* setting.png */,
+				90E5DF651E9BE324001BBB6F /* user_icon_whte.png */,
+				90E5DF5F1E9BE158001BBB6F /* draw-back-sam.jpg */,
+				90E5DF4F1E9B4319001BBB6F /* circle_orange.png */,
+				90E5DF501E9B4319001BBB6F /* rectangle_grey.png */,
 				908A63761E9A39860015F4AF /* myLocation.png */,
 				908A63721E9A393D0015F4AF /* placeLocation.png */,
 				908A63731E9A393D0015F4AF /* trackLocation.png */,
@@ -437,7 +494,9 @@
 				90AFCFDB1E97DB38009A0F67 /* call_icon.png in Resources */,
 				90AFCFE91E97DB38009A0F67 /* star-grey.png in Resources */,
 				90AFCFDA1E97DB38009A0F67 /* backButton.png in Resources */,
+				90E5DF6C1E9BF08F001BBB6F /* list.png in Resources */,
 				90AFCFDD1E97DB38009A0F67 /* check.png in Resources */,
+				90E5DF521E9B4319001BBB6F /* rectangle_grey.png in Resources */,
 				90AFCFE41E97DB38009A0F67 /* info.png in Resources */,
 				90AFCFE21E97DB38009A0F67 /* filter.png in Resources */,
 				90AFCFEA1E97DB38009A0F67 /* Track.png in Resources */,
@@ -449,6 +508,8 @@
 				90606ADA1E98C31700471D87 /* placeholder.jpg in Resources */,
 				90AFCF2E1E979256009A0F67 /* LaunchScreen.storyboard in Resources */,
 				90AFCF2B1E979256009A0F67 /* Assets.xcassets in Resources */,
+				90E5DF671E9BE324001BBB6F /* help.png in Resources */,
+				90E5DF6A1E9BE324001BBB6F /* user_icon_whte.png in Resources */,
 				90AFCFE51E97DB38009A0F67 /* LongRectangle.png in Resources */,
 				90AFCFEE1E97DB38009A0F67 /* weight.png in Resources */,
 				90AFCFE71E97DB38009A0F67 /* rectangle.png in Resources */,
@@ -458,12 +519,17 @@
 				908A63651E9930EF0015F4AF /* location.png in Resources */,
 				90AFCFE01E97DB38009A0F67 /* date.png in Resources */,
 				90AFCF291E979256009A0F67 /* Main.storyboard in Resources */,
+				90E5DF681E9BE324001BBB6F /* inProcess.png in Resources */,
+				90E5DF601E9BE158001BBB6F /* draw-back-sam.jpg in Resources */,
 				908A63771E9A39860015F4AF /* myLocation.png in Resources */,
+				90E5DF661E9BE324001BBB6F /* done.png in Resources */,
 				90AFCFE11E97DB38009A0F67 /* driverIntro.jpg in Resources */,
 				90AFCFE31E97DB38009A0F67 /* husan-ios.png in Resources */,
+				90E5DF691E9BE324001BBB6F /* setting.png in Resources */,
 				908A63601E9927800015F4AF /* myPubs.png in Resources */,
 				90AFCFEC1E97DB38009A0F67 /* user_icon.png in Resources */,
 				90606ADF1E990C6C00471D87 /* callButton.png in Resources */,
+				90E5DF511E9B4319001BBB6F /* circle_orange.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,16 +561,22 @@
 				90AFCF6C1E9792C6009A0F67 /* Singleton.swift in Sources */,
 				90AFCF6A1E9792C6009A0F67 /* SignInCustomer.swift in Sources */,
 				90AFCF641E9792C6009A0F67 /* ChooseType.swift in Sources */,
+				90E5DF5A1E9B8970001BBB6F /* OrderDetails.swift in Sources */,
+				908A637D1E9A99610015F4AF /* OffersList.swift in Sources */,
 				90606ADC1E98E9FC00471D87 /* CarDetails.swift in Sources */,
 				90606AE61E991AB200471D87 /* MyPublications.swift in Sources */,
 				908A63691E9934D20015F4AF /* VSMapView.swift in Sources */,
+				908A63791E9A44B00015F4AF /* NearCarMap.swift in Sources */,
 				90AFCF611E9792C6009A0F67 /* Agreement.swift in Sources */,
+				90E5DF5C1E9BDA00001BBB6F /* OfferDetails.swift in Sources */,
 				90AFCF691E9792C6009A0F67 /* PopUpViewController.swift in Sources */,
 				908A63711E9A25400015F4AF /* PubDetails.swift in Sources */,
 				90AFCF721E9792F1009A0F67 /* CarShort.swift in Sources */,
+				90E5DF5E1E9BDCFA001BBB6F /* Settings.swift in Sources */,
 				90AFCF661E9792C6009A0F67 /* Inroduction.swift in Sources */,
 				90AFCF261E979256009A0F67 /* ViewController.swift in Sources */,
 				90606AD81E98B14C00471D87 /* CarData.swift in Sources */,
+				90E5DF581E9B5A58001BBB6F /* OrderForDriverData.swift in Sources */,
 				90606AD61E97E58F00471D87 /* SMSVerification.swift in Sources */,
 				90606AE21E991A8200471D87 /* PublicationData.swift in Sources */,
 				908A63631E992E6D0015F4AF /* SetCoordinates.swift in Sources */,
@@ -512,9 +584,13 @@
 				90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */,
 				90AFCF741E9792F1009A0F67 /* TypeCell.swift in Sources */,
 				90AFCF6B1E9792C6009A0F67 /* SignInDriver.swift in Sources */,
+				908A637B1E9A45380015F4AF /* PubWayOnMap.swift in Sources */,
 				908A63671E99325F0015F4AF /* CarPlacement.swift in Sources */,
+				908A637F1E9A99860015F4AF /* OfferCell.swift in Sources */,
+				90E5DF541E9B590A001BBB6F /* OrderListForDriver.swift in Sources */,
 				90AFCF621E9792C6009A0F67 /* ChooseCarType.swift in Sources */,
 				90AFCF711E9792F1009A0F67 /* CarCell.swift in Sources */,
+				90E5DF561E9B595B001BBB6F /* OrderForDriver.swift in Sources */,
 				90AFCF681E9792C6009A0F67 /* NearList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,11 +743,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
 				INFOPLIST_FILE = Truck24/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -680,11 +758,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
 				INFOPLIST_FILE = Truck24/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

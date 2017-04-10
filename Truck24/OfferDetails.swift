@@ -1,18 +1,17 @@
 //
-//  CarDetails.swift
+//  OfferDetails.swift
 //  Truck24
 //
-//  Created by Khusan Saidvaliev on 08.04.17.
+//  Created by Khusan Saidvaliev on 10.04.17.
 //  Copyright © 2017 Khusan Saidvaliev. All rights reserved.
 //
-
 import Foundation
 
 import UIKit
 
 
 
-class CarDetails: UIViewController {
+class OfferDetails: UIViewController {
     
     
     @IBOutlet weak var LoadingIndicator: UIView!
@@ -23,6 +22,7 @@ class CarDetails: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var carWeigth: UILabel!
     @IBOutlet weak var carType: UILabel!
+    @IBOutlet weak var price: UILabel!
     
     @IBOutlet weak var Star5: UIImageView!
     @IBOutlet weak var Star4: UIImageView!
@@ -32,7 +32,7 @@ class CarDetails: UIViewController {
     @IBOutlet weak var Star1: UIImageView!
     
     var StarList:[UIImageView]!
-
+    
     
     var isCarImageLoading = false
     var isRateLoading = false
@@ -41,7 +41,7 @@ class CarDetails: UIViewController {
         super.viewDidLoad()
         StarList = [Star1,Star2,Star3,Star4,Star5]
         MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
-
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -101,7 +101,7 @@ class CarDetails: UIViewController {
                 let carRate = dataBody?["rate"] as! Double
                 let carIntRate = Int(carRate)
                 self.setRate(rate: carIntRate)
-
+                
             }
             
         }
@@ -111,16 +111,16 @@ class CarDetails: UIViewController {
     
     private func FillTextData(car: [String:Any]){
         
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
-                self.SetText(data: car)
-                DispatchQueue.main.async
-                    {
-                        self.LoadingIndicator.isHidden = true
-                }
-                
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            self.SetText(data: car)
+            DispatchQueue.main.async
+                {
+                    self.LoadingIndicator.isHidden = true
             }
+            
+        }
         
-    
+        
     }
     
     private func SetText(data:[String:Any]){
@@ -130,7 +130,7 @@ class CarDetails: UIViewController {
         carType.text = data["carName"] as! String
         details.text = data["detail"] as! String
         PhoneNumberView.text = data["phoneNumber"] as! String
-    
+        
     }
     
     
@@ -217,6 +217,8 @@ class CarDetails: UIViewController {
         }
     }
     
+    @IBAction func AcceptPrice(_ sender: Any) {
+    }
     
     private func DownloadUserImage(_ imgUrl:String)->UIImage{
         self.isUserImageLoading = true

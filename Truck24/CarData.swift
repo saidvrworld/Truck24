@@ -41,7 +41,7 @@ class CarData{
         
     }
     
-    func ManageResponse(response:[String:Any])->[CarShort]{
+    private func ManageResponse(response:[String:Any])->[CarShort]{
         var carList:[CarShort] = []
 
         if let array = response["data"] as? [Any] {
@@ -60,12 +60,16 @@ class CarData{
     
     
     
-    func ParseCar(_ car:[String:AnyObject])->CarShort{
+    private func ParseCar(_ car:[String:AnyObject])->CarShort{
         let newCar = CarShort()
         newCar.carId = car["carId"] as! Int
         newCar.carImageUrl = car["carImageUrl"] as! String
         newCar.carName = car["carName"] as! String
-        newCar.distance = car["distance"] as! String
+        
+        let str = car["distance"] as! String
+        let index = str.index(str.startIndex, offsetBy: 1)
+        
+        newCar.distance = str.substring(to: index)
         newCar.rate = car["rate"] as! Double
 
         return newCar

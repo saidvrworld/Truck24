@@ -1,8 +1,8 @@
 //
-//  PubDetails.swift
+//  OrderDetails.swift
 //  Truck24
 //
-//  Created by Khusan Saidvaliev on 09.04.17.
+//  Created by Khusan Saidvaliev on 10.04.17.
 //  Copyright © 2017 Khusan Saidvaliev. All rights reserved.
 //
 
@@ -11,15 +11,16 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PubDetails: UIViewController {
+class OrderDetails: UIViewController {
     
     @IBOutlet weak var LoadingView: UIView!
     @IBOutlet weak var publicationDate: UILabel!
     @IBOutlet weak var carTypes: UILabel!
     @IBOutlet weak var fromAddress: UILabel!
     @IBOutlet weak var toAddress: UILabel!
-    @IBOutlet weak var offerCount: UILabel!
     @IBOutlet weak var Notes: UILabel!
+    @IBOutlet weak var customerPhone: UILabel!
+    @IBOutlet weak var customerName: UILabel!
     
     @IBOutlet weak var executionDate: UILabel!
     
@@ -32,13 +33,28 @@ class PubDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GetDetails(urlstring: AppData.getPublicationInfo, orderId: String(AppData.selectedPubId))
+        GetDetails(urlstring: AppData.getOrderInfoForDriver, orderId: String(AppData.selectedOrderForDriverId))
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    @IBAction func GoToOfferPrice(_ sender: Any) {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let PopView = storyBoard.instantiateViewController(withIdentifier: "OfferPrice") as! OfferPrice
+        self.addChildViewController(PopView)
+        PopView.view.frame = self.view.frame
+        self.view.addSubview(PopView.view)
+        PopView.didMove(toParentViewController: self)
+    }
     
+    @IBAction func MakeCall(_ sender: Any) {
+        
+        if var number = customerPhone.text{
+            callNumber(phoneNumber: number)
+        }
+    }
     
     
     
@@ -48,25 +64,20 @@ class PubDetails: UIViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubWayOnMap") as! PubWayOnMap
         self.present(nextViewController, animated:true, completion:nil)
-
-    }
-    
-   @IBAction func GoToOffers(_ sender: Any) {
-       let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-       let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OffersList") as! OffersList
-       self.present(nextViewController, animated:true, completion:nil)
         
     }
+    
+    
     
     @IBAction func BackToMain(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-            self.present(nextViewController, animated:true, completion:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainDriverView") as! UITabBarController
+        self.present(nextViewController, animated:true, completion:nil)
         
     }
     
     
-    func GetDetails(urlstring: String,orderId: String){
+    private func GetDetails(urlstring: String,orderId: String){
         
         let parameters = "token=fec5fdf5ac012r43"+orderId+"fec5fdf5ac012r43"
         
@@ -94,7 +105,7 @@ class PubDetails: UIViewController {
         
     }
     
-    func InfoManager(response: [String:Any]){
+    private func InfoManager(response: [String:Any]){
         
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
@@ -106,25 +117,35 @@ class PubDetails: UIViewController {
                 to_long = dataBody?["to_long"] as! Double
                 to_lat = dataBody?["to_lat"] as! Double
                 publicationDate.text = dataBody?["added"] as! String
-
+                
                 
                 AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
                 AppData.toLocation =  CLLocation(latitude: to_lat, longitude: to_long)
                 
                 pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
                 pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
-
+                
                 Notes.text = dataBody?["notes"] as! String
                 executionDate.text = dataBody?["date"] as! String
-                offerCount.text = String(dataBody?["offersCount"] as! Int)
-                
+                customerName.text = dataBody?["customerName"] as! String
+                customerPhone.text = dataBody?["customerPhoneNumber"] as! String
+
                 LoadingView.isHidden = true
             }
             
         }
         
     }
-
+    
+    private func callNumber(phoneNumber:String) {
+        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneNumber)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL as URL)) {
+                application.openURL(phoneCallURL as URL);
+            }
+        }
+    }
+    
     
     
 }

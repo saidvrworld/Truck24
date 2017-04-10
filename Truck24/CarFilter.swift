@@ -25,6 +25,7 @@ class CarFilter: UIViewController {
     }
     
     @IBAction func SetLocation(_ sender: Any) {
+        AppData.waitingForLoc = "CarFilter"
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SetCoordinates") as! SetCoordinates
         self.present(nextViewController, animated:true, completion:nil)
@@ -42,7 +43,7 @@ class CarFilter: UIViewController {
     
     
     @IBAction func SetRadius(_ sender: Any) {
-        radius.text = String(RadiusSlider.value)+" км"
+        radius.text = String(Int(RadiusSlider.value))+" км"
         
     }
     

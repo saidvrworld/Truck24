@@ -17,8 +17,6 @@ class SetCoordinates: UIViewController {
     
     var curLocation: CLLocation!
 
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +27,9 @@ class SetCoordinates: UIViewController {
         //let initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
        // centerMapOnLocation(location: initialLocation)
         
-        let car = CarPlacement(title: "Kamaz",
-                              locationName: "Крытый вверх",
-                              coordinate: CLLocationCoordinate2D(latitude: 41.353516, longitude: 69.289002))
+       // let car = CarPlacement(title: "Kamaz",
+         //                     locationName: "Крытый вверх",
+           //                   coordinate: CLLocationCoordinate2D(latitude: 41.353516, longitude: 69.289002))
         
        // mapView.addAnnotation(car)
         mapView.delegate = self 
@@ -63,23 +61,27 @@ class SetCoordinates: UIViewController {
     }
     
     func getCenterCoordinates() {
-        var center = mapView.centerCoordinate
+        let center = mapView.centerCoordinate
     }
     
     func getCurrentLocation(){
-        var centre = locationManager.location?.coordinate
-        let getLat: CLLocationDegrees = centre!.latitude
-        var getLon: CLLocationDegrees = centre!.longitude
-        var newLoc: CLLocation =  CLLocation(latitude: getLat, longitude: getLon)
-        centerMapOnLocation(location: newLoc)
-        curLocation = newLoc
-        AppData.currentLocation = curLocation
+        let centre = locationManager.location?.coordinate
         
-        let car = CarPlacement(title: "Kamaz",
-                               locationName: "Крытый вверх",
-                               coordinate: CLLocationCoordinate2D(latitude: curLocation.coordinate.latitude, longitude: curLocation.coordinate.longitude))
+        centerMapOnLocation(location: Loc2DToLoc(loc: centre!))
+  
+        if(AppData.waitingForLoc == "NearList"){
+            AppData.currentLocation = Loc2DToLoc(loc: centre!)
+        }
+        else if(AppData.waitingForLoc == "FromLoc"){
+            AppData.fromLocation = Loc2DToLoc(loc: centre!)
+        }
+        else if(AppData.waitingForLoc == "ToLoc"){
+            AppData.toLocation = Loc2DToLoc(loc: centre!)
+        }
         
-        mapView.addAnnotation(car)
+        var annotation = MyPlacement(locationName: "Yunus", coordinate: centre!)
+        self.mapView.addAnnotation(annotation)
+
         
     }
     
@@ -89,9 +91,35 @@ class SetCoordinates: UIViewController {
     }
     
     @IBAction func BackToSignIn(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
+        
+        if(AppData.waitingForLoc == "CarFilter"){
+            if(AppData.currentLocation == nil){
+               ShowError(errorType: "coordinateError")
+            }else{
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarFilter") as! CarFilter
             self.present(nextViewController, animated:true, completion:nil)
+            }
+        }
+        else if(AppData.waitingForLoc == "FromLoc"){
+            if(AppData.fromLocation == nil){
+                ShowError(errorType: "coordinateError")
+            }else{
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddPublication") as! AddPublication
+                self.present(nextViewController, animated:true, completion:nil)
+            }        }
+        else if(AppData.waitingForLoc == "ToLoc"){
+            if(AppData.toLocation == nil){
+                ShowError(errorType: "coordinateError")
+            }else{
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddPublication") as! AddPublication
+                self.present(nextViewController, animated:true, completion:nil)
+            }
+        }
+        
+        
        
     }
     
@@ -100,21 +128,49 @@ class SetCoordinates: UIViewController {
         if gesture.state == .ended {
             let point = gesture.location(in: self.mapView)
             let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
-            print(coordinate)
             
-            let getLat: CLLocationDegrees = coordinate.latitude
-            var getLon: CLLocationDegrees = coordinate.longitude
-            var newLoc: CLLocation =  CLLocation(latitude: getLat, longitude: getLon)
-            AppData.currentLocation = newLoc
+            if(AppData.waitingForLoc == "CarFilter"){
+                AppData.currentLocation = Loc2DToLoc(loc: coordinate)
+            }
+            else if(AppData.waitingForLoc == "FromLoc"){
+                AppData.fromLocation = Loc2DToLoc(loc: coordinate)
+            }
+            else if(AppData.waitingForLoc == "ToLoc"){
+                AppData.toLocation = Loc2DToLoc(loc: coordinate)
+            }
             
-            var annotation = MyPlacement(locationName: "Yunus", coordinate: coordinate)
-
+            
+            let annotation = MyPlacement(locationName: "Yunus", coordinate: coordinate)
+            
+            self.mapView.annotations.forEach {
+                if !($0 is MKUserLocation) {
+                    self.mapView.removeAnnotation($0)
+                }
+            }
             self.mapView.addAnnotation(annotation)
         }
     }
     
     
+    func Loc2DToLoc(loc:CLLocationCoordinate2D)->CLLocation{
+        let getLat: CLLocationDegrees = loc.latitude
+        let getLon: CLLocationDegrees = loc.longitude
+        let newLoc: CLLocation =  CLLocation(latitude: getLat, longitude: getLon)
+        return newLoc
+    }
     
     
+    func ShowError(errorType: String){
+        
+        if(errorType=="coordinateError"){
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "coordinateError") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        }
+    }
     
 }
