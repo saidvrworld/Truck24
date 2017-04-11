@@ -121,11 +121,17 @@ class SMSVerification: UIViewController {
     }
     
     func GoToNearList() {
-        
+        if(AppData.userType == 1){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
         self.present(nextViewController, animated:true, completion:nil)
+        }
+        else{
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainDriverView") as! UITabBarController
+            self.present(nextViewController, animated:true, completion:nil)
+
+        }
     }
     
     func GoToRegistration() {

@@ -168,10 +168,16 @@ class PubWayOnMap: UIViewController {
     }
     
     @IBAction func BackToPubDetails(_ sender: Any) {
-        
+        if(AppData.lastScene == "OrderDetails"){
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
-                self.present(nextViewController, animated:true, completion:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetails") as! OrderDetails
+            self.present(nextViewController, animated:true, completion:nil)
+        }
+        else if(AppData.lastScene == "PubDetails"){
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
+            self.present(nextViewController, animated:true, completion:nil)
+        }
 
     }
     

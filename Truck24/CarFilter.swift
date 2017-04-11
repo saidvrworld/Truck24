@@ -19,6 +19,8 @@ class CarFilter: UIViewController {
     
     
     @IBAction func ChooseCarType(_ sender: Any) {
+        AppData.lastScene = "CarFilter"
+
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseCarType") as! ChooseCarType
         self.present(nextViewController, animated:true, completion:nil)

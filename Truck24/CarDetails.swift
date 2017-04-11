@@ -40,7 +40,16 @@ class CarDetails: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         StarList = [Star1,Star2,Star3,Star4,Star5]
-        MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
+       // if(AppData.CarDetailsList[AppData.selectedCarId] != nil){
+       //      self.FillDataFromAppData()
+        //    setCarPicture((AppData.CarDetailsList[AppData.selectedCarId]?.carImage)!)
+        //    setUserPicture((AppData.CarDetailsList[AppData.selectedCarId]?.userImage)!)
+       //     setRate(rate: (AppData.CarDetailsList[AppData.selectedCarId]?.rate)!)
+
+       // }
+       // else{
+          MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
+      //  }
 
     }
     
@@ -94,6 +103,8 @@ class CarDetails: UIViewController {
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
+                print(dataBody)
+                AppData.CarDetailsList[AppData.selectedCarId] = CarDetail()
                 self.FillTextData(car: dataBody!)
                 setCarPicture(dataBody?["carImageUrl"] as! String)
                 setUserPicture(dataBody?["userPhoto"] as! String)
@@ -115,8 +126,7 @@ class CarDetails: UIViewController {
                 self.SetText(data: car)
                 DispatchQueue.main.async
                     {
-                        self.LoadingIndicator.isHidden = true
-                }
+                                        }
                 
             }
         
@@ -124,15 +134,29 @@ class CarDetails: UIViewController {
     }
     
     private func SetText(data:[String:Any]){
-        userName.text = data["userName"] as! String
-        carNumber.text = data["carNumber"] as! String
-        carWeigth.text = data["carMaxWeight"] as! String
-        carType.text = data["carName"] as! String
-        details.text = data["detail"] as! String
-        PhoneNumberView.text = data["phoneNumber"] as! String
-    
+        
+        AppData.CarDetailsList[AppData.selectedCarId]?.userName = data["userName"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.carNumber = data["carNumber"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.carWeigth = data["carMaxWeight"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.carType = data["carName"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.details = data["detail"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.phoneNumber = data["phoneNumber"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.carImage = data["carImageUrl"] as! String
+        AppData.CarDetailsList[AppData.selectedCarId]?.userImage = data["userPhoto"] as! String
+        self.FillDataFromAppData()
+        
     }
     
+    func FillDataFromAppData(){
+        carWeigth.text = AppData.CarDetailsList[AppData.selectedCarId]?.carWeigth
+        carType.text = AppData.CarDetailsList[AppData.selectedCarId]?.carType
+        details.text = AppData.CarDetailsList[AppData.selectedCarId]?.details
+        PhoneNumberView.text = AppData.CarDetailsList[AppData.selectedCarId]?.phoneNumber
+        userName.text = AppData.CarDetailsList[AppData.selectedCarId]?.userName
+        carNumber.text = AppData.CarDetailsList[AppData.selectedCarId]?.carNumber
+        self.LoadingIndicator.isHidden = true
+
+    }
     
     @IBAction func BackToMainView(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

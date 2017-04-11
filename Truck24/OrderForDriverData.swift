@@ -93,10 +93,10 @@ class OrderForDriverData{
         var from_lat = order["from_lat"] as! Double
         var from_long = order["from_long"] as! Double
 
-
+        newOrder.addressFrom = "Юнусабад"
         var addressLoc =  CLLocation(latitude: from_lat, longitude: from_long)
     
-       getAddress(location: addressLoc,text:newOrder.addressFrom)
+      // getAddress(location: addressLoc,text:newOrder.addressFrom)
     
         
     

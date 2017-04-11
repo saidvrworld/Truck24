@@ -89,7 +89,7 @@ class PublicationData{
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
-                
+                print(dataBody)
                 var success = dataBody?["success"] as! Bool
                 if(success){
                     viewControler.isHidden = false

@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 
-class AddPublication: UIViewController {
+class AddPublication: UIViewController,UITextFieldDelegate {
     
     var fromLongitude: Float = 69.289002
     var fromLatitude: Float = 41.353516
@@ -31,7 +31,11 @@ class AddPublication: UIViewController {
     var pubManager = PublicationData()
     
     @IBAction func ChooseCarType(_ sender: Any) {
+        AppData.lastScene = "AddPublication"
         
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseCarType") as! ChooseCarType
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
     @IBAction func SetFromLocation(_ sender: Any) {
@@ -65,6 +69,7 @@ class AddPublication: UIViewController {
         if(AppData.toLocation != nil){
         pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
         }
+        self.notesView.delegate = self
         
     }
     
@@ -72,12 +77,16 @@ class AddPublication: UIViewController {
         return .lightContent
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     
     @IBAction func CreatePublication(_ sender: Any) {
         
         LoadingView.isHidden = false
+        SuccessView.isHidden = false
         pubManager.AddPub(viewContr: SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: "1", lat_from: String(fromLatitude), long_from: String(fromLongitude), lat_to: String(toLatitude), long_to: String(toLongitude), notes: notesView.text!, date: getTime())
     }
     

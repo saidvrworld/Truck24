@@ -61,6 +61,7 @@ class OrderDetails: UIViewController {
     
     
     @IBAction func ShowWay(_ sender: Any) {
+        AppData.lastScene = "OrderDetails"
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubWayOnMap") as! PubWayOnMap
         self.present(nextViewController, animated:true, completion:nil)
