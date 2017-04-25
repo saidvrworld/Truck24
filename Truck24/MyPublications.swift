@@ -61,7 +61,12 @@ class MyPublications: UIViewController{
         
         let currentCell = tableView.cellForRow(at: indexPath!) as! PubCell
         AppData.selectedPubId = currentCell.pubId
-        GoToDetailsInfo()
+        if(currentCell.status == 0){
+            GoToDetailsInfo()
+        }
+        else if(currentCell.status == 1){
+            GoToAcceptedDetailsInfo()
+        }
     }
     
     
@@ -69,6 +74,13 @@ class MyPublications: UIViewController{
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    func GoToAcceptedDetailsInfo() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AcceptedOrderInfo") as! AcceptedOrderInfo
         self.present(nextViewController, animated:true, completion:nil)
     }
     

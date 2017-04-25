@@ -12,15 +12,15 @@ import MapKit
 import AddressBook
 
 
-class CarPlacement: NSObject, MKAnnotation {
+class CarPlacement1: NSObject, MKAnnotation {
     
-    let CarType: String
+    let Title: String
     let locationName: String
     let coordinate: CLLocationCoordinate2D
     var imageName: UIImage = UIImage(named: "trackLocation.png")!
 
     init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
-        self.CarType = title
+        self.Title = title
         self.locationName = locationName
         self.coordinate = coordinate
         
@@ -36,11 +36,36 @@ class CarPlacement: NSObject, MKAnnotation {
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
         
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = CarType
+        mapItem.name = Title
+        
         
         return mapItem
     }
     
+}
+
+class CarPlacement: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    var carId:Int!
+    
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String,id:Int) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        self.carId = id
+    }
+    
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
 }
 
 
@@ -102,4 +127,23 @@ class Placement: NSObject, MKAnnotation {
         return mapItem
     }
     
+}
+
+
+class CarAnnotationView: MKAnnotationView {
+    // Required for MKAnnotationView
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+   
+    
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        let attractionAnnotation = self.annotation as! CarPlacement
+        
+        image = UIImage(named: "placeLocation.png")
+    
+        
+    }
 }

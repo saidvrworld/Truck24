@@ -35,8 +35,15 @@ class OrderForDriverData{
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                AppData.OrderForDriverList = self.GetOrderResponse(response:responseJSON)
-                table.reloadData()
+                
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    AppData.OrderForDriverList = self.GetOrderResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.reloadData()
+                    }
+                }
+                
             }
         }
         
@@ -62,7 +69,7 @@ class OrderForDriverData{
     
     
     
-    func getAddress(location: CLLocation,text:String){
+    func getAddress(location: CLLocation,order:OrderForDriver){
         var fullAddress:String = " "
         
         let geoCoder = CLGeocoder()
@@ -76,10 +83,11 @@ class OrderForDriverData{
             if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
                 print(locationName)
                 fullAddress = (locationName as! String)
-                
+                order.addressFrom = fullAddress
             }
             
         })
+        
         
     }
     
@@ -93,16 +101,67 @@ class OrderForDriverData{
         var from_lat = order["from_lat"] as! Double
         var from_long = order["from_long"] as! Double
 
-        newOrder.addressFrom = "Юнусабад"
         var addressLoc =  CLLocation(latitude: from_lat, longitude: from_long)
-    
-      // getAddress(location: addressLoc,text:newOrder.addressFrom)
-    
-        
-    
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+            self.getAddress(location: addressLoc,order:newOrder)
+        DispatchQueue.main.async
+            {
+            }
+        }
         return newOrder
     }
     
+    func GetMyOrderList(table: UITableView,urlAddress: String,token:String){
+        
+        let parameters = "token="+token
+        print(parameters)
+        let url = URL(string: urlAddress)
+        var request = URLRequest(url: (url)!)
+        request.httpMethod = "POST"
+        
+        request.httpBody = parameters.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    AppData.MyOrderForDriverList = self.GetMyOrderResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.reloadData()
+                    }
+                }
+
+            }
+        }
+        task.resume()
+    }
+    
+    
+    private func GetMyOrderResponse(response:[String:Any])->[MyOrderForDriver]{
+        var orderList:[MyOrderForDriver] = []
+        
+        if let array = response["data"] as? [Any] {
+            
+            for orderObj in array {
+                let dataBody = orderObj as? [String: Any]
+                print(dataBody)
+                
+                let newOrder = MyOrderForDriver()
+                newOrder.orderId = dataBody?["orderId"] as! Int
+                newOrder.userName = dataBody?["userName"] as! String
+                newOrder.date_of_execution = dataBody?["date"] as! String
+                orderList.append(newOrder)
+
+            }
+        }
+        return orderList
+    }
     
     
     

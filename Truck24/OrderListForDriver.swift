@@ -7,22 +7,27 @@
 //
 
 import Foundation
-
-
-
 import UIKit
 
 class OrderListForDriver: UIViewController{
     
     
     private let orderMananger = OrderForDriverData()
+    var locManager = SendLocation()
     
+    @IBOutlet weak var LocationButton: UISwitch!
     
+    @IBAction func SwitchedLocation(_ sender: UISwitch) {
+        if(sender.isOn){
+            locManager.SendLocation()
+            ShowError(errorType: "LocationOn")
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        orderMananger.GetOrderList(table: tableView,urlAddress: AppData.getOrdersForDriver, token: AppData.token)
+        orderMananger.GetOrderList(table: tableView,urlAddress: AppData.getOrdersForDriverUrl, token: AppData.token)
         super.viewDidLoad()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -69,6 +74,19 @@ class OrderListForDriver: UIViewController{
         
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetails") as! OrderDetails
         self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    private func ShowError(errorType: String){
+        
+        if(errorType=="LocationOn"){
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "LocationOn") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        }
     }
     
 }

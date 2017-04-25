@@ -32,7 +32,21 @@ class PubDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GetDetails(urlstring: AppData.getPublicationInfo, orderId: String(AppData.selectedPubId))
+        
+        if let selectedPub = AppData.PubDetailsList[AppData.selectedPubId]{
+            FillData( pub: selectedPub)
+            
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                self.LoadingView.isHidden = true
+                DispatchQueue.main.async
+                    {
+                }
+                
+            }
+        }
+        else{
+            GetDetails(urlstring: AppData.getPublicationInfoUrl, orderId: String(AppData.selectedPubId))
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -101,31 +115,58 @@ class PubDetails: UIViewController {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
                 
-                carTypes.text = dataBody?["carType"] as! String
-                from_long = dataBody?["from_long"] as! Double
-                from_lat = dataBody?["from_lat"] as! Double
-                to_long = dataBody?["to_long"] as! Double
-                to_lat = dataBody?["to_lat"] as! Double
-                publicationDate.text = dataBody?["added"] as! String
-
-                
-                AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
-                AppData.toLocation =  CLLocation(latitude: to_lat, longitude: to_long)
-                
-                pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
-                pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
-
-                Notes.text = dataBody?["notes"] as! String
-                executionDate.text = dataBody?["date"] as! String
-                offerCount.text = String(dataBody?["offersCount"] as! Int)
-                
-                LoadingView.isHidden = true
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    self.SaveInCach(data: dataBody!)
+                    DispatchQueue.main.async
+                        {
+                            self.LoadingView.isHidden = true
+                    }
+                    
+                }
             }
             
         }
         
     }
+    
+    func SaveInCach(data: [String:Any]){
+        let newPub = PubDetail()
+        newPub.carTypes = data["carType"] as! String
+        newPub.fromLong = data["from_long"] as! Double
+        newPub.fromLat = data["from_lat"] as! Double
+        newPub.toLong = data["to_long"] as! Double
+        newPub.toLat = data["to_lat"] as! Double
+        newPub.publicationDate = data["added"] as! String
+        newPub.executionDate = data["date"] as! String
+        newPub.offerCount = data["offersCount"] as! Int
+        newPub.Notes = data["notes"] as! String
+        
+        AppData.PubDetailsList[data["orderId"] as! Int] = newPub
+        FillData(pub: newPub)
+    }
 
+    func FillData(pub: PubDetail){
+        
+        carTypes.text = pub.carTypes
+        from_long = pub.fromLong
+        from_lat = pub.fromLat
+        to_long = pub.toLong
+        to_lat = pub.toLat
+        publicationDate.text = pub.publicationDate
+        Notes.text = pub.Notes
+        executionDate.text = pub.executionDate
+        offerCount.text = String(describing: pub.offerCount)
+        
+        AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
+        AppData.toLocation =  CLLocation(latitude: to_lat, longitude: to_long)
+        
+        pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
+        pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
+        
+        
+        print("data Filled")
+
+    }
     
     
 }

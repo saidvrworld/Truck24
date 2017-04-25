@@ -119,26 +119,33 @@ class PubWayOnMap: UIViewController {
         
         // Calculate the direction
         let directions = MKDirections(request: directionRequest)
-        
+        print("1")
         // 8.
         directions.calculate {
             (response, error) -> Void in
-            
+            print("1.1")
+
             guard let response = response else {
                 if let error = error {
                     print("Error: \(error)")
                 }
-                
-                return
+                print("1.2")
+               
+               return
             }
-            
+            print("1.3")
+
             let route = response.routes[0]
+            print("1.4")
+
             self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            
+            print("1.5")
+
             let rect = route.polyline.boundingMapRect
             self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
             self.Distance.text =  String(route.distance/1000)+" км"
-
+            
+            
         }
     }
     
@@ -168,16 +175,18 @@ class PubWayOnMap: UIViewController {
     }
     
     @IBAction func BackToPubDetails(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        var nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseType") as! UIViewController
         if(AppData.lastScene == "OrderDetails"){
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetails") as! OrderDetails
-            self.present(nextViewController, animated:true, completion:nil)
+             nextViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetails") as! OrderDetails
         }
         else if(AppData.lastScene == "PubDetails"){
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
-            self.present(nextViewController, animated:true, completion:nil)
+             nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
         }
+        else if(AppData.lastScene == "AcceptedOrderInfo"){
+             nextViewController = storyBoard.instantiateViewController(withIdentifier: "AcceptedOrderInfo") as! AcceptedOrderInfo
+        }
+        self.present(nextViewController, animated:true, completion:nil)
 
     }
     

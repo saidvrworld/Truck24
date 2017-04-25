@@ -37,19 +37,27 @@ class CarDetails: UIViewController {
     var isCarImageLoading = false
     var isRateLoading = false
     var isUserImageLoading = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         StarList = [Star1,Star2,Star3,Star4,Star5]
-       // if(AppData.CarDetailsList[AppData.selectedCarId] != nil){
-       //      self.FillDataFromAppData()
-        //    setCarPicture((AppData.CarDetailsList[AppData.selectedCarId]?.carImage)!)
-        //    setUserPicture((AppData.CarDetailsList[AppData.selectedCarId]?.userImage)!)
-       //     setRate(rate: (AppData.CarDetailsList[AppData.selectedCarId]?.rate)!)
+        if(AppData.CarDetailsList[AppData.selectedCarId] != nil){
+              DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                self.FillDataFromAppData()
+                DispatchQueue.main.async
+                    {
+                        self.LoadingIndicator.isHidden = true
+                }
+                
+              }
+              setCarPicture((AppData.CarDetailsList[AppData.selectedCarId]?.carImage)!)
+              setUserPicture((AppData.CarDetailsList[AppData.selectedCarId]?.userImage)!)
+              setRate(rate: Int((AppData.CarDetailsList[AppData.selectedCarId]?.rate)!))
 
-       // }
-       // else{
+         }
+        else{
           MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
-      //  }
+        }
 
     }
     
@@ -121,16 +129,7 @@ class CarDetails: UIViewController {
     
     
     private func FillTextData(car: [String:Any]){
-        
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
-                self.SetText(data: car)
-                DispatchQueue.main.async
-                    {
-                                        }
-                
-            }
-        
-    
+        self.SetText(data: car)
     }
     
     private func SetText(data:[String:Any]){
@@ -143,18 +142,28 @@ class CarDetails: UIViewController {
         AppData.CarDetailsList[AppData.selectedCarId]?.phoneNumber = data["phoneNumber"] as! String
         AppData.CarDetailsList[AppData.selectedCarId]?.carImage = data["carImageUrl"] as! String
         AppData.CarDetailsList[AppData.selectedCarId]?.userImage = data["userPhoto"] as! String
-        self.FillDataFromAppData()
+        AppData.CarDetailsList[AppData.selectedCarId]?.rate = data["rate"] as! Double
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+            self.FillDataFromAppData()
+            DispatchQueue.main.async
+                {
+            }
+            
+        }
         
     }
     
     func FillDataFromAppData(){
-        carWeigth.text = AppData.CarDetailsList[AppData.selectedCarId]?.carWeigth
-        carType.text = AppData.CarDetailsList[AppData.selectedCarId]?.carType
-        details.text = AppData.CarDetailsList[AppData.selectedCarId]?.details
-        PhoneNumberView.text = AppData.CarDetailsList[AppData.selectedCarId]?.phoneNumber
-        userName.text = AppData.CarDetailsList[AppData.selectedCarId]?.userName
-        carNumber.text = AppData.CarDetailsList[AppData.selectedCarId]?.carNumber
+        let carInfo = AppData.CarDetailsList[AppData.selectedCarId]
+        carWeigth.text = carInfo?.carWeigth
+        carType.text = carInfo?.carType
+        details.text = carInfo?.details
+        PhoneNumberView.text = carInfo?.phoneNumber
+        userName.text = carInfo?.userName
+        carNumber.text = carInfo?.carNumber
         self.LoadingIndicator.isHidden = true
+
 
     }
     
@@ -170,7 +179,7 @@ class CarDetails: UIViewController {
             //self.Loading.startAnimating()
         }
         if(!isCarImageLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.carImage.image =  self.DownloadCarImage(url)
                 DispatchQueue.main.async
                     {
@@ -183,26 +192,14 @@ class CarDetails: UIViewController {
     }
     
     
-    private func DownloadCarImage(_ imgUrl:String)->UIImage{
-        self.isCarImageLoading = true
-        var Image: UIImage?
-        let url = URL(string:imgUrl)
-        let data = try? Data(contentsOf: url!)
-        if data!.count > 0 {
-            Image = UIImage(data:data!)
-        } else {
-            Image = UIImage(named: "placeholder.jpg")
-        }
-        //self.Loading.stopAnimating()
-        return Image!
-    }
+   
     
     private func setUserPicture(_ url:String){
         if(self.isUserImageLoading){
             //self.Loading.startAnimating()
         }
         if(!isUserImageLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.userImage.image =  self.DownloadUserImage(url)
                 DispatchQueue.main.async
                     {
@@ -219,7 +216,7 @@ class CarDetails: UIViewController {
             //self.Loading.startAnimating()
         }
         if(!isRateLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.fillStars(count: rate)
                 DispatchQueue.main.async
                     {
@@ -241,16 +238,39 @@ class CarDetails: UIViewController {
         }
     }
     
+    private func DownloadCarImage(_ imgUrl:String)->UIImage{
+        self.isCarImageLoading = true
+        var Image: UIImage?
+        let url = URL(string:imgUrl)
+        let data = try? Data(contentsOf: url!)
+        do{
+            if try data!.count > 0 {
+                Image = UIImage(data:data!)
+            } else {
+                Image = UIImage(named: "image_placeholder.png")
+            }
+        }
+        catch{
+            Image = UIImage(named: "image_placeholder.png")
+        }
+        //self.Loading.stopAnimating()
+        return Image!
+    }
     
     private func DownloadUserImage(_ imgUrl:String)->UIImage{
         self.isUserImageLoading = true
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        if data!.count > 0 {
-            Image = UIImage(data:data!)
-        } else {
-            Image = UIImage(named: "placeholder.jpg")
+        do{
+            if try data!.count > 0 {
+                Image = UIImage(data:data!)
+            } else {
+                Image = UIImage(named: "user_icon.png")
+            }
+        }
+        catch{
+            Image = UIImage(named: "user_icon.png")
         }
         //self.Loading.stopAnimating()
         return Image!

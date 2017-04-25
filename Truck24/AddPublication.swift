@@ -20,6 +20,7 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     var executionDate: String!
     
+    @IBOutlet weak var carType: UIButton!
     @IBOutlet weak var toAddress: UILabel!
     @IBOutlet weak var fromAddress: UILabel!
 
@@ -63,14 +64,24 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.notesView.delegate = self
+        setFilledFields()
+    }
+    
+    private func setFilledFields(){
         if(AppData.fromLocation != nil){
             pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
         }
         if(AppData.toLocation != nil){
-        pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
+            pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
         }
-        self.notesView.delegate = self
-        
+        if(AppData.carType != nil){
+            carType.setTitle(AppData.carType, for: .normal)
+        }
+        if((AppData.notes) != nil){
+           notesView.text = AppData.notes
+        }
+    
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -87,7 +98,26 @@ class AddPublication: UIViewController,UITextFieldDelegate {
         
         LoadingView.isHidden = false
         SuccessView.isHidden = false
-        pubManager.AddPub(viewContr: SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: "1", lat_from: String(fromLatitude), long_from: String(fromLongitude), lat_to: String(toLatitude), long_to: String(toLongitude), notes: notesView.text!, date: getTime())
+        if(!notesView.hasText){
+             notesView.text = "Доставить быстро и аккуратно"
+        }
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+            
+             self.pubManager.AddPub(viewContr: self.SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: "1", lat_from: String(self.fromLatitude), long_from: String(self.fromLongitude), lat_to: String(self.toLatitude), long_to: String(self.toLongitude), notes: self.notesView.text!, date: self.getTime())
+            DispatchQueue.main.async
+                {
+                    self.LoadingView.isHidden = false
+                    self.SuccessView.isHidden = false
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func EnterText(_ sender: UITextField) {
+        if(sender.hasText){
+           AppData.notes = sender.text
+        }
     }
     
     func getTime()->String{

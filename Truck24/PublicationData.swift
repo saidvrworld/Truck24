@@ -31,8 +31,14 @@ class PublicationData{
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                AppData.PubList = self.GetMyPubResponse(response:responseJSON)
-                table.reloadData()
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    AppData.PubList = self.GetMyPubResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.reloadData()
+                    }
+                    
+                }
             }
         }
         
@@ -132,6 +138,7 @@ class PublicationData{
         newPub.notes = pub["notes"] as! String
         newPub.date_of_publication = pub["date"] as! String
         newPub.pubId = pub["orderId"] as! Int
+        newPub.status = pub["status"] as! Int
         return newPub
     }
 

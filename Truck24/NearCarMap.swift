@@ -23,9 +23,12 @@ class NearCarMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         mapView.delegate = self
         
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -36,10 +39,7 @@ class NearCarMap: UIViewController {
         return renderer
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+   
     let regionRadius: CLLocationDistance = 1000
     
     func centerMapOnLocation(location: CLLocation) {
@@ -72,22 +72,33 @@ class NearCarMap: UIViewController {
         var initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
         //centerMapOnLocation(location: initialLocation)
         initialLocation = AppData.currentLocation
-         let car = CarPlacement(title: "Kamaz",
-                             locationName: "Крытый вверх",
-                           coordinate: CLLocationCoordinate2D(latitude: initialLocation.coordinate.latitude+0.000003, longitude: initialLocation.coordinate.longitude+0.000003))
-        let car2 = CarPlacement(title: "Kamaz",
-                               locationName: "Крытый вверх",
-                               coordinate: CLLocationCoordinate2D(latitude: initialLocation.coordinate.latitude+0.000007, longitude: initialLocation.coordinate.longitude+0.000007))
-        
-         mapView.addAnnotation(car)
-        mapView.addAnnotation(car2)
-
-        
+                
+        for carObj in AppData.CarList{
+            let car = CarPlacement(coordinate: CLLocationCoordinate2D(latitude: carObj.latitude, longitude: carObj.longitude),
+                                   title: carObj.carName,
+                                   subtitle: carObj.distance+"км",id:carObj.carId)
+            
+            var pinAnnotationView:MKPinAnnotationView!
+            pinAnnotationView = MKPinAnnotationView(annotation: car, reuseIdentifier: "pin")
+            
+            mapView.addAnnotation(car)
+        }
     }
     
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        let car = view.annotation as! CarPlacement
+        AppData.selectedCarId = car.carId
+        print("selected")
+    }
     
-    
-    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("Annotation selected")
+        
+        if let annotation = view.annotation as? CarPlacement {
+            print("Your annotation title: \(annotation.title)");
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -104,6 +115,11 @@ class NearCarMap: UIViewController {
         
     }
     
+   private func GoToDetailsInfo() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarDetails") as! CarDetails
+        self.present(nextViewController, animated:true, completion:nil)
+    }
     
     
     

@@ -40,7 +40,7 @@ class OfferDetails: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         StarList = [Star1,Star2,Star3,Star4,Star5]
-        MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
+        GetData(urlstring: AppData.getOfferInfoUrl, offerId: String(AppData.selectedOfferId))
         
     }
     
@@ -61,9 +61,9 @@ class OfferDetails: UIViewController {
         }
     }
     
-    private func MakeRequest(urlstring: String,carId: String){
+    private func GetData(urlstring: String,offerId: String){
         
-        let parameters = "token=fec5fdf5ac012r43"+carId+"fec5fdf5ac012r43"
+        let parameters = "token=fec5fdf5ac012r43"+offerId+"fec5fdf5ac012r43"
         
         print(parameters)
         
@@ -94,7 +94,14 @@ class OfferDetails: UIViewController {
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
-                self.FillTextData(car: dataBody!)
+                
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    self.SetText(data: dataBody!)
+                    DispatchQueue.main.async
+                        {
+                            self.LoadingIndicator.isHidden = true
+                    }
+                }
                 setCarPicture(dataBody?["carImageUrl"] as! String)
                 setUserPicture(dataBody?["userPhoto"] as! String)
                 
@@ -108,37 +115,76 @@ class OfferDetails: UIViewController {
         
     }
     
-    
-    private func FillTextData(car: [String:Any]){
+    private func SendAcceptOffer(urlstring: String,offerId: String){
         
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
-            self.SetText(data: car)
-            DispatchQueue.main.async
-                {
-                    self.LoadingIndicator.isHidden = true
+        let parameters = "token=fec5fdf5ac012r43"+offerId+"fec5fdf5ac012r43"
+        
+        print(parameters+urlstring)
+        
+        let url = URL(string: urlstring)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.httpBody = parameters.data(using: .utf8)
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
             }
-            
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                
+                if let array = responseJSON["data"] as? [Any] {
+                    if let firstObject = array.first {
+                        let dataBody = firstObject as? [String: Any]
+                        let success = dataBody?["success"] as! Bool
+                        if(success){
+                              DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                                    print("OfferAccepted")
+                                    DispatchQueue.main.async
+                                    {
+                                      self.GoToMainView()
+                                     }
+                               }
+                        }
+                    }
+                    
+                }
+            }
         }
         
+        task.resume()
         
     }
     
+    
+    
     private func SetText(data:[String:Any]){
+        
         userName.text = data["userName"] as! String
         carNumber.text = data["carNumber"] as! String
         carWeigth.text = data["carMaxWeight"] as! String
         carType.text = data["carName"] as! String
         details.text = data["detail"] as! String
+        price.text = data["price"] as! String
         PhoneNumberView.text = data["phoneNumber"] as! String
         
     }
     
     
     @IBAction func BackToMainView(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
+        self.GoToMainView()
+    }
+    
+   private func GoToMainView(){
+    
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
         self.present(nextViewController, animated:true, completion:nil)
+    
     }
     
     private func setCarPicture(_ url:String){
@@ -146,7 +192,7 @@ class OfferDetails: UIViewController {
             //self.Loading.startAnimating()
         }
         if(!isCarImageLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.carImage.image =  self.DownloadCarImage(url)
                 DispatchQueue.main.async
                     {
@@ -164,12 +210,16 @@ class OfferDetails: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        if data!.count > 0 {
-            Image = UIImage(data:data!)
-        } else {
-            Image = UIImage(named: "placeholder.jpg")
+        do{
+            if try data!.count > 0 {
+                Image = UIImage(data:data!)
+            } else {
+                Image = UIImage(named: "image_placeholder.png")
+            }
         }
-        //self.Loading.stopAnimating()
+        catch{
+            Image = UIImage(named: "image_placeholder.png")
+        }
         return Image!
     }
     
@@ -178,7 +228,7 @@ class OfferDetails: UIViewController {
             //self.Loading.startAnimating()
         }
         if(!isUserImageLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.userImage.image =  self.DownloadUserImage(url)
                 DispatchQueue.main.async
                     {
@@ -195,7 +245,7 @@ class OfferDetails: UIViewController {
             //self.Loading.startAnimating()
         }
         if(!isRateLoading){
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.fillStars(count: rate)
                 DispatchQueue.main.async
                     {
@@ -218,6 +268,7 @@ class OfferDetails: UIViewController {
     }
     
     @IBAction func AcceptPrice(_ sender: Any) {
+        self.SendAcceptOffer(urlstring: AppData.acceptOfferUrl, offerId: String(AppData.selectedOfferId))
     }
     
     private func DownloadUserImage(_ imgUrl:String)->UIImage{
@@ -225,12 +276,16 @@ class OfferDetails: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        if data!.count > 0 {
-            Image = UIImage(data:data!)
-        } else {
-            Image = UIImage(named: "placeholder.jpg")
+        do{
+            if try data!.count > 0 {
+                Image = UIImage(data:data!)
+            } else {
+                Image = UIImage(named: "user_icon.png")
+            }
         }
-        //self.Loading.stopAnimating()
+        catch{
+            Image = UIImage(named: "user_icon.png")
+        }
         return Image!
     }
     

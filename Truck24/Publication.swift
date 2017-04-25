@@ -20,5 +20,6 @@ class Publication{
     var fromLat: Float!
     var toLong:Float!
     var toLat:Float!
+    var status: Int!
     
 }

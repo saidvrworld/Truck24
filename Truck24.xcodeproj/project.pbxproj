@@ -78,6 +78,10 @@
 		90AFCFEC1E97DB38009A0F67 /* user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD71E97DB38009A0F67 /* user_icon.png */; };
 		90AFCFED1E97DB38009A0F67 /* UserIntro.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */; };
 		90AFCFEE1E97DB38009A0F67 /* weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD91E97DB38009A0F67 /* weight.png */; };
+		90BE19571EA256E300FB16B1 /* SendLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE19561EA256E300FB16B1 /* SendLocation.swift */; };
+		90BE19591EA26C1100FB16B1 /* myOrdersForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */; };
+		90BE195D1EA3BD7900FB16B1 /* car_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE195C1EA3BD7800FB16B1 /* car_icon.png */; };
+		90BE195F1EA3F73200FB16B1 /* AcceptedOrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE195E1EA3F73200FB16B1 /* AcceptedOrderInfo.swift */; };
 		90E5DF511E9B4319001BBB6F /* circle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF4F1E9B4319001BBB6F /* circle_orange.png */; };
 		90E5DF521E9B4319001BBB6F /* rectangle_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF501E9B4319001BBB6F /* rectangle_grey.png */; };
 		90E5DF541E9B590A001BBB6F /* OrderListForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */; };
@@ -190,6 +194,10 @@
 		90AFCFD71E97DB38009A0F67 /* user_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_icon.png; path = Cach/user_icon.png; sourceTree = SOURCE_ROOT; };
 		90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = UserIntro.jpeg; path = Cach/UserIntro.jpeg; sourceTree = SOURCE_ROOT; };
 		90AFCFD91E97DB38009A0F67 /* weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weight.png; path = Cach/weight.png; sourceTree = SOURCE_ROOT; };
+		90BE19561EA256E300FB16B1 /* SendLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendLocation.swift; sourceTree = "<group>"; };
+		90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myOrdersForDriver.swift; sourceTree = "<group>"; };
+		90BE195C1EA3BD7800FB16B1 /* car_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_icon.png; path = Cach/car_icon.png; sourceTree = SOURCE_ROOT; };
+		90BE195E1EA3F73200FB16B1 /* AcceptedOrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedOrderInfo.swift; sourceTree = "<group>"; };
 		90E5DF4F1E9B4319001BBB6F /* circle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle_orange.png; path = Cach/circle_orange.png; sourceTree = SOURCE_ROOT; };
 		90E5DF501E9B4319001BBB6F /* rectangle_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rectangle_grey.png; path = Cach/rectangle_grey.png; sourceTree = SOURCE_ROOT; };
 		90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListForDriver.swift; sourceTree = "<group>"; };
@@ -302,7 +310,6 @@
 				90606ADB1E98E9FC00471D87 /* CarDetails.swift */,
 				90606AE51E991AB200471D87 /* MyPublications.swift */,
 				908A63621E992E6D0015F4AF /* SetCoordinates.swift */,
-				908A63681E9934D20015F4AF /* VSMapView.swift */,
 				908A636A1E9940270015F4AF /* CarFilter.swift */,
 				908A636C1E994CDE0015F4AF /* AddPublication.swift */,
 				908A63701E9A25400015F4AF /* PubDetails.swift */,
@@ -313,6 +320,8 @@
 				90E5DF591E9B8970001BBB6F /* OrderDetails.swift */,
 				90E5DF5B1E9BDA00001BBB6F /* OfferDetails.swift */,
 				90E5DF5D1E9BDCFA001BBB6F /* Settings.swift */,
+				90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */,
+				90BE195E1EA3F73200FB16B1 /* AcceptedOrderInfo.swift */,
 			);
 			name = manage_scripts;
 			sourceTree = "<group>";
@@ -333,6 +342,8 @@
 				90E5DF551E9B595B001BBB6F /* OrderForDriver.swift */,
 				90E5DF571E9B5A58001BBB6F /* OrderForDriverData.swift */,
 				9094E9BA1E9C8F3100542BD6 /* Details.swift */,
+				90BE19561EA256E300FB16B1 /* SendLocation.swift */,
+				908A63681E9934D20015F4AF /* VSMapView.swift */,
 			);
 			name = data_scripts;
 			sourceTree = "<group>";
@@ -340,6 +351,7 @@
 		90AFCF9C1E97956C009A0F67 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				90BE195C1EA3BD7800FB16B1 /* car_icon.png */,
 				9094E9BE1E9CC00600542BD6 /* offer_icon.png */,
 				9094E9BC1E9CBF5500542BD6 /* location_black.png */,
 				90E5DF6B1E9BF08F001BBB6F /* list.png */,
@@ -456,6 +468,11 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 8F7GJ2ANG4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					90AFCF331E979256009A0F67 = {
 						CreatedOnToolsVersion = 8.3;
@@ -529,6 +546,7 @@
 				90AFCFE81E97DB38009A0F67 /* star-gold.png in Resources */,
 				908A63651E9930EF0015F4AF /* location.png in Resources */,
 				90AFCFE01E97DB38009A0F67 /* date.png in Resources */,
+				90BE195D1EA3BD7900FB16B1 /* car_icon.png in Resources */,
 				90AFCF291E979256009A0F67 /* Main.storyboard in Resources */,
 				90E5DF681E9BE324001BBB6F /* inProcess.png in Resources */,
 				90E5DF601E9BE158001BBB6F /* draw-back-sam.jpg in Resources */,
@@ -572,6 +590,7 @@
 				90AFCF6C1E9792C6009A0F67 /* Singleton.swift in Sources */,
 				90AFCF6A1E9792C6009A0F67 /* SignInCustomer.swift in Sources */,
 				90AFCF641E9792C6009A0F67 /* ChooseType.swift in Sources */,
+				90BE195F1EA3F73200FB16B1 /* AcceptedOrderInfo.swift in Sources */,
 				90E5DF5A1E9B8970001BBB6F /* OrderDetails.swift in Sources */,
 				9094E9BB1E9C8F3100542BD6 /* Details.swift in Sources */,
 				908A637D1E9A99610015F4AF /* OffersList.swift in Sources */,
@@ -581,10 +600,12 @@
 				908A63791E9A44B00015F4AF /* NearCarMap.swift in Sources */,
 				90AFCF611E9792C6009A0F67 /* Agreement.swift in Sources */,
 				90E5DF5C1E9BDA00001BBB6F /* OfferDetails.swift in Sources */,
+				90BE19571EA256E300FB16B1 /* SendLocation.swift in Sources */,
 				90AFCF691E9792C6009A0F67 /* PopUpViewController.swift in Sources */,
 				908A63711E9A25400015F4AF /* PubDetails.swift in Sources */,
 				90AFCF721E9792F1009A0F67 /* CarShort.swift in Sources */,
 				90E5DF5E1E9BDCFA001BBB6F /* Settings.swift in Sources */,
+				90BE19591EA26C1100FB16B1 /* myOrdersForDriver.swift in Sources */,
 				90AFCF661E9792C6009A0F67 /* Inroduction.swift in Sources */,
 				90AFCF261E979256009A0F67 /* ViewController.swift in Sources */,
 				90606AD81E98B14C00471D87 /* CarData.swift in Sources */,

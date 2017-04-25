@@ -19,7 +19,7 @@ class OffersList: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GetOffers(table: tableView, urlAddress: AppData.getOffers, id: String(AppData.selectedPubId))
+        GetOffers(table: tableView, urlAddress: AppData.getOffersUrl, id: String(AppData.selectedPubId))
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -48,8 +48,15 @@ class OffersList: UIViewController{
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                self.offerList = self.GetOfferResponse(response:responseJSON)
-                table.reloadData()
+
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    self.offerList = self.GetOfferResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.reloadData()
+                    }
+                }
+                
             }
         }
         

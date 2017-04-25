@@ -24,14 +24,6 @@ class SetCoordinates: UIViewController {
         longPressGesture.minimumPressDuration = 1.0
         self.mapView.addGestureRecognizer(longPressGesture)
         
-        //let initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
-       // centerMapOnLocation(location: initialLocation)
-        
-       // let car = CarPlacement(title: "Kamaz",
-         //                     locationName: "Крытый вверх",
-           //                   coordinate: CLLocationCoordinate2D(latitude: 41.353516, longitude: 69.289002))
-        
-       // mapView.addAnnotation(car)
         mapView.delegate = self 
 
     }
@@ -51,10 +43,10 @@ class SetCoordinates: UIViewController {
     var locationManager = CLLocationManager()
     
     func checkLocationAuthorizationStatus() {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
             mapView.showsUserLocation = true
         } else {
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
             
         }
         getCurrentLocation()

@@ -75,16 +75,27 @@ class SMSVerification: UIViewController {
                 let success = dataBody?["success"] as! Bool
                 let registered = dataBody?["registered"] as! Int
                 let userName = dataBody?["userName"] as? String
-                AppData.token = (dataBody?["token"] as? String)!
+                
+                
+
                 if(success){
                     print("Success sms Code Verification")
                     successCode = true
+                    
+                    AppData.token = (dataBody?["token"] as? String)!
+                    
+                    let defaults = UserDefaults.standard
+                    defaults.set(AppData.token, forKey: localKeys.token)
+                    
                     if(registered == 1){
                         isRegistrated = true
+                        defaults.set("1", forKey: localKeys.isRegistered)
                         AppData.userName = userName!
+                        defaults.set(AppData.userName, forKey: localKeys.userName)
                         print(AppData.userName)
                     }
                     else{
+                        defaults.set("0", forKey: localKeys.isRegistered)
                         isRegistrated = false
                     }
                 }

@@ -20,7 +20,40 @@ class CarDetail{
     var carType: String!
     var driverNumber: String!
     var phoneNumber: String!
-    var rate:Int!
+    var rate:Double!
+
+}
+
+class OfferDetail{
+    
+
+    var price:String!
+    var details:String!
+    var userImage: String!
+    var carImage: String!
+    var carNumber: String!
+    var userName: String!
+    var carWeigth: String!
+    var carType: String!
+    var driverNumber: String!
+    var phoneNumber: String!
+    var rate:Double!
+    
+    
+}
 
 
+class PubDetail{
+    
+    var publicationDate:String!
+    var executionDate:String!
+    var carTypes: String!
+    var fromLat: Double!
+    var toLat: Double!
+    var fromLong: Double!
+    var toLong: Double!
+
+    var offerCount: Int!
+    var Notes: String!
+    
 }

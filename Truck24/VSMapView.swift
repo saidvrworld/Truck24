@@ -12,55 +12,37 @@ import MapKit
 
 extension UIViewController: MKMapViewDelegate {
     
-    // 1
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        if let annotation = annotation as? CarPlacement {
-            let identifier = "carLocation"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-                as? MKPinAnnotationView { // 2
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                // 3
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
-            }
-            view.image = UIImage(named: "placeLocation.png")!
-            return view
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
         }
-        else if let annotation = annotation as? MyPlacement {
-            let identifier = "myLocation"
-            var view: MKAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-                as? MKAnnotationView { // 2
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                // 3
-                
-                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
-            }
             
-            view.image = UIImage(named: "placeLocation.png")!
-
-            return view
+        else if annotation is MyPlacement{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "location_black.png")
+            return annotationView
         }
-        return nil
+        else if annotation is CarPlacement{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "car_icon.png")
+            annotationView.canShowCallout = true
+            annotationView.calloutOffset = CGPoint(x: -5, y: 5)
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+
+            return annotationView
+        }
+        else{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "location_black.png")
+            annotationView.canShowCallout = true
+            annotationView.calloutOffset = CGPoint(x: -5, y: 5)
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            
+            return annotationView
+        }
     }
     
     
-        
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
-                 calloutAccessoryControlTapped control: UIControl!) {
-        let location = view.annotation as! CarPlacement
-      //  let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-       // location.mapItem().openInMaps(launchOptions: launchOptions)
-    }
+
     
 }

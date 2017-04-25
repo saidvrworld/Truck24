@@ -32,8 +32,13 @@ class CarData{
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                AppData.CarList = self.ManageResponse(response:responseJSON)
-                table.reloadData()
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    AppData.CarList = self.ManageResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.reloadData()
+                    }
+                }
             }
         }
         
@@ -71,7 +76,10 @@ class CarData{
         
         newCar.distance = str.substring(to: index)
         newCar.rate = car["rate"] as! Double
+        newCar.longitude = car["long"] as! Double
+        newCar.latitude = car["lat"] as! Double
 
+        
         return newCar
     }
     
