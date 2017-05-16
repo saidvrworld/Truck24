@@ -73,7 +73,6 @@ class MyPlacement: NSObject, MKAnnotation {
     
     let locationName: String
     let coordinate: CLLocationCoordinate2D
-    var imageName: UIImage = UIImage(named: "myLocation.png")!
 
 
     init(locationName: String, coordinate: CLLocationCoordinate2D) {
@@ -99,11 +98,70 @@ class MyPlacement: NSObject, MKAnnotation {
     
 }
 
+
+class APlacement: NSObject, MKAnnotation {
+    
+    let coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(title: String, coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        self.title = title
+        
+        super.init()
+    }
+    
+    var subTitle: String {
+        return subtitle!
+    }
+    
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subTitle]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
+    
+}
+
+
+class BPlacement: NSObject, MKAnnotation {
+    
+    let coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(title: String, coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        self.title = title
+        
+        super.init()
+    }
+    
+    var subTitle: String {
+        return subtitle!
+    }
+    
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subTitle]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
+    
+}
+
 class Placement: NSObject, MKAnnotation {
     
     let locationName: String
     let coordinate: CLLocationCoordinate2D
-    var imageName: UIImage = UIImage(named: "placeLocation.png")!
     
     
     init(locationName: String, coordinate: CLLocationCoordinate2D) {
@@ -142,7 +200,7 @@ class CarAnnotationView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         let attractionAnnotation = self.annotation as! CarPlacement
         
-        image = UIImage(named: "placeLocation.png")
+        image = UIImage(named: "location_black.png")
     
         
     }

@@ -85,7 +85,7 @@ class OffersList: UIViewController{
         let newOffer = Offer()
         newOffer.offerId = pub["offerId"] as! Int
         newOffer.offerName = pub["offerName"] as! String
-        newOffer.offerPrice = pub["offerPrice"] as! String
+        newOffer.offerPrice = (pub["offerPrice"] as! String) + " сум"
        
         return newOffer
     }

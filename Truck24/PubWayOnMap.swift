@@ -28,17 +28,26 @@ class PubWayOnMap: UIViewController {
            LoadRoad()
         }
 
-        
-        //let initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
-        // centerMapOnLocation(location: initialLocation)
-        
-        // let car = CarPlacement(title: "Kamaz",
-        //                     locationName: "Крытый вверх",
-        //                   coordinate: CLLocationCoordinate2D(latitude: 41.353516, longitude: 69.289002))
-        
-        // mapView.addAnnotation(car)
         mapView.delegate = self
+        mapView.showsUserLocation = true
+        if(AppData.DriverLocation != nil){
+          getDriver()
+    
+        }
+    }
+    
+    
+    private func getDriver(){
         
+        let car = CarPlacement(coordinate: AppData.DriverLocation.coordinate,
+                               title: "Машина Водителя",
+                               subtitle: "Первозящего груз",id:1)
+        
+        var pinAnnotationView:MKPinAnnotationView!
+        pinAnnotationView = MKPinAnnotationView(annotation: car, reuseIdentifier: "pin")
+        
+        mapView.addAnnotation(car)
+    
     }
 
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -84,69 +93,21 @@ class PubWayOnMap: UIViewController {
         let sourceLocation = AppData.fromLocation.coordinate
         let destinationLocation = AppData.toLocation.coordinate
         
-        // 3.
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+      
+        let sourceAnnotation = APlacement(title: "Погрузить здесь", coordinate: sourceLocation)
+        let destinationAnnotation = BPlacement(title:"Доставить Сюда", coordinate: destinationLocation)
         
-        // 4.
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
-        // 5.
-        let sourceAnnotation = MKPointAnnotation()
-        sourceAnnotation.title = "Погрузить здесь"
-        
-        if let location = sourcePlacemark.location {
-            sourceAnnotation.coordinate = location.coordinate
-        }
-        
-        
-        let destinationAnnotation = MKPointAnnotation()
-        destinationAnnotation.title = "Доставить Сюда"
-        
-        if let location = destinationPlacemark.location {
-            destinationAnnotation.coordinate = location.coordinate
-        }
-        
-        // 6.
-        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-        
-        // 7.
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .automobile
-        
-        // Calculate the direction
-        let directions = MKDirections(request: directionRequest)
-        print("1")
-        // 8.
-        directions.calculate {
-            (response, error) -> Void in
-            print("1.1")
+        var AAnnotationView:MKPinAnnotationView!
+        AAnnotationView = MKPinAnnotationView(annotation: sourceAnnotation, reuseIdentifier: "pin")
 
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                print("1.2")
-               
-               return
-            }
-            print("1.3")
+        var BAnnotationView:MKPinAnnotationView!
+        BAnnotationView = MKPinAnnotationView(annotation: destinationAnnotation, reuseIdentifier: "pin")
 
-            let route = response.routes[0]
-            print("1.4")
+        
+        mapView.addAnnotation(sourceAnnotation)
+        mapView.addAnnotation(destinationAnnotation)
 
-            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            print("1.5")
-
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-            self.Distance.text =  String(route.distance/1000)+" км"
-            
-            
-        }
+        
     }
     
     
@@ -154,7 +115,9 @@ class PubWayOnMap: UIViewController {
     func getCurrentLocation(){
         let centre = locationManager.location?.coordinate
         
-        centerMapOnLocation(location: Loc2DToLoc(loc: centre!))
+        if(centre != nil){
+           centerMapOnLocation(location: Loc2DToLoc(loc: centre!))
+        
         
         if(AppData.waitingForLoc == "NearList"){
             AppData.currentLocation = Loc2DToLoc(loc: centre!)
@@ -165,7 +128,7 @@ class PubWayOnMap: UIViewController {
         else if(AppData.waitingForLoc == "ToLoc"){
             AppData.toLocation = Loc2DToLoc(loc: centre!)
         }
-        
+        }
         
     }
     

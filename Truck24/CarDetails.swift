@@ -15,6 +15,7 @@ import UIKit
 class CarDetails: UIViewController {
     
     
+    @IBOutlet weak var ErrorView: UIView!
     @IBOutlet weak var LoadingIndicator: UIView!
     @IBOutlet weak var details: UILabel!
     @IBOutlet weak var userImage: UIImageView!
@@ -35,7 +36,6 @@ class CarDetails: UIViewController {
 
     
     var isCarImageLoading = false
-    var isRateLoading = false
     var isUserImageLoading = false
     
     override func viewDidLoad() {
@@ -93,7 +93,14 @@ class CarDetails: UIViewController {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            self.ErrorView.isHidden = false
+                            self.ShowErrorConnection()
+                    }
+                }
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -129,34 +136,33 @@ class CarDetails: UIViewController {
     
     
     private func FillTextData(car: [String:Any]){
-        self.SetText(data: car)
-    }
-    
-    private func SetText(data:[String:Any]){
-        
-        AppData.CarDetailsList[AppData.selectedCarId]?.userName = data["userName"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.carNumber = data["carNumber"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.carWeigth = data["carMaxWeight"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.carType = data["carName"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.details = data["detail"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.phoneNumber = data["phoneNumber"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.carImage = data["carImageUrl"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.userImage = data["userPhoto"] as! String
-        AppData.CarDetailsList[AppData.selectedCarId]?.rate = data["rate"] as! Double
-        
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-            self.FillDataFromAppData()
+            self.SetText(data: car)
             DispatchQueue.main.async
                 {
+                    self.FillDataFromAppData()
             }
             
         }
+    }
+    
+    private func SetText(data:[String:Any]){
+        var CurrenrCarDetails = AppData.CarDetailsList[AppData.selectedCarId]
+        CurrenrCarDetails?.userName = data["userName"] as! String
+        CurrenrCarDetails?.carNumber = data["carNumber"] as! String
+        CurrenrCarDetails?.carWeigth = data["carMaxWeight"] as! String
+        CurrenrCarDetails?.carType = data["carName"] as! String
+        CurrenrCarDetails?.details = data["detail"] as! String
+        CurrenrCarDetails?.phoneNumber = data["phoneNumber"] as! String
+        CurrenrCarDetails?.carImage = data["carImageUrl"] as! String
+        CurrenrCarDetails?.userImage = data["userPhoto"] as! String
+        CurrenrCarDetails?.rate = data["rate"] as! Double
         
     }
     
     func FillDataFromAppData(){
         let carInfo = AppData.CarDetailsList[AppData.selectedCarId]
-        carWeigth.text = carInfo?.carWeigth
+        carWeigth.text = (carInfo?.carWeigth)! + " тонн"
         carType.text = carInfo?.carType
         details.text = carInfo?.details
         PhoneNumberView.text = carInfo?.phoneNumber
@@ -212,25 +218,20 @@ class CarDetails: UIViewController {
     }
     
     private func setRate(rate:Int){
-        if(self.isRateLoading){
-            //self.Loading.startAnimating()
-        }
-        if(!isRateLoading){
+        
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                self.fillStars(count: rate)
                 DispatchQueue.main.async
                     {
-                        self.isRateLoading = false
+                        self.fillStars(count: rate)
                 }
                 
             }
-        }
+        
         
     }
     
     
     private func fillStars(count:Int){
-        self.isRateLoading = true
         var i = 0
         while(i < count && i < 5){
             StarList[i].image = UIImage(named: "star-gold.png")
@@ -243,14 +244,13 @@ class CarDetails: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        do{
-            if try data!.count > 0 {
+        
+            if data != nil {
                 Image = UIImage(data:data!)
             } else {
                 Image = UIImage(named: "image_placeholder.png")
             }
-        }
-        catch{
+        if(Image == nil){
             Image = UIImage(named: "image_placeholder.png")
         }
         //self.Loading.stopAnimating()
@@ -262,14 +262,13 @@ class CarDetails: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        do{
-            if try data!.count > 0 {
+        
+            if data != nil {
                 Image = UIImage(data:data!)
             } else {
                 Image = UIImage(named: "user_icon.png")
             }
-        }
-        catch{
+        if(Image == nil){
             Image = UIImage(named: "user_icon.png")
         }
         //self.Loading.stopAnimating()
@@ -283,6 +282,18 @@ class CarDetails: UIViewController {
                 application.openURL(phoneCallURL as URL);
             }
         }
+    }
+    
+    func ShowErrorConnection(){
+        
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
+        self.addChildViewController(PopView)
+        PopView.view.frame = self.view.frame
+        self.view.addSubview(PopView.view)
+        PopView.didMove(toParentViewController: self)
+        
     }
     
 }

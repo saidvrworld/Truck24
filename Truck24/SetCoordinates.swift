@@ -59,8 +59,8 @@ class SetCoordinates: UIViewController {
     func getCurrentLocation(){
         let centre = locationManager.location?.coordinate
         
-        centerMapOnLocation(location: Loc2DToLoc(loc: centre!))
-  
+        if(centre != nil){
+            centerMapOnLocation(location: Loc2DToLoc(loc: centre!))
         if(AppData.waitingForLoc == "NearList"){
             AppData.currentLocation = Loc2DToLoc(loc: centre!)
         }
@@ -74,7 +74,7 @@ class SetCoordinates: UIViewController {
         var annotation = MyPlacement(locationName: "Yunus", coordinate: centre!)
         self.mapView.addAnnotation(annotation)
 
-        
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

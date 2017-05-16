@@ -165,10 +165,10 @@ class OfferDetails: UIViewController {
         
         userName.text = data["userName"] as! String
         carNumber.text = data["carNumber"] as! String
-        carWeigth.text = data["carMaxWeight"] as! String
+        carWeigth.text = (data["carMaxWeight"] as! String)+" тонн"
         carType.text = data["carName"] as! String
         details.text = data["detail"] as! String
-        price.text = data["price"] as! String
+        price.text = (data["price"] as! String) + " сум"
         PhoneNumberView.text = data["phoneNumber"] as! String
         
     }
@@ -277,7 +277,7 @@ class OfferDetails: UIViewController {
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
         do{
-            if try data!.count > 0 {
+            if try data != nil {
                 Image = UIImage(data:data!)
             } else {
                 Image = UIImage(named: "user_icon.png")

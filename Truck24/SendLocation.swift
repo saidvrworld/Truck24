@@ -28,15 +28,15 @@ class SendLocation{
         return centre!
     }
     
-    func SendLocation(){
+    func SendLocation(status: String){
         var curLocation = GetCurrentLocation()
         var curLong = String(curLocation.longitude.binade)
         var curLat = String(curLocation.latitude.binade)
-        var user_id = "12"
-        var user_status = "1"
+        var user_status = status
         MakeRequest(urlstring: LocationUrl, userId: AppData.token, lat: curLat, long: curLong, status: user_status)
     
     }
+    
     
     private func MakeRequest(urlstring: String,userId: String,lat: String,long: String,status: String){
         

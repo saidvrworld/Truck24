@@ -19,12 +19,9 @@ class MyPublications: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     
-
     
     override func viewDidLoad() {
-        if(AppData.PubList.count == 0){
-            pubMananger.GetMyPub(table: tableView,urlAddress: AppData.getPublicationsUrl, token: AppData.token)
-        }
+        UpdateTable()
         super.viewDidLoad()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -55,6 +52,11 @@ class MyPublications: UIViewController{
         
     }
     
+    
+     func UpdateTable(){
+        pubMananger.GetMyPub(table: self,urlAddress: AppData.getPublicationsUrl, token: AppData.token)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
         
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
@@ -65,6 +67,7 @@ class MyPublications: UIViewController{
             GoToDetailsInfo()
         }
         else if(currentCell.status == 1){
+            AppData.lastDetailsScene = "MainView"
             GoToAcceptedDetailsInfo()
         }
     }
@@ -83,5 +86,18 @@ class MyPublications: UIViewController{
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AcceptedOrderInfo") as! AcceptedOrderInfo
         self.present(nextViewController, animated:true, completion:nil)
     }
+    
+    
+     func ShowErrorConnection(){
+        
+        
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        
+      }
     
 }

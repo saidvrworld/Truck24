@@ -24,6 +24,18 @@ class Settings: UIViewController {
     }
     
     
+    @IBAction func BackToСhooseType(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseType") as! ChooseType
+            self.present(nextViewController, animated:true, completion:nil)
+        
+    }
     
+    @IBAction func GoToDonePubs(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DonePublicatonsCustomer") as! DonePublicatonsCustomer
+        self.present(nextViewController, animated:true, completion:nil)
+        
+    }
     
 }

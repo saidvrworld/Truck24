@@ -12,11 +12,12 @@ import UIKit
 
 class CarFilter: UIViewController {
     
+    var pubManager = PublicationData()
     
+    @IBOutlet weak var AddressView: UILabel!
+    @IBOutlet weak var carType: UIButton!
     @IBOutlet weak var RadiusSlider: UISlider!
-    
     @IBOutlet weak var radius: UILabel!
-    
     
     @IBAction func ChooseCarType(_ sender: Any) {
         AppData.lastScene = "CarFilter"
@@ -35,7 +36,12 @@ class CarFilter: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(AppData.currentLocation != nil){
+            pubManager.getAddress(location: AppData.currentLocation,textView: AddressView)
+        }
+        if(AppData.carType != nil){
+            carType.setTitle(AppData.carType, for: .normal)
+        }
         
     }
     
@@ -50,6 +56,7 @@ class CarFilter: UIViewController {
     }
     
     @IBAction func ShowResult(_ sender: Any) {
+        AppData.CarList = []
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
         self.present(nextViewController, animated:true, completion:nil)

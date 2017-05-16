@@ -14,7 +14,7 @@ import CoreLocation
 class PublicationData{
     
     
-    func GetMyPub(table: UITableView,urlAddress: String,token:String){
+    func GetMyPub(table: MyPublications,urlAddress: String,token:String){
         
         let parameters = "token="+token
         print(parameters)
@@ -26,7 +26,13 @@ class PublicationData{
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            table.ShowErrorConnection()
+                    }
+                }
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -35,7 +41,7 @@ class PublicationData{
                     AppData.PubList = self.GetMyPubResponse(response:responseJSON)
                     DispatchQueue.main.async
                         {
-                            table.reloadData()
+                            table.tableView.reloadData()
                     }
                     
                 }
@@ -45,6 +51,47 @@ class PublicationData{
         task.resume()
         
     }
+    
+    func GetDonePub(table: DonePublicatonsCustomer,urlAddress: String,token:String){
+        
+        let parameters = "token="+token
+        print(parameters)
+        let url = URL(string: urlAddress)
+        var request = URLRequest(url: (url)!)
+        request.httpMethod = "POST"
+        
+        request.httpBody = parameters.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            table.ShowErrorConnection()
+                    }
+                }
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    AppData.DonePubList = self.GetMyPubResponse(response:responseJSON)
+                    DispatchQueue.main.async
+                        {
+                            table.tableView.reloadData()
+                    }
+                    
+                }
+            }
+        }
+        
+        task.resume()
+        
+    }
+    
+    
+    
     
     func AddPub(viewContr: UIView,urlAddress: String,token:String,carTypeId:String,lat_from:String,long_from:String,lat_to:String,long_to:String,notes:String,date:String){
         
@@ -95,14 +142,12 @@ class PublicationData{
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
-                print(dataBody)
-                var success = dataBody?["success"] as! Bool
-                if(success){
-                    viewControler.isHidden = false
-                }
-                else{
-                    
-                    print("error")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(dataBody)
+                    DispatchQueue.main.async
+                        {
+                            viewControler.isHidden = false
+                    }
                 }
             }
         }
@@ -135,6 +180,21 @@ class PublicationData{
     func ParsePub(_ pub:[String:AnyObject])->Publication{
         let newPub = Publication()
         newPub.carType = pub["carType"] as! String
+        
+        let type = pub["type"] as! Int
+        if(type == 1){
+            newPub.carType = newPub.carType + ",Damas Labo(Малотоннажные)" as! String
+        }
+        else if(type == 2){
+            newPub.carType = newPub.carType + "(Среднетонажные)" as! String
+        }
+        else if(type == 3){
+            newPub.carType = newPub.carType + "(Тяжелотоннажные)" as! String
+        }
+        else if(type == 4){
+            newPub.carType = newPub.carType + "(Спец.Техника)" as! String
+        }
+        
         newPub.notes = pub["notes"] as! String
         newPub.date_of_publication = pub["date"] as! String
         newPub.pubId = pub["orderId"] as! Int

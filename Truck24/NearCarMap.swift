@@ -24,6 +24,8 @@ class NearCarMap: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        mapView.showsUserLocation = true
+
         
     }
     
@@ -85,19 +87,16 @@ class NearCarMap: UIViewController {
         }
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
-                 calloutAccessoryControlTapped control: UIControl!) {
-        let car = view.annotation as! CarPlacement
-        AppData.selectedCarId = car.carId
-        print("selected")
+    
+    public func calloutTapped(sender:UITapGestureRecognizer) {
+        guard let annotation = (sender.view as? MKAnnotationView)?.annotation as? CarPlacement else { return }
+        print(annotation.carId)
+        performSegue(withIdentifier: "mySegueIdentifier", sender: self)
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        print("Annotation selected")
-        
-        if let annotation = view.annotation as? CarPlacement {
-            print("Your annotation title: \(annotation.title)");
-        }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(NearCarMap.calloutTapped(sender:)))
+        view.addGestureRecognizer(gesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -13,6 +13,7 @@ import CoreLocation
 
 class PubDetails: UIViewController {
     
+    @IBOutlet weak var ErrorView: UIView!
     @IBOutlet weak var LoadingView: UIView!
     @IBOutlet weak var publicationDate: UILabel!
     @IBOutlet weak var carTypes: UILabel!
@@ -96,7 +97,14 @@ class PubDetails: UIViewController {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            self.ErrorView.isHidden = false
+                            self.ShowErrorConnection()
+                    }
+                }
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -132,6 +140,21 @@ class PubDetails: UIViewController {
     func SaveInCach(data: [String:Any]){
         let newPub = PubDetail()
         newPub.carTypes = data["carType"] as! String
+        
+        let type = data["type"] as! Int
+        if(type == 1){
+            newPub.carTypes = newPub.carTypes + ",Damas Labo(Малотоннажные)" as! String
+        }
+        else if(type == 2){
+            newPub.carTypes = newPub.carTypes + "(Среднетонажные)" as! String
+        }
+        else if(type == 3){
+            newPub.carTypes = newPub.carTypes + "(Тяжелотоннажные)" as! String
+        }
+        else if(type == 4){
+            newPub.carTypes = newPub.carTypes + "(Спец.Техника)" as! String
+        }
+
         newPub.fromLong = data["from_long"] as! Double
         newPub.fromLat = data["from_lat"] as! Double
         newPub.toLong = data["to_long"] as! Double
@@ -155,6 +178,7 @@ class PubDetails: UIViewController {
         publicationDate.text = pub.publicationDate
         Notes.text = pub.Notes
         executionDate.text = pub.executionDate
+        
         offerCount.text = String(describing: pub.offerCount)
         
         AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
@@ -166,6 +190,18 @@ class PubDetails: UIViewController {
         
         print("data Filled")
 
+    }
+    
+    func ShowErrorConnection(){
+        
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
+        self.addChildViewController(PopView)
+        PopView.view.frame = self.view.frame
+        self.view.addSubview(PopView.view)
+        PopView.didMove(toParentViewController: self)
+    
     }
     
     

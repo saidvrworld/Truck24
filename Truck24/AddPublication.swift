@@ -95,23 +95,38 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func CreatePublication(_ sender: Any) {
+        if(AppData.fromLocation == nil || AppData.toLocation == nil){
+           ShowError(errorType: "coordinateError")
+        }
+        else if(AppData.carTypeID == nil){
+            ShowError(errorType: "TypeError")
+            
+        }
+        else{
+           AddPub()
+        }
         
+    }
+    
+    func AddPub(){
+    
         LoadingView.isHidden = false
-        SuccessView.isHidden = false
         if(!notesView.hasText){
-             notesView.text = "Доставить быстро и аккуратно"
-        }
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-            
-             self.pubManager.AddPub(viewContr: self.SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: "1", lat_from: String(self.fromLatitude), long_from: String(self.fromLongitude), lat_to: String(self.toLatitude), long_to: String(self.toLongitude), notes: self.notesView.text!, date: self.getTime())
-            DispatchQueue.main.async
-                {
-                    self.LoadingView.isHidden = false
-                    self.SuccessView.isHidden = false
-            }
-            
+            notesView.text = "Доставить быстро и аккуратно"
         }
         
+        
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                print(1)
+                self.pubManager.AddPub(viewContr: self.SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: AppData.carTypeID, lat_from: String(AppData.fromLocation.coordinate.latitude.binade), long_from: String(AppData.fromLocation.coordinate.longitude.binade), lat_to: String(AppData.toLocation.coordinate.latitude.binade), long_to: String(AppData.toLocation.coordinate.longitude.binade), notes: self.notesView.text!, date: self.getTime())
+                DispatchQueue.main.async
+                    {
+                        self.LoadingView.isHidden = false
+                }
+                
+            
+        }
+    
     }
     
     @IBAction func EnterText(_ sender: UITextField) {
@@ -146,6 +161,28 @@ class AddPublication: UIViewController,UITextFieldDelegate {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
         self.present(nextViewController, animated:true, completion:nil)
         
+    }
+    
+    private func ShowError(errorType: String){
+        
+        if(errorType=="TypeError"){
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "TypeError") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        }
+        else if(errorType=="coordinateError"){
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "coordinateError") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        }
     }
     
     

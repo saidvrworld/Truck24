@@ -18,7 +18,7 @@ import CoreLocation
 class OrderForDriverData{
     
     
-     func GetOrderList(table: UITableView,urlAddress: String,token:String){
+     func GetOrderList(table: OrderListForDriver,urlAddress: String,token:String){
         
         let parameters = "token="+token
         print(parameters)
@@ -40,7 +40,13 @@ class OrderForDriverData{
                     AppData.OrderForDriverList = self.GetOrderResponse(response:responseJSON)
                     DispatchQueue.main.async
                         {
-                            table.reloadData()
+                            
+                            if(AppData.OrderForDriverList.count != 0){
+                                table.tableView.reloadData()
+                            }
+                            else{
+                                table.EmptyView.isHidden = false
+                            }
                     }
                 }
                 

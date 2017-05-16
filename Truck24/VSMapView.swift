@@ -22,6 +22,15 @@ extension UIViewController: MKMapViewDelegate {
             annotationView.image = UIImage(named: "location_black.png")
             return annotationView
         }
+        else if annotation is APlacement{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "A.png")
+            return annotationView
+        }else if annotation is BPlacement{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "B.png")
+            return annotationView
+        }
         else if annotation is CarPlacement{
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "car_icon.png")
@@ -42,7 +51,15 @@ extension UIViewController: MKMapViewDelegate {
         }
     }
     
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        let car = view.annotation as! CarPlacement
+        AppData.selectedCarId = car.carId
+        print("selected")
+    }
     
 
     
 }
+
+

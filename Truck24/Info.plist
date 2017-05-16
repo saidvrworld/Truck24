@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>YukBor</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,10 +31,14 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>For Set profile image</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Require Location for send your location for find offers to you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Require Location for get your placement</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For set profile image</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -14,9 +14,14 @@ class CarData{
     
     
     
-    func MakeRequest(table: UITableView,urlAddress: String,token:String,long: String,lat: String){
-        
-        let parameters = "long="+long+"&lat="+lat+"&token="+token
+    func MakeRequest(table: NearList,urlAddress: String,token:String,long: String,lat: String,carTypeId:String){
+        var parameters:String!
+        if(carTypeId == "None"){
+             parameters = "long="+long+"&lat="+lat+"&token="+token
+        }
+        else{
+             parameters = "long="+long+"&lat="+lat+"&token="+token+"&carType="+carTypeId
+        }
         print(parameters)
         print(urlAddress)
         let url = URL(string: urlAddress)
@@ -27,7 +32,13 @@ class CarData{
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            table.ShowErrorConnection()
+                    }
+                }
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -36,7 +47,12 @@ class CarData{
                     AppData.CarList = self.ManageResponse(response:responseJSON)
                     DispatchQueue.main.async
                         {
-                            table.reloadData()
+                            if(AppData.CarList.count != 0){
+                                table.tableView.reloadData()
+                            }
+                            else{
+                               table.EmptyListView.isHidden = false
+                            }
                     }
                 }
             }
@@ -70,11 +86,24 @@ class CarData{
         newCar.carId = car["carId"] as! Int
         newCar.carImageUrl = car["carImageUrl"] as! String
         newCar.carName = car["carName"] as! String
+        let type = car["type"] as! String
+        if(type == "1"){
+           newCar.carName = newCar.carName + ",Damas Labo(Малотоннажные)" as! String
+        }
+        else if(type == "2"){
+            newCar.carName = newCar.carName + "(Среднетонажные)" as! String
+        }
+        else if(type == "3"){
+            newCar.carName = newCar.carName + "(Тяжелотоннажные)" as! String
+        }
+        else if(type == "4"){
+            newCar.carName = newCar.carName + "(Спец.Техника)" as! String
+        }
         
-        let str = car["distance"] as! String
-        let index = str.index(str.startIndex, offsetBy: 1)
+       // let str = car["distance"] as! String
+        //let index = str.index(str.startIndex, offsetBy: 1)
         
-        newCar.distance = str.substring(to: index)
+        newCar.distance =  car["distance"] as! String//str.substring(to: index)
         newCar.rate = car["rate"] as! Double
         newCar.longitude = car["long"] as! Double
         newCar.latitude = car["lat"] as! Double

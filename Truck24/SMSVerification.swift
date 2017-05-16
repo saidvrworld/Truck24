@@ -52,7 +52,15 @@ class SMSVerification: UIViewController {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+                    print(error?.localizedDescription ?? "No data")
+                    DispatchQueue.main.async
+                        {
+                            self.ShowError(errorType: "connectError")
+                            
+                    }
+                    
+                }
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -180,6 +188,15 @@ class SMSVerification: UIViewController {
             self.view.addSubview(PopView.view)
             PopView.didMove(toParentViewController: self)
         }
+        else if(errorType=="connectError"){
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
+            self.addChildViewController(PopView)
+            PopView.view.frame = self.view.frame
+            self.view.addSubview(PopView.view)
+            PopView.didMove(toParentViewController: self)
+        }
+        
     }
 }
 

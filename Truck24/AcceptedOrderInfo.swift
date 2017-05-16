@@ -12,6 +12,7 @@ import CoreLocation
 
 class AcceptedOrderInfo: UIViewController {
     
+    @IBOutlet weak var FinishButton: UIButton!
     @IBOutlet weak var LoadingView: UIView!
     
     @IBOutlet weak var fromAddress: UILabel!
@@ -53,7 +54,12 @@ class AcceptedOrderInfo: UIViewController {
     var pubManager = PublicationData()
     
     override func viewDidLoad() {
+        StarList = [Star1,Star2,Star3,Star4,Star5]
         super.viewDidLoad()
+        AppData.DriverLocation = nil
+        if(AppData.lastDetailsScene == "DonePubs"){
+            FinishButton.isHidden=true
+        }
         GetDetails(urlstring: AppData.acceptedOrderInfoUrl, orderId: String(AppData.selectedPubId))
         
     }
@@ -78,9 +84,20 @@ class AcceptedOrderInfo: UIViewController {
     }
     
     private func GoToMainView(){
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
+        
+        if(AppData.lastDetailsScene == "MainView"){
+            
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
+                self.present(nextViewController, animated:true, completion:nil)
+            
+        }
+        else if(AppData.lastDetailsScene == "DonePubs"){
+          
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DonePublicatonsCustomer") as! DonePublicatonsCustomer
+                self.present(nextViewController, animated:true, completion:nil)
+            }
     }
     
     
@@ -124,21 +141,16 @@ class AcceptedOrderInfo: UIViewController {
                 print(1.1)
 
                 print(dataBody)
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                    self.FillData(data: dataBody!)
-                    DispatchQueue.main.async
-                        {
-                            self.LoadingView.isHidden = true
+                self.FillData(data: dataBody!)
+                   
+                self.LoadingView.isHidden = true
                             
-                            self.pubManager.getAddress(location: AppData.fromLocation,textView: self.fromAddress)
-                            self.pubManager.getAddress(location: AppData.toLocation,textView: self.toAddress)
-                            self.setRate(rate: Int(dataBody?["rate"] as! Double))
-                            self.setCarPicture(dataBody?["carPhoto"] as! String)
-                            self.setUserPicture(dataBody?["userPhoto"] as! String)
+                self.pubManager.getAddress(location: AppData.fromLocation,textView: self.fromAddress)
+                self.pubManager.getAddress(location: AppData.toLocation,textView: self.toAddress)
+                self.setRate(rate: Int(dataBody?["rate"] as! Double))
+                self.setCarPicture(dataBody?["carPhoto"] as! String)
+                self.setUserPicture(dataBody?["userPhoto"] as! String)
 
-                    }
-                    
-                }
             }
             
         }
@@ -146,39 +158,54 @@ class AcceptedOrderInfo: UIViewController {
     }
     
     func FillData(data: [String:Any]){
+        
+        
         carTypes.text = data["carType"] as! String
         executionDate.text = data["date"] as! String
         Notes.text = data["notes"] as! String
         
         carNumber.text = data["carNumber"] as! String
         details.text = data["detail"] as! String
-        carWeigth.text = data["maxWeight"] as! String
+        carWeigth.text = (data["maxWeight"] as! String)+" тонн"
         carNumber.text = data["carNumber"] as! String
         userName.text = data["userName"] as! String
         PhoneNumberView.text = data["phoneNumber"] as! String
-        price.text = data["price"] as! String
+        price.text = (data["price"] as! String) + " сум"
         
         from_long = data["long_from"] as! Double
         from_lat = data["lat_from"] as! Double
         to_long = data["long_to"] as! Double
         to_lat = data["lat_to"] as! Double
+        
+        var userLat = data["userLat"] as! Double
+        var userLong = data["userLong"] as! Double
+
         AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
         AppData.toLocation =  CLLocation(latitude: to_lat, longitude: to_long)
+        AppData.DriverLocation =  CLLocation(latitude: userLat, longitude: userLong)
+
         
     }
-    
-    
     
    
     @IBAction func PressFinishOrder(_ sender: Any) {
         do{
-            try     FinishOrder()
+           try Finish()
         }
         catch{
                  print("Error")
                  GoToMainView()
         }
-
+    }
+    
+    func Finish(){
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
+             self.FinishOrder()
+            DispatchQueue.main.async
+                {
+                    self.ShowRateWindow()
+            }
+        }
     }
     
     private func FinishOrder(){
@@ -202,28 +229,9 @@ class AcceptedOrderInfo: UIViewController {
                 return
             }
             print(13)
-            
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(responseJSON)
             if let responseJSON = responseJSON as? [String: Any] {
-                
-                if let array = responseJSON["data"] as? [Any] {
-                    if let firstObject = array.first {
-                        let dataBody = firstObject as? [String: Any]
-                        print(dataBody)
-                        if(dataBody?["success"] as! Bool){
-                        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                            self.ShowRateWindow()
-                            DispatchQueue.main.async
-                                {
-                                   
-                            }
-                        }
-                        }
-                    }
-                    
-                }
-
+                print(responseJSON)
             }
         }
         
@@ -282,14 +290,13 @@ class AcceptedOrderInfo: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        do{
-            if try data!.count > 0 {
+        
+            if  data!.count > 0 {
                 Image = UIImage(data:data!)
             } else {
                 Image = UIImage(named: "image_placeholder.png")
             }
-        }
-        catch{
+        if(Image == nil){
             Image = UIImage(named: "image_placeholder.png")
         }
         //self.Loading.stopAnimating()
@@ -302,14 +309,13 @@ class AcceptedOrderInfo: UIViewController {
         var Image: UIImage?
         let url = URL(string:imgUrl)
         let data = try? Data(contentsOf: url!)
-        do{
-            if try data!.count > 0 {
+        
+            if  data != nil{
                 Image = UIImage(data:data!)
             } else {
                 Image = UIImage(named: "user_icon.png")
             }
-        }
-        catch{
+        if(Image == nil){
             Image = UIImage(named: "user_icon.png")
         }
         //self.Loading.stopAnimating()
@@ -340,6 +346,13 @@ class AcceptedOrderInfo: UIViewController {
         while(i < count && i < 5){
             StarList[i].image = UIImage(named: "star-gold.png")
             i+=1
+        }
+    }
+    
+    @IBAction func MakeCall(_ sender: Any) {
+        
+        if var number = PhoneNumberView.text{
+            callNumber(phoneNumber: number)
         }
     }
     

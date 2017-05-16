@@ -12,6 +12,7 @@ import UIKit
 class OrderListForDriver: UIViewController{
     
     
+    @IBOutlet weak var EmptyView: UIView!
     private let orderMananger = OrderForDriverData()
     var locManager = SendLocation()
     
@@ -19,15 +20,19 @@ class OrderListForDriver: UIViewController{
     
     @IBAction func SwitchedLocation(_ sender: UISwitch) {
         if(sender.isOn){
-            locManager.SendLocation()
+            locManager.SendLocation(status: "true")
             ShowError(errorType: "LocationOn")
+        }
+        else{
+            locManager.SendLocation(status: "false")
+            ShowError(errorType: "LocationOff")
         }
     }
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        orderMananger.GetOrderList(table: tableView,urlAddress: AppData.getOrdersForDriverUrl, token: AppData.token)
+        orderMananger.GetOrderList(table: self,urlAddress: AppData.getOrdersForDriverUrl, token: AppData.token)
         super.viewDidLoad()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
