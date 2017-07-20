@@ -23,16 +23,26 @@ class SendLocation{
         }
     }
     
+    func StartTimer(){
+        var timer = Timer.scheduledTimer(timeInterval: 70.0, target: self, selector: #selector(self.updateLoc), userInfo: nil, repeats: true)
+        NavigationManager.TimerList.append(timer)
+    }
+    
+    @objc func updateLoc() {
+        print("location sended",AppData.SendStatus)
+        SendLocation(status: AppData.SendStatus)
+    }
+    
     func GetCurrentLocation()-> CLLocationCoordinate2D{
         let centre = locationManager.location?.coordinate
         return centre!
     }
     
     func SendLocation(status: String){
-        var curLocation = GetCurrentLocation()
-        var curLong = String(curLocation.longitude.binade)
-        var curLat = String(curLocation.latitude.binade)
-        var user_status = status
+        let curLocation = GetCurrentLocation()
+        let curLong = String(curLocation.longitude.binade)
+        let curLat = String(curLocation.latitude.binade)
+        let user_status = status
         MakeRequest(urlstring: LocationUrl, userId: AppData.token, lat: curLat, long: curLong, status: user_status)
     
     }
@@ -57,7 +67,7 @@ class SendLocation{
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
+            if (responseJSON as? [String: Any]) != nil {
                 print("Location sended")
             }
         }

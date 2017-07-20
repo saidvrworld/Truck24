@@ -15,6 +15,7 @@ import UIKit
 class CarDetails: UIViewController {
     
     
+    @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var ErrorView: UIView!
     @IBOutlet weak var LoadingIndicator: UIView!
     @IBOutlet weak var details: UILabel!
@@ -25,14 +26,9 @@ class CarDetails: UIViewController {
     @IBOutlet weak var carWeigth: UILabel!
     @IBOutlet weak var carType: UILabel!
     
-    @IBOutlet weak var Star5: UIImageView!
-    @IBOutlet weak var Star4: UIImageView!
-    @IBOutlet weak var PhoneNumberView: UILabel!
-    @IBOutlet weak var Star3: UIImageView!
-    @IBOutlet weak var Star2: UIImageView!
-    @IBOutlet weak var Star1: UIImageView!
+       @IBOutlet weak var PhoneNumberView: UILabel!
+
     
-    var StarList:[UIImageView]!
 
     
     var isCarImageLoading = false
@@ -40,7 +36,6 @@ class CarDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        StarList = [Star1,Star2,Star3,Star4,Star5]
         if(AppData.CarDetailsList[AppData.selectedCarId] != nil){
               DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
                 self.FillDataFromAppData()
@@ -52,18 +47,12 @@ class CarDetails: UIViewController {
               }
               setCarPicture((AppData.CarDetailsList[AppData.selectedCarId]?.carImage)!)
               setUserPicture((AppData.CarDetailsList[AppData.selectedCarId]?.userImage)!)
-              setRate(rate: Int((AppData.CarDetailsList[AppData.selectedCarId]?.rate)!))
 
          }
         else{
           MakeRequest(urlstring: AppData.CarInfoUrl, carId: String(AppData.selectedCarId))
         }
 
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        return .lightContent
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +62,7 @@ class CarDetails: UIViewController {
     
     @IBAction func MakeCall(_ sender: Any) {
         
-        if var number = PhoneNumberView.text{
+        if let number = PhoneNumberView.text{
             callNumber(phoneNumber: number)
         }
     }
@@ -82,7 +71,7 @@ class CarDetails: UIViewController {
         
         let parameters = "token=fec5fdf5ac012r43"+carId+"fec5fdf5ac012r43"
         
-        print(parameters)
+        //print(parameters)
         
         let url = URL(string: urlstring)!
         var request = URLRequest(url: url)
@@ -98,7 +87,7 @@ class CarDetails: UIViewController {
                     DispatchQueue.main.async
                         {
                             self.ErrorView.isHidden = false
-                            self.ShowErrorConnection()
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: self)
                     }
                 }
                 return
@@ -110,7 +99,6 @@ class CarDetails: UIViewController {
         }
         
         task.resume()
-        
     }
     
     private func InfoManager(response: [String:Any]){
@@ -126,14 +114,10 @@ class CarDetails: UIViewController {
                 
                 let carRate = dataBody?["rate"] as! Double
                 let carIntRate = Int(carRate)
-                self.setRate(rate: carIntRate)
 
             }
-            
         }
-        
     }
-    
     
     private func FillTextData(car: [String:Any]){
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
@@ -147,11 +131,27 @@ class CarDetails: UIViewController {
     }
     
     private func SetText(data:[String:Any]){
-        var CurrenrCarDetails = AppData.CarDetailsList[AppData.selectedCarId]
+        let CurrenrCarDetails = AppData.CarDetailsList[AppData.selectedCarId]
         CurrenrCarDetails?.userName = data["userName"] as! String
         CurrenrCarDetails?.carNumber = data["carNumber"] as! String
         CurrenrCarDetails?.carWeigth = data["carMaxWeight"] as! String
+        
         CurrenrCarDetails?.carType = data["carName"] as! String
+
+        /*
+        if(type == "1"){
+            CurrenrCarDetails?.carType = (CurrenrCarDetails?.carType)! + ",Damas Labo(Малотоннажные)"
+        }
+        else if(type == "2"){
+            CurrenrCarDetails?.carType = (CurrenrCarDetails?.carType)! + "(Среднетонажные)"
+        }
+        else if(type == "3"){
+            CurrenrCarDetails?.carType = (CurrenrCarDetails?.carType)! + "(Тяжелотоннажные)"
+        }
+        else if(type == "4"){
+            CurrenrCarDetails?.carType = (CurrenrCarDetails?.carType)! + "(Спец.Техника)"
+        }
+        */
         CurrenrCarDetails?.details = data["detail"] as! String
         CurrenrCarDetails?.phoneNumber = data["phoneNumber"] as! String
         CurrenrCarDetails?.carImage = data["carImageUrl"] as! String
@@ -168,16 +168,14 @@ class CarDetails: UIViewController {
         PhoneNumberView.text = carInfo?.phoneNumber
         userName.text = carInfo?.userName
         carNumber.text = carInfo?.carNumber
+        rateLabel.text = String(describing: carInfo?.rate)
         self.LoadingIndicator.isHidden = true
 
 
     }
     
     @IBAction func BackToMainView(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToCustomerMain(View: self)
     }
     
     private func setCarPicture(_ url:String){
@@ -191,14 +189,9 @@ class CarDetails: UIViewController {
                     {
                         self.isCarImageLoading = false
                 }
-                
             }
         }
-        
     }
-    
-    
-   
     
     private func setUserPicture(_ url:String){
         if(self.isUserImageLoading){
@@ -211,31 +204,7 @@ class CarDetails: UIViewController {
                     {
                         self.isUserImageLoading = false
                 }
-                
             }
-        }
-        
-    }
-    
-    private func setRate(rate:Int){
-        
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                DispatchQueue.main.async
-                    {
-                        self.fillStars(count: rate)
-                }
-                
-            }
-        
-        
-    }
-    
-    
-    private func fillStars(count:Int){
-        var i = 0
-        while(i < count && i < 5){
-            StarList[i].image = UIImage(named: "star-gold.png")
-            i+=1
         }
     }
     
@@ -284,16 +253,6 @@ class CarDetails: UIViewController {
         }
     }
     
-    func ShowErrorConnection(){
-        
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
-        self.addChildViewController(PopView)
-        PopView.view.frame = self.view.frame
-        self.view.addSubview(PopView.view)
-        PopView.didMove(toParentViewController: self)
-        
-    }
+    
     
 }

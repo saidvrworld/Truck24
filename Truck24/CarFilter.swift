@@ -21,17 +21,12 @@ class CarFilter: UIViewController {
     
     @IBAction func ChooseCarType(_ sender: Any) {
         AppData.lastScene = "CarFilter"
-
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseCarType") as! ChooseCarType
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "ChooseCarType", View: self)
     }
     
     @IBAction func SetLocation(_ sender: Any) {
         AppData.waitingForLoc = "CarFilter"
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SetCoordinates") as! SetCoordinates
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "SetCoordinates", View: self)
     }
     
     override func viewDidLoad() {
@@ -57,16 +52,11 @@ class CarFilter: UIViewController {
     
     @IBAction func ShowResult(_ sender: Any) {
         AppData.CarList = []
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToCustomerMain(View: self)
     }
     
-    @IBAction func BackToSignIn(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
-        
+    @IBAction func BackToMainView(_ sender: Any) {
+        NavigationManager.MoveToCustomerMain(View: self)
     }
     
     

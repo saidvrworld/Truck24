@@ -18,16 +18,32 @@ class MyPublications: UIViewController{
     let pubMananger =  PublicationData()
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var LoadingView: UIView!
+
     
     override func viewDidLoad() {
         UpdateTable()
         super.viewDidLoad()
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        StartTimer()
     }
     
+    func StartTimer(){
+        var timer = Timer.scheduledTimer(timeInterval: AppData.UpdateInterval, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        NavigationManager.TimerList.append(timer)
+        
+    }
+    
+    @objc func update() {
+        UpdateTable()
+    }
+    
+    func ShowLoadingView(show:Bool){
+        DispatchQueue.main.async
+            {
+                self.LoadingView.isHidden = !show
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -35,13 +51,11 @@ class MyPublications: UIViewController{
     
     
     @IBAction func AddPublication(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddPublication") as! AddPublication
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "AddPublication", View: self)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        self.ShowLoadingView(show: false)
         return AppData.PubList.count
     }
     
@@ -54,6 +68,7 @@ class MyPublications: UIViewController{
     
     
      func UpdateTable(){
+        self.ShowLoadingView(show: true)
         pubMananger.GetMyPub(table: self,urlAddress: AppData.getPublicationsUrl, token: AppData.token)
     }
     
@@ -74,30 +89,12 @@ class MyPublications: UIViewController{
     
     
     func GoToDetailsInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "PubDetails", View: self)
     }
     
     func GoToAcceptedDetailsInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AcceptedOrderInfo") as! AcceptedOrderInfo
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "AcceptedOrderInfo", View: self)
     }
     
-    
-     func ShowErrorConnection(){
-        
-        
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        
-      }
     
 }

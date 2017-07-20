@@ -30,7 +30,8 @@ class PublicationData{
                     print(error?.localizedDescription ?? "No data")
                     DispatchQueue.main.async
                         {
-                            table.ShowErrorConnection()
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: table)
+                            
                     }
                 }
                 return
@@ -68,7 +69,8 @@ class PublicationData{
                     print(error?.localizedDescription ?? "No data")
                     DispatchQueue.main.async
                         {
-                            table.ShowErrorConnection()
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: table)
+
                     }
                 }
                 return
@@ -127,7 +129,7 @@ class PublicationData{
             
             for pubObj in array {
                 let dataBody = pubObj as? [String: Any]
-                print(dataBody)
+               // print(dataBody)
                 pubList.append(ParsePub(dataBody! as [String : AnyObject]))
                 
             }
@@ -143,7 +145,7 @@ class PublicationData{
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                    print(dataBody)
+                    //print(dataBody)
                     DispatchQueue.main.async
                         {
                             viewControler.isHidden = false
@@ -167,7 +169,7 @@ class PublicationData{
             // Location name
             if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
                 print(locationName)
-                fullAddress = (locationName as! String)
+                fullAddress = locationName as! String
                 textView.text = fullAddress
 
             }
@@ -183,16 +185,16 @@ class PublicationData{
         
         let type = pub["type"] as! Int
         if(type == 1){
-            newPub.carType = newPub.carType + ",Damas Labo(Малотоннажные)" as! String
+            newPub.carType = newPub.carType + ",Damas Labo(Малотоннажные)"
         }
         else if(type == 2){
-            newPub.carType = newPub.carType + "(Среднетонажные)" as! String
+            newPub.carType = newPub.carType + "(Среднетонажные)"
         }
         else if(type == 3){
-            newPub.carType = newPub.carType + "(Тяжелотоннажные)" as! String
+            newPub.carType = newPub.carType + "(Тяжелотоннажные)"
         }
         else if(type == 4){
-            newPub.carType = newPub.carType + "(Спец.Техника)" as! String
+            newPub.carType = newPub.carType + "(Спец.Техника)" 
         }
         
         newPub.notes = pub["notes"] as! String

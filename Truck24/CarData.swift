@@ -36,7 +36,8 @@ class CarData{
                     print(error?.localizedDescription ?? "No data")
                     DispatchQueue.main.async
                         {
-                            table.ShowErrorConnection()
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: table)
+
                     }
                 }
                 return
@@ -51,7 +52,7 @@ class CarData{
                                 table.tableView.reloadData()
                             }
                             else{
-                               table.EmptyListView.isHidden = false
+                               table.ShowEmptyError()
                             }
                     }
                 }
@@ -88,16 +89,16 @@ class CarData{
         newCar.carName = car["carName"] as! String
         let type = car["type"] as! String
         if(type == "1"){
-           newCar.carName = newCar.carName + ",Damas Labo(Малотоннажные)" as! String
+           newCar.carName = newCar.carName + ",Damas Labo(Малотоннажные)"
         }
         else if(type == "2"){
-            newCar.carName = newCar.carName + "(Среднетонажные)" as! String
+            newCar.carName = newCar.carName + "(Среднетонажные)"
         }
         else if(type == "3"){
-            newCar.carName = newCar.carName + "(Тяжелотоннажные)" as! String
+            newCar.carName = newCar.carName + "(Тяжелотоннажные)"
         }
         else if(type == "4"){
-            newCar.carName = newCar.carName + "(Спец.Техника)" as! String
+            newCar.carName = newCar.carName + "(Спец.Техника)" 
         }
         
        // let str = car["distance"] as! String

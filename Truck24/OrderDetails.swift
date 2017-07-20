@@ -36,11 +36,10 @@ class OrderDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(AppData.lastDetailsScene == "MyFinishedOrderForDriver"){
+           OfferButton.isHidden = true
+        }
         GetDetails(urlstring: AppData.getOrderInfoForDriverUrl, orderId: String(AppData.selectedOrderForDriverId),token: AppData.token)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     @IBAction func GoToOfferPrice(_ sender: Any) {
@@ -68,21 +67,14 @@ class OrderDetails: UIViewController {
     
     @IBAction func MakeCall(_ sender: Any) {
         
-        if var number = customerPhone.text{
+        if let number = customerPhone.text{
             callNumber(phoneNumber: number)
         }
     }
     
-    
-    
-    
-    
     @IBAction func ShowWay(_ sender: Any) {
         AppData.lastScene = "OrderDetails"
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubWayOnMap") as! PubWayOnMap
-        self.present(nextViewController, animated:true, completion:nil)
-        
+        NavigationManager.MoveToScene(sceneId: "PubWayOnMap",View:self)
     }
     
     
@@ -92,10 +84,12 @@ class OrderDetails: UIViewController {
     }
     
     private func GoToMain(){
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainDriverView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
-
+        if(AppData.lastDetailsScene == "MainView"){
+            NavigationManager.MoveToDriverMain(View: self)
+        }
+        else if(AppData.lastDetailsScene == "MyFinishedOrderForDriver"){
+            NavigationManager.MoveToScene(sceneId: "MyFinishedOrdersListForDriver",View:self)
+        }
     }
     
     
@@ -119,13 +113,12 @@ class OrderDetails: UIViewController {
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                    self.InfoManager(response:responseJSON)
                     DispatchQueue.main.async
                         {
+                            self.InfoManager(response:responseJSON)
                             self.LoadingView.isHidden = true
                     }
-                }
+                
             }
         }
         
@@ -156,7 +149,7 @@ class OrderDetails: UIViewController {
                 if let array = responseJSON["data"] as? [Any] {
                     if let firstObject = array.first {
                         let dataBody = firstObject as? [String: Any]
-                        var success = dataBody?["success"] as! Bool
+                        let success = dataBody?["success"] as! Bool
                         if(success){
                             print("You close this order")
                             self.GoToMain()
@@ -175,13 +168,13 @@ class OrderDetails: UIViewController {
         if let array = response["data"] as? [Any] {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
-                print(dataBody)
-                carTypes.text = dataBody?["carType"] as! String
-                from_long = dataBody?["from_long"] as! Double
-                from_lat = dataBody?["from_lat"] as! Double
-                to_long = dataBody?["to_long"] as! Double
-                to_lat = dataBody?["to_lat"] as! Double
-                publicationDate.text = dataBody?["added"] as! String
+                //print(dataBody)
+                carTypes.text = dataBody?["carType"] as? String
+                from_long = dataBody?["from_long"] as? Double
+                from_lat = dataBody?["from_lat"] as? Double
+                to_long = dataBody?["to_long"] as? Double
+                to_lat = dataBody?["to_lat"] as? Double
+                publicationDate.text = dataBody?["added"] as? String
                 
                 
                 AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
@@ -192,19 +185,17 @@ class OrderDetails: UIViewController {
                     self.pubManager.getAddress(location: AppData.toLocation,textView: self.toAddress)
                     DispatchQueue.main.async
                         {
-                            self.Notes.text = dataBody?["notes"] as! String
-                            self.executionDate.text = dataBody?["date"] as! String
-                            self.customerName.text = dataBody?["customerName"] as! String
-                            self.customerPhone.text = dataBody?["customerPhoneNumber"] as! String
-                            var status = dataBody?["status"] as! Int
+                            self.Notes.text = dataBody?["notes"] as? String
+                            self.executionDate.text = dataBody?["date"] as? String
+                            self.customerName.text = dataBody?["customerName"] as? String
+                            self.customerPhone.text = dataBody?["customerPhoneNumber"] as? String
+                            let status = dataBody?["status"] as! Int
                             self.cur_status = status
-                            self.UpdateOfferButtonStatus()                    }
+                            self.UpdateOfferButtonStatus()
+                    }
                 }
-                
             }
-            
         }
-        
     }
     
     private func UpdateOfferButtonStatus(){

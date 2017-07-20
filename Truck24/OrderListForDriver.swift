@@ -13,20 +13,27 @@ class OrderListForDriver: UIViewController{
     
     
     @IBOutlet weak var EmptyView: UIView!
+    @IBOutlet weak var LoadingView: UIView!
+
     private let orderMananger = OrderForDriverData()
     var locManager = SendLocation()
     
     @IBOutlet weak var LocationButton: UISwitch!
     
     @IBAction func SwitchedLocation(_ sender: UISwitch) {
+        let defaults = UserDefaults.standard
         if(sender.isOn){
-            locManager.SendLocation(status: "true")
-            ShowError(errorType: "LocationOn")
+            NavigationManager.ShowError(errorText: "геолокация включена",View: self)
+            AppData.SendStatus = "true"
+            defaults.set(AppData.SendStatus, forKey: localKeys.sendStatus)
         }
         else{
-            locManager.SendLocation(status: "false")
-            ShowError(errorType: "LocationOff")
+            NavigationManager.ShowError(errorText: "геолокация отключена",View: self)
+            AppData.SendStatus = "false"
+            defaults.set(AppData.SendStatus, forKey: localKeys.sendStatus)
+            
         }
+
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -34,19 +41,48 @@ class OrderListForDriver: UIViewController{
     override func viewDidLoad() {
         orderMananger.GetOrderList(table: self,urlAddress: AppData.getOrdersForDriverUrl, token: AppData.token)
         super.viewDidLoad()
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        LoadScene()
+
     }
     
+    func LoadScene(){
+        StartTimer()
+        
+        locManager.StartTimer()
+        if(AppData.SendStatus == "true"){
+            self.LocationButton.setOn(true, animated: false)
+        }
+        else{
+            self.LocationButton.setOn(false, animated: false)
+        }
+    
+    }
+    
+    func StartTimer(){
+        var timer = Timer.scheduledTimer(timeInterval: AppData.UpdateInterval, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        NavigationManager.TimerList.append(timer)
+        
+    }
+    
+    @objc func update() {
+        self.ShowLoadingView(show: true)
+        orderMananger.GetOrderList(table: self,urlAddress: AppData.getOrdersForDriverUrl, token: AppData.token)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func ShowLoadingView(show:Bool){
+        DispatchQueue.main.async
+            {
+                self.LoadingView.isHidden = !show
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        self.ShowLoadingView(show: false)
         return AppData.OrderForDriverList.count
     }
     
@@ -62,36 +98,9 @@ class OrderListForDriver: UIViewController{
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!) as! OrderForDriverCell
         AppData.selectedOrderForDriverId = currentCell.orderId
-        GoToDetailsInfo()
+        AppData.lastDetailsScene = "MainView"
+        NavigationManager.MoveToScene(sceneId: "OrderDetails",View: self)
     }
     
-    
-    @IBAction func GoToSetCoordinate(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "NearCarMap") as! NearCarMap
-        self.present(nextViewController, animated:true, completion:nil)
-        
-    }
-    
-    func GoToDetailsInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetails") as! OrderDetails
-        self.present(nextViewController, animated:true, completion:nil)
-    }
-    
-    private func ShowError(errorType: String){
-        
-        if(errorType=="LocationOn"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "LocationOn") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-    }
     
 }

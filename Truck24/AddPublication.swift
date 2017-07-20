@@ -33,10 +33,7 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     @IBAction func ChooseCarType(_ sender: Any) {
         AppData.lastScene = "AddPublication"
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseCarType") as! ChooseCarType
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "ChooseCarType", View: self)
     }
     
     @IBAction func SetFromLocation(_ sender: Any) {
@@ -53,13 +50,8 @@ class AddPublication: UIViewController,UITextFieldDelegate {
         
     }
     
-    
     func GoToSetCoordinate() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SetCoordinates") as! SetCoordinates
-        self.present(nextViewController, animated:true, completion:nil)
-        
+        NavigationManager.MoveToScene(sceneId: "SetCoordinates", View: self)
     }
     
     override func viewDidLoad() {
@@ -84,10 +76,6 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -96,10 +84,12 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     @IBAction func CreatePublication(_ sender: Any) {
         if(AppData.fromLocation == nil || AppData.toLocation == nil){
-           ShowError(errorType: "coordinateError")
+            NavigationManager.ShowError(errorText: "Вы не выбрали местоположение!",View: self)
+
         }
         else if(AppData.carTypeID == nil){
-            ShowError(errorType: "TypeError")
+            NavigationManager.ShowError(errorText: "Вы не выбрали тип Машины!",View: self)
+
             
         }
         else{
@@ -115,16 +105,19 @@ class AddPublication: UIViewController,UITextFieldDelegate {
             notesView.text = "Доставить быстро и аккуратно"
         }
         
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+
+        let pub_date:String = dateFormatter.string(from: DateView.date)
+        let CarTypeID = AppData.carTypeID
+        AppData.carTypeID = nil
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                print(1)
-                self.pubManager.AddPub(viewContr: self.SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: AppData.carTypeID, lat_from: String(AppData.fromLocation.coordinate.latitude.binade), long_from: String(AppData.fromLocation.coordinate.longitude.binade), lat_to: String(AppData.toLocation.coordinate.latitude.binade), long_to: String(AppData.toLocation.coordinate.longitude.binade), notes: self.notesView.text!, date: self.getTime())
+                self.pubManager.AddPub(viewContr: self.SuccessView, urlAddress: AppData.addPublicationsUrl, token: AppData.token, carTypeId: CarTypeID!, lat_from: String(AppData.fromLocation.coordinate.latitude.binade), long_from: String(AppData.fromLocation.coordinate.longitude.binade), lat_to: String(AppData.toLocation.coordinate.latitude.binade), long_to: String(AppData.toLocation.coordinate.longitude.binade), notes: self.notesView.text!, date: pub_date)
                 DispatchQueue.main.async
                     {
+                        
                         self.LoadingView.isHidden = false
                 }
-                
-            
         }
     
     }
@@ -137,7 +130,7 @@ class AddPublication: UIViewController,UITextFieldDelegate {
     
     func getTime()->String{
      
-        var dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter()
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         var dateInfo = dateFormatter.string(from: DateView.date)
@@ -145,46 +138,20 @@ class AddPublication: UIViewController,UITextFieldDelegate {
         
         var day = dateList[1]
         var mounth = dateList[0]
-        var year = "20"+dateList[2]
+        let year = "20"+dateList[2]
         if(Int(day)!<10){
             day = "0"+day
         }
         if(Int(mounth)!<10){
             mounth = "0"+mounth
         }
-        var finalDate = day+"."+mounth+"."+year
+        let finalDate = day+"."+mounth+"."+year
         return finalDate
     }
     
     @IBAction func BackToMyPub(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
-        
+        NavigationManager.MoveToCustomerMain(View: self)
     }
-    
-    private func ShowError(errorType: String){
-        
-        if(errorType=="TypeError"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "TypeError") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-        else if(errorType=="coordinateError"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "coordinateError") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-    }
-    
     
     
 }

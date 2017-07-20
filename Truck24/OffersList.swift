@@ -21,10 +21,6 @@ class OffersList: UIViewController{
         super.viewDidLoad()
         GetOffers(table: tableView, urlAddress: AppData.getOffersUrl, id: String(AppData.selectedPubId))
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,12 +65,9 @@ class OffersList: UIViewController{
         
         if let array = response["data"] as? [Any] {
             
-            for pubObj in array {
-                let dataBody = pubObj as? [String: Any]
-                print(dataBody)
-                
+            for offer in array {
+                let dataBody = offer as? [String: Any]
                 offersList.append(ParseOffer(dataBody! as [String : AnyObject]))
-                
             }
         }
         return offersList
@@ -100,13 +93,11 @@ class OffersList: UIViewController{
         let tableRow:OfferCell = self.tableView.dequeueReusableCell(withIdentifier: "OfferCell",for: indexPath) as! OfferCell
         tableRow.createCell(offer: offerList[indexPath.row])
         return tableRow
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
         
-        let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
-        
+        let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!) as! OfferCell
         AppData.selectedOfferId = currentCell.offerId
         GoToOfferInfo()
@@ -117,17 +108,12 @@ class OffersList: UIViewController{
     }
     
     func GoToOfferInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OfferDetails") as! OfferDetails
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "OfferDetails", View: self)
+
     }
     
     func GoToDetailsInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubDetails") as! PubDetails
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "PubDetails", View: self)
     }
     
 }

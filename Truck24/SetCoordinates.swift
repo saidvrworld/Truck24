@@ -21,7 +21,7 @@ class SetCoordinates: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotationOnLongPress(gesture:)))
-        longPressGesture.minimumPressDuration = 1.0
+        longPressGesture.minimumPressDuration = 0.3
         self.mapView.addGestureRecognizer(longPressGesture)
         
         mapView.delegate = self 
@@ -71,7 +71,7 @@ class SetCoordinates: UIViewController {
             AppData.toLocation = Loc2DToLoc(loc: centre!)
         }
         
-        var annotation = MyPlacement(locationName: "Yunus", coordinate: centre!)
+        let annotation = MyPlacement(locationName: "Yunus", coordinate: centre!)
         self.mapView.addAnnotation(annotation)
 
         }
@@ -86,28 +86,25 @@ class SetCoordinates: UIViewController {
         
         if(AppData.waitingForLoc == "CarFilter"){
             if(AppData.currentLocation == nil){
-               ShowError(errorType: "coordinateError")
+                NavigationManager.ShowError(errorText: "Вы не выбрали местоположение!",View: self)
             }else{
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarFilter") as! CarFilter
-            self.present(nextViewController, animated:true, completion:nil)
+                NavigationManager.MoveToScene(sceneId: "CarFilter", View: self)
             }
         }
         else if(AppData.waitingForLoc == "FromLoc"){
             if(AppData.fromLocation == nil){
-                ShowError(errorType: "coordinateError")
+                NavigationManager.ShowError(errorText: "Вы не выбрали местоположение!",View: self)
             }else{
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddPublication") as! AddPublication
-                self.present(nextViewController, animated:true, completion:nil)
-            }        }
+                NavigationManager.MoveToScene(sceneId: "AddPublication", View: self)
+
+            }
+        }
         else if(AppData.waitingForLoc == "ToLoc"){
             if(AppData.toLocation == nil){
-                ShowError(errorType: "coordinateError")
+                NavigationManager.ShowError(errorText: "Вы не выбрали местоположение!",View: self)
+
             }else{
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddPublication") as! AddPublication
-                self.present(nextViewController, animated:true, completion:nil)
+                NavigationManager.MoveToScene(sceneId: "AddPublication", View: self)
             }
         }
         
@@ -131,7 +128,6 @@ class SetCoordinates: UIViewController {
                 AppData.toLocation = Loc2DToLoc(loc: coordinate)
             }
             
-            
             let annotation = MyPlacement(locationName: "Yunus", coordinate: coordinate)
             
             self.mapView.annotations.forEach {
@@ -152,17 +148,5 @@ class SetCoordinates: UIViewController {
     }
     
     
-    func ShowError(errorType: String){
-        
-        if(errorType=="coordinateError"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "coordinateError") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-    }
     
 }

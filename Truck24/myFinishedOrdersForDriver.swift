@@ -1,25 +1,28 @@
 //
-//  myOrdersForDriver.swift
+//  myFinishedOrdersForDriver.swift
 //  Truck24
 //
-//  Created by Khusan Saidvaliev on 15.04.17.
+//  Created by Khusan Saidvaliev on 25.05.17.
 //  Copyright © 2017 Khusan Saidvaliev. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class MyOrdersListForDriver: UIViewController{
+class MyFinishedOrdersListForDriver: UIViewController{
+    
+    
     private let orderMananger = OrderForDriverData()
+    
     @IBOutlet weak var LoadingView: UIView!
-
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        orderMananger.GetMyOrderList(table: tableView,urlAddress: AppData.getMyOrdersForDriverUrl, token: AppData.token)
+        orderMananger.GetMyOrderList(table: tableView,urlAddress: AppData.getMyFinishedOrdersForDriverUrl, token: AppData.token)
         super.viewDidLoad()
         StartTimer()
-
     }
     
     func StartTimer(){
@@ -30,7 +33,7 @@ class MyOrdersListForDriver: UIViewController{
     
     @objc func update() {
         self.ShowLoadingView(show: true)
-        orderMananger.GetMyOrderList(table: tableView,urlAddress: AppData.getMyOrdersForDriverUrl, token: AppData.token)
+        orderMananger.GetMyOrderList(table: tableView,urlAddress: AppData.getMyFinishedOrdersForDriverUrl, token: AppData.token)
     }
     
     func ShowLoadingView(show:Bool){
@@ -38,13 +41,11 @@ class MyOrdersListForDriver: UIViewController{
             {
                 self.LoadingView.isHidden = !show
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.ShowLoadingView(show: false)
@@ -63,10 +64,17 @@ class MyOrdersListForDriver: UIViewController{
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!) as! MyOrderForDriverCell
         AppData.selectedOrderForDriverId = currentCell.orderId
-        AppData.lastDetailsScene = "MainView"
-        NavigationManager.MoveToScene(sceneId: "OrderDetails", View: self)
+        AppData.lastDetailsScene = "MyFinishedOrderForDriver"
+        GoToDetailsInfo()
+    }
+    
+    @IBAction func BackToMainMenu(_ sender: Any) {
+        NavigationManager.MoveToDriverMain(View: self)
     }
     
     
+    func GoToDetailsInfo() {
+        NavigationManager.MoveToScene(sceneId: "OrderDetails", View: self)
+    }
     
 }

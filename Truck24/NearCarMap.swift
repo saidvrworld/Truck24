@@ -29,10 +29,7 @@ class NearCarMap: UIViewController {
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+   
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.red
@@ -59,21 +56,27 @@ class NearCarMap: UIViewController {
             locationManager.requestWhenInUseAuthorization()
             
         }
-        AppData.currentLocation = Loc2DToLoc(loc: (locationManager.location?.coordinate)!)
+        do{
+            AppData.currentLocation = try Loc2DToLoc(loc: (locationManager.location?.coordinate)!)
+        }
+        catch{
+          AppData.currentLocation = CLLocation.init(latitude:
+            41.311144, longitude: 69.279905)
+        }
+    
          centerMapOnLocation(location: AppData.currentLocation)
         LoadCars()
 
     }
     
     func getCenterCoordinates() {
-        let center = mapView.centerCoordinate
+        _ = mapView.centerCoordinate
     }
     
     
     func LoadCars(){
-        var initialLocation = CLLocation(latitude: 41.354007, longitude: 69.289989)
-        //centerMapOnLocation(location: initialLocation)
-        initialLocation = AppData.currentLocation
+        
+        var initialLocation = AppData.currentLocation
                 
         for carObj in AppData.CarList{
             let car = CarPlacement(coordinate: CLLocationCoordinate2D(latitude: carObj.latitude, longitude: carObj.longitude),
@@ -94,6 +97,7 @@ class NearCarMap: UIViewController {
         performSegue(withIdentifier: "mySegueIdentifier", sender: self)
     }
     
+        
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(NearCarMap.calloutTapped(sender:)))
         view.addGestureRecognizer(gesture)
@@ -101,23 +105,15 @@ class NearCarMap: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         checkLocationAuthorizationStatus()
-        
     }
     
     @IBAction func BackToMainView(_ sender: Any) {
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
-        
+        NavigationManager.MoveToCustomerMain(View: self)
     }
     
    private func GoToDetailsInfo() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarDetails") as! CarDetails
-        self.present(nextViewController, animated:true, completion:nil)
+    NavigationManager.MoveToScene(sceneId: "CarDetails", View: self)
     }
     
     

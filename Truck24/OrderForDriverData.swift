@@ -18,6 +18,9 @@ import CoreLocation
 class OrderForDriverData{
     
     
+    
+    //Заказы для водителя подходящие для его типа машины 
+    //аддресс дата детали
      func GetOrderList(table: OrderListForDriver,urlAddress: String,token:String){
         
         let parameters = "token="+token
@@ -57,6 +60,7 @@ class OrderForDriverData{
         
     }
     
+    // ответ для GetOrderList получакет ответ на  запрос и отправляет обьект json order в функцию ParseOrder
     private func GetOrderResponse(response:[String:Any])->[OrderForDriver]{
         var orderList:[OrderForDriver] = []
         
@@ -64,7 +68,6 @@ class OrderForDriverData{
             
             for orderObj in array {
                 let dataBody = orderObj as? [String: Any]
-                print(dataBody)
                 orderList.append(ParseOrder(dataBody! as [String : AnyObject]))
                 
             }
@@ -74,7 +77,7 @@ class OrderForDriverData{
     }
     
     
-    
+    // Определяет адрес по координатам
     func getAddress(location: CLLocation,order:OrderForDriver){
         var fullAddress:String = " "
         
@@ -87,9 +90,11 @@ class OrderForDriverData{
             placeMark = placemarks?[0]
             // Location name
             if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
-                print(locationName)
-                fullAddress = (locationName as! String)
-                order.addressFrom = fullAddress
+                //print(locationName)
+                fullAddress = (locationName as String)
+                DispatchQueue.main.async{
+                    order.addressFrom = fullAddress
+                }
             }
             
         })
@@ -109,9 +114,10 @@ class OrderForDriverData{
 
         var addressLoc =  CLLocation(latitude: from_lat, longitude: from_long)
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-            self.getAddress(location: addressLoc,order:newOrder)
         DispatchQueue.main.async
             {
+                self.getAddress(location: addressLoc,order:newOrder)
+
             }
         }
         return newOrder
@@ -156,7 +162,6 @@ class OrderForDriverData{
             
             for orderObj in array {
                 let dataBody = orderObj as? [String: Any]
-                print(dataBody)
                 
                 let newOrder = MyOrderForDriver()
                 newOrder.orderId = dataBody?["orderId"] as! Int

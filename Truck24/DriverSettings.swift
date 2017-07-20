@@ -15,32 +15,30 @@ class DriverSettings: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     @IBAction func GoToSetImage(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SetImages") as! SetImages
-        self.present(nextViewController, animated:true, completion:nil)
+        MoveToScene(sceneId: "SetImages")
     }
     
     @IBAction func BackToСhooseType(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChooseType") as! ChooseType
-        self.present(nextViewController, animated:true, completion:nil)
-        
+        AppData.ClearDB()
+        NavigationManager.StopSendLoc()
+        NavigationManager.StopTimers()
+        MoveToScene(sceneId: "ChooseType")
     }
     
     @IBAction func GoToDonePubs(_ sender: Any) {
+        MoveToScene(sceneId: "MyFinishedOrdersListForDriver")
+    }
+    
+    private func MoveToScene(sceneId:String){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DonePublicatonsCustomer") as! DonePublicatonsCustomer
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: sceneId) as! UIViewController
         self.present(nextViewController, animated:true, completion:nil)
-        
     }
     
 }

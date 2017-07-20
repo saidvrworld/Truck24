@@ -36,14 +36,8 @@ class PubDetails: UIViewController {
         
         if let selectedPub = AppData.PubDetailsList[AppData.selectedPubId]{
             FillData( pub: selectedPub)
-            
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                self.LoadingView.isHidden = true
-                DispatchQueue.main.async
-                    {
-                }
-                
-            }
+            self.LoadingView.isHidden = true
+
         }
         else{
             GetDetails(urlstring: AppData.getPublicationInfoUrl, orderId: String(AppData.selectedPubId))
@@ -55,43 +49,25 @@ class PubDetails: UIViewController {
     }
     
     
-    
-    
-    
-    
     @IBAction func ShowWay(_ sender: Any) {
         AppData.lastScene = "PubDetails"
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PubWayOnMap") as! PubWayOnMap
-        self.present(nextViewController, animated:true, completion:nil)
-
+        NavigationManager.MoveToScene(sceneId: "PubWayOnMap", View: self)
     }
     
    @IBAction func GoToOffers(_ sender: Any) {
-       let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-       let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OffersList") as! OffersList
-       self.present(nextViewController, animated:true, completion:nil)
-        
+    NavigationManager.MoveToScene(sceneId: "OffersList", View: self)
     }
     
     @IBAction func BackToMain(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-            self.present(nextViewController, animated:true, completion:nil)
-        
+        NavigationManager.MoveToCustomerMain(View: self)
     }
-    
     
     func GetDetails(urlstring: String,orderId: String){
         
         let parameters = "token=fec5fdf5ac012r43"+orderId+"fec5fdf5ac012r43"
-        
-        print(parameters)
-        
         let url = URL(string: urlstring)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
         request.httpBody = parameters.data(using: .utf8)
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -102,7 +78,7 @@ class PubDetails: UIViewController {
                     DispatchQueue.main.async
                         {
                             self.ErrorView.isHidden = false
-                            self.ShowErrorConnection()
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: self)
                     }
                 }
                 return
@@ -123,18 +99,13 @@ class PubDetails: UIViewController {
             if let firstObject = array.first {
                 let dataBody = firstObject as? [String: Any]
                 
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
-                    self.SaveInCach(data: dataBody!)
                     DispatchQueue.main.async
                         {
+                            self.SaveInCach(data: dataBody!)
                             self.LoadingView.isHidden = true
                     }
-                    
-                }
             }
-            
         }
-        
     }
     
     func SaveInCach(data: [String:Any]){
@@ -143,16 +114,16 @@ class PubDetails: UIViewController {
         
         let type = data["type"] as! Int
         if(type == 1){
-            newPub.carTypes = newPub.carTypes + ",Damas Labo(Малотоннажные)" as! String
+            newPub.carTypes = newPub.carTypes + ",Damas Labo(Малотоннажные)"
         }
         else if(type == 2){
-            newPub.carTypes = newPub.carTypes + "(Среднетонажные)" as! String
+            newPub.carTypes = newPub.carTypes + "(Среднетонажные)"
         }
         else if(type == 3){
-            newPub.carTypes = newPub.carTypes + "(Тяжелотоннажные)" as! String
+            newPub.carTypes = newPub.carTypes + "(Тяжелотоннажные)"
         }
         else if(type == 4){
-            newPub.carTypes = newPub.carTypes + "(Спец.Техника)" as! String
+            newPub.carTypes = newPub.carTypes + "(Спец.Техника)"
         }
 
         newPub.fromLong = data["from_long"] as! Double
@@ -178,7 +149,6 @@ class PubDetails: UIViewController {
         publicationDate.text = pub.publicationDate
         Notes.text = pub.Notes
         executionDate.text = pub.executionDate
-        
         offerCount.text = String(describing: pub.offerCount)
         
         AppData.fromLocation = CLLocation(latitude: from_lat, longitude: from_long)
@@ -187,22 +157,7 @@ class PubDetails: UIViewController {
         pubManager.getAddress(location: AppData.fromLocation,textView: fromAddress)
         pubManager.getAddress(location: AppData.toLocation,textView: toAddress)
         
-        
-        print("data Filled")
+    }
+    
 
-    }
-    
-    func ShowErrorConnection(){
-        
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
-        self.addChildViewController(PopView)
-        PopView.view.frame = self.view.frame
-        self.view.addSubview(PopView.view)
-        PopView.didMove(toParentViewController: self)
-    
-    }
-    
-    
 }

@@ -14,23 +14,29 @@ import Foundation
 import UIKit
 
 class DonePublicatonsCustomer: MyPublications{
-    
-    
+        
     override func viewDidLoad() {
         UpdateTable()
         super.viewDidLoad()
+       StartTimer()
+
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func ShowLoadingView(show:Bool){
+        DispatchQueue.main.async
+            {
+                self.LoadingView.isHidden = !show
+        }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.ShowLoadingView(show: false)
         return AppData.DonePubList.count
     }
     
@@ -42,6 +48,7 @@ class DonePublicatonsCustomer: MyPublications{
     }
     
       override func UpdateTable(){
+        self.ShowLoadingView(show: true)
         pubMananger.GetDonePub(table: self,urlAddress: AppData.getFinishedPublicationsUrl, token: AppData.token)
     }
     
@@ -52,15 +59,12 @@ class DonePublicatonsCustomer: MyPublications{
         let currentCell = tableView.cellForRow(at: indexPath!) as! PubCell
         AppData.selectedPubId = currentCell.pubId
         AppData.lastDetailsScene = "DonePubs"
-        GoToAcceptedDetailsInfo()
+        NavigationManager.MoveToScene(sceneId: "AcceptedOrderInfo", View: self)
         
     }
     
     @IBAction func Back(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToCustomerMain(View: self)
     }
     
     

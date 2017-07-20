@@ -14,7 +14,8 @@ import UIKit
 class SMSVerification: UIViewController {
 
     
-    
+    @IBOutlet weak var LoadingView: UIView!
+    @IBOutlet weak var SuccessView: UIView!
     @IBOutlet weak var SMSCode: UITextField!
     
     var successCode: Bool = false
@@ -22,10 +23,13 @@ class SMSVerification: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.addTarget(self, action: #selector(SignInDriver.didTapView))
+        self.view.addGestureRecognizer(tapRecognizer)
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    
+    func didTapView(){
+        self.view.endEditing(true)
     }
     
     func AcceptCode() {
@@ -33,10 +37,8 @@ class SMSVerification: UIViewController {
     }
     
     @IBAction func BackToLogIn(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LogInCustomer") as! LogInCustomer
-        self.present(nextViewController, animated:true, completion:nil)
+        NavigationManager.MoveToScene(sceneId: "LogInCustomer", View: self)
+
     }
     
     func MakeRequest(urlstring: String,code: String,token:String){
@@ -56,7 +58,8 @@ class SMSVerification: UIViewController {
                     print(error?.localizedDescription ?? "No data")
                     DispatchQueue.main.async
                         {
-                            self.ShowError(errorType: "connectError")
+                            self.LoadingView.isHidden = true
+                            NavigationManager.ShowError(errorText: "Ошибка соединения!",View: self)
                             
                     }
                     
@@ -83,18 +86,15 @@ class SMSVerification: UIViewController {
                 let success = dataBody?["success"] as! Bool
                 let registered = dataBody?["registered"] as! Int
                 let userName = dataBody?["userName"] as? String
-                
-                
 
                 if(success){
                     print("Success sms Code Verification")
                     successCode = true
-                    
                     AppData.token = (dataBody?["token"] as? String)!
-                    
                     let defaults = UserDefaults.standard
                     defaults.set(AppData.token, forKey: localKeys.token)
-                    
+                    defaults.set("yes", forKey: localKeys.smsSubmited)
+
                     if(registered == 1){
                         isRegistrated = true
                         defaults.set("1", forKey: localKeys.isRegistered)
@@ -106,8 +106,16 @@ class SMSVerification: UIViewController {
                         defaults.set("0", forKey: localKeys.isRegistered)
                         isRegistrated = false
                     }
+                    self.ShowSuccessView(show: true)
+
                 }
                 else{
+                    DispatchQueue.main.async
+                        {
+                            self.LoadingView.isHidden = true
+                            NavigationManager.ShowError(errorText: "Код недействителен",View: self)
+                            
+                    }
                     successCode = false
                 }
                 
@@ -116,8 +124,27 @@ class SMSVerification: UIViewController {
         
     }
     
+    
+    func ShowSuccessView(show:Bool){
+        DispatchQueue.main.async
+            {
+                self.SuccessView.isHidden = !show
+        }
+        
+    }
+    
+    func ShowLoadingView(show:Bool){
+        DispatchQueue.main.async
+            {
+                self.LoadingView.isHidden = !show
+        }
+        
+    }
+    
     @IBAction func AddChar(_ sender: UITextField) {
         if((sender.text?.characters.count)! == 5){
+            self.view.endEditing(true)
+            ShowLoadingView(show: true)
             AcceptCode()
         }
     }
@@ -125,7 +152,8 @@ class SMSVerification: UIViewController {
     
     @IBAction func NextStep(_ sender: Any) {
         if((SMSCode.text?.characters.count)! < 5){
-            ShowError(errorType: "NotEnterCode")
+            NavigationManager.ShowError(errorText: "Вы не ввели смс код!",View: self)
+
         }else{
             if(successCode){
                 if(isRegistrated){
@@ -134,70 +162,31 @@ class SMSVerification: UIViewController {
                     GoToRegistration()
                 }
             }else{
-                ShowError(errorType: "smsError")
+                NavigationManager.ShowError(errorText: "Неверный код смс!",View: self)
+
             }
         }
     }
     
     func GoToNearList() {
         if(AppData.userType == 1){
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
-        self.present(nextViewController, animated:true, completion:nil)
+            NavigationManager.MoveToCustomerMain(View: self)
         }
         else{
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainDriverView") as! UITabBarController
-            self.present(nextViewController, animated:true, completion:nil)
-
+            NavigationManager.MoveToDriverMain(View: self)
         }
     }
     
     func GoToRegistration() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         if(AppData.userType==1){
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignInCustomer") as! SignInCustomer
-            self.present(nextViewController, animated:true, completion:nil)
-            
+            NavigationManager.MoveToScene(sceneId: "SignInCustomer", View: self)
         }
         else{
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignInDriver") as! SignInDriver
-            self.present(nextViewController, animated:true, completion:nil)
-            
+            NavigationManager.MoveToScene(sceneId: "SignInDriver", View: self)
         }
-        
     }
     
-    func ShowError(errorType: String){
-        
-        if(errorType=="smsError"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "wrongSms") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-        else if(errorType=="NotEnterCode"){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "NotEnterCode") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-        else if(errorType=="connectError"){
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let PopView = storyBoard.instantiateViewController(withIdentifier: "badConnection") as! PopUpViewController
-            self.addChildViewController(PopView)
-            PopView.view.frame = self.view.frame
-            self.view.addSubview(PopView.view)
-            PopView.didMove(toParentViewController: self)
-        }
-        
-    }
+
 }
 
 

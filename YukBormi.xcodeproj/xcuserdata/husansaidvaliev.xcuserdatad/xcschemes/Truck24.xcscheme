@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "90AFCF1F1E979256009A0F67"
-               BuildableName = "Truck24.app"
-               BlueprintName = "Truck24"
-               ReferencedContainer = "container:Truck24.xcodeproj">
+               BuildableName = "YukBormi.app"
+               BlueprintName = "YukBormi"
+               ReferencedContainer = "container:YukBormi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "90AFCF331E979256009A0F67"
-               BuildableName = "Truck24Tests.xctest"
-               BlueprintName = "Truck24Tests"
-               ReferencedContainer = "container:Truck24.xcodeproj">
+               BuildableName = "YukBormiTests.xctest"
+               BlueprintName = "YukBormiTests"
+               ReferencedContainer = "container:YukBormi.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "90AFCF3E1E979256009A0F67"
-               BuildableName = "Truck24UITests.xctest"
-               BlueprintName = "Truck24UITests"
-               ReferencedContainer = "container:Truck24.xcodeproj">
+               BuildableName = "YukBormiUITests.xctest"
+               BlueprintName = "YukBormiUITests"
+               ReferencedContainer = "container:YukBormi.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90AFCF1F1E979256009A0F67"
-            BuildableName = "Truck24.app"
-            BlueprintName = "Truck24"
-            ReferencedContainer = "container:Truck24.xcodeproj">
+            BuildableName = "YukBormi.app"
+            BlueprintName = "YukBormi"
+            ReferencedContainer = "container:YukBormi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,15 +76,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90AFCF1F1E979256009A0F67"
-            BuildableName = "Truck24.app"
-            BlueprintName = "Truck24"
-            ReferencedContainer = "container:Truck24.xcodeproj">
+            BuildableName = "YukBormi.app"
+            BlueprintName = "YukBormi"
+            ReferencedContainer = "container:YukBormi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         identifier = "Moscow, Russia"
          referenceType = "1">
       </LocationScenarioReference>
    </LaunchAction>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90AFCF1F1E979256009A0F67"
-            BuildableName = "Truck24.app"
-            BlueprintName = "Truck24"
-            ReferencedContainer = "container:Truck24.xcodeproj">
+            BuildableName = "YukBormi.app"
+            BlueprintName = "YukBormi"
+            ReferencedContainer = "container:YukBormi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

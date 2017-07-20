@@ -51,11 +51,14 @@ extension UIViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+    func mapView(_ mapView: MKMapView!, annotationView view: MKAnnotationView!,
                  calloutAccessoryControlTapped control: UIControl!) {
         let car = view.annotation as! CarPlacement
         AppData.selectedCarId = car.carId
-        print("selected")
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CarDetails") as! CarDetails
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3003B8C10B4D1343605CD5A2 /* Pods_YukBormiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF883CCA9302A750D29E5F9B /* Pods_YukBormiTests.framework */; };
+		376EDD3BC667908DB729FBD1 /* Pods_Truck24Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF38658E0CB8BB61DCEB6B24 /* Pods_Truck24Tests.framework */; };
+		3BEF16CB90E4E8C8DA6AC12B /* Pods_YukBormi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2700EFDD4450B8AFCB04001A /* Pods_YukBormi.framework */; };
+		492E24A018FF689A79C998D9 /* Pods_Truck24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5343AA3BEA708F5EE07961AF /* Pods_Truck24.framework */; };
 		90606AD61E97E58F00471D87 /* SMSVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90606AD51E97E58F00471D87 /* SMSVerification.swift */; };
 		90606AD81E98B14C00471D87 /* CarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90606AD71E98B14C00471D87 /* CarData.swift */; };
 		90606ADA1E98C31700471D87 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90606AD91E98C31700471D87 /* placeholder.jpg */; };
@@ -28,12 +32,24 @@
 		908A63711E9A25400015F4AF /* PubDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A63701E9A25400015F4AF /* PubDetails.swift */; };
 		908A63751E9A393D0015F4AF /* trackLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 908A63731E9A393D0015F4AF /* trackLocation.png */; };
 		908A63791E9A44B00015F4AF /* NearCarMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A63781E9A44B00015F4AF /* NearCarMap.swift */; };
-		908A637B1E9A45380015F4AF /* PubWayOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637A1E9A45380015F4AF /* PubWayOnMap.swift */; };
 		908A637D1E9A99610015F4AF /* OffersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637C1E9A99600015F4AF /* OffersList.swift */; };
 		908A637F1E9A99860015F4AF /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A637E1E9A99860015F4AF /* OfferCell.swift */; };
 		9094E9BB1E9C8F3100542BD6 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9094E9BA1E9C8F3100542BD6 /* Details.swift */; };
 		9094E9BD1E9CBF5500542BD6 /* location_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 9094E9BC1E9CBF5500542BD6 /* location_black.png */; };
 		9094E9BF1E9CC00600542BD6 /* offer_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9094E9BE1E9CC00600542BD6 /* offer_icon.png */; };
+		909B46021EDCA96A004572F3 /* ChooseCarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46001EDCA96A004572F3 /* ChooseCarType.swift */; };
+		909B46031EDCA96A004572F3 /* ChooseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46011EDCA96A004572F3 /* ChooseType.swift */; };
+		909B460D1EDCA9A2004572F3 /* Inroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46061EDCA9A2004572F3 /* Inroduction.swift */; };
+		909B460E1EDCA9A2004572F3 /* LogInCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46071EDCA9A2004572F3 /* LogInCustomer.swift */; };
+		909B460F1EDCA9A2004572F3 /* NearList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46081EDCA9A2004572F3 /* NearList.swift */; };
+		909B46101EDCA9A2004572F3 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46091EDCA9A2004572F3 /* PopUpViewController.swift */; };
+		909B46111EDCA9A2004572F3 /* SignInCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B460A1EDCA9A2004572F3 /* SignInCustomer.swift */; };
+		909B46121EDCA9A2004572F3 /* SignInDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B460B1EDCA9A2004572F3 /* SignInDriver.swift */; };
+		909B46131EDCA9A2004572F3 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B460C1EDCA9A2004572F3 /* Singleton.swift */; };
+		909B461C1EDCAA5B004572F3 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46181EDCAA5B004572F3 /* CarCell.swift */; };
+		909B461D1EDCAA5B004572F3 /* CarShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B46191EDCAA5B004572F3 /* CarShort.swift */; };
+		909B461E1EDCAA5B004572F3 /* PublicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B461A1EDCAA5B004572F3 /* PublicationCell.swift */; };
+		909B461F1EDCAA5B004572F3 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B461B1EDCAA5B004572F3 /* TypeCell.swift */; };
 		90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF231E979256009A0F67 /* AppDelegate.swift */; };
 		90AFCF261E979256009A0F67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF251E979256009A0F67 /* ViewController.swift */; };
 		90AFCF291E979256009A0F67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF271E979256009A0F67 /* Main.storyboard */; };
@@ -41,20 +57,6 @@
 		90AFCF2E1E979256009A0F67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCF2C1E979256009A0F67 /* LaunchScreen.storyboard */; };
 		90AFCF391E979256009A0F67 /* Truck24Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF381E979256009A0F67 /* Truck24Tests.swift */; };
 		90AFCF441E979256009A0F67 /* Truck24UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF431E979256009A0F67 /* Truck24UITests.swift */; };
-		90AFCF611E9792C6009A0F67 /* Agreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF551E9792C6009A0F67 /* Agreement.swift */; };
-		90AFCF621E9792C6009A0F67 /* ChooseCarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF561E9792C6009A0F67 /* ChooseCarType.swift */; };
-		90AFCF641E9792C6009A0F67 /* ChooseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF581E9792C6009A0F67 /* ChooseType.swift */; };
-		90AFCF661E9792C6009A0F67 /* Inroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5A1E9792C6009A0F67 /* Inroduction.swift */; };
-		90AFCF671E9792C6009A0F67 /* LogInCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5B1E9792C6009A0F67 /* LogInCustomer.swift */; };
-		90AFCF681E9792C6009A0F67 /* NearList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5C1E9792C6009A0F67 /* NearList.swift */; };
-		90AFCF691E9792C6009A0F67 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5D1E9792C6009A0F67 /* PopUpViewController.swift */; };
-		90AFCF6A1E9792C6009A0F67 /* SignInCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5E1E9792C6009A0F67 /* SignInCustomer.swift */; };
-		90AFCF6B1E9792C6009A0F67 /* SignInDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF5F1E9792C6009A0F67 /* SignInDriver.swift */; };
-		90AFCF6C1E9792C6009A0F67 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF601E9792C6009A0F67 /* Singleton.swift */; };
-		90AFCF711E9792F1009A0F67 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF6D1E9792F1009A0F67 /* CarCell.swift */; };
-		90AFCF721E9792F1009A0F67 /* CarShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF6E1E9792F1009A0F67 /* CarShort.swift */; };
-		90AFCF731E9792F1009A0F67 /* PublicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF6F1E9792F1009A0F67 /* PublicationCell.swift */; };
-		90AFCF741E9792F1009A0F67 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCF701E9792F1009A0F67 /* TypeCell.swift */; };
 		90AFCFDA1E97DB38009A0F67 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFC51E97DB38009A0F67 /* backButton.png */; };
 		90AFCFDB1E97DB38009A0F67 /* call_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFC61E97DB38009A0F67 /* call_icon.png */; };
 		90AFCFDC1E97DB38009A0F67 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFC71E97DB38009A0F67 /* car.png */; };
@@ -75,10 +77,15 @@
 		90AFCFEC1E97DB38009A0F67 /* user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD71E97DB38009A0F67 /* user_icon.png */; };
 		90AFCFED1E97DB38009A0F67 /* UserIntro.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */; };
 		90AFCFEE1E97DB38009A0F67 /* weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCFD91E97DB38009A0F67 /* weight.png */; };
+		90B6C7861ED6A65E00D35CA9 /* myFinishedOrdersForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B6C7851ED6A65E00D35CA9 /* myFinishedOrdersForDriver.swift */; };
+		90B6C7881ED7050200D35CA9 /* RouteGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B6C7871ED7050200D35CA9 /* RouteGoogle.swift */; };
 		90BE19571EA256E300FB16B1 /* SendLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE19561EA256E300FB16B1 /* SendLocation.swift */; };
 		90BE19591EA26C1100FB16B1 /* myOrdersForDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */; };
 		90BE195D1EA3BD7900FB16B1 /* car_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE195C1EA3BD7800FB16B1 /* car_icon.png */; };
 		90BE195F1EA3F73200FB16B1 /* AcceptedOrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE195E1EA3F73200FB16B1 /* AcceptedOrderInfo.swift */; };
+		90D011681F078A1700427A4A /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D011661F078A1700427A4A /* map.png */; };
+		90D011691F078A1700427A4A /* setting_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D011671F078A1700427A4A /* setting_white.png */; };
+		90D0116B1F078B0100427A4A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D0116A1F078B0100427A4A /* calendar.png */; };
 		90DAF3851EBA53640043F704 /* A.png in Resources */ = {isa = PBXBuildFile; fileRef = 90DAF3831EBA53640043F704 /* A.png */; };
 		90DAF3861EBA53640043F704 /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = 90DAF3841EBA53640043F704 /* B.png */; };
 		90DAF3881EBAEB970043F704 /* DonePublicationsCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DAF3871EBAEB970043F704 /* DonePublicationsCustomer.swift */; };
@@ -113,7 +120,8 @@
 		90E5DF691E9BE324001BBB6F /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF641E9BE324001BBB6F /* setting.png */; };
 		90E5DF6A1E9BE324001BBB6F /* user_icon_whte.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF651E9BE324001BBB6F /* user_icon_whte.png */; };
 		90E5DF6C1E9BF08F001BBB6F /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E5DF6B1E9BF08F001BBB6F /* list.png */; };
-		90FF98211EAFCC820062A116 /* CarCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF98201EAFCC820062A116 /* CarCategoryView.swift */; };
+		A1DE44E6A8514647A0ECF3C5 /* Pods_Truck24UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EAE7ED2118DC9869768509 /* Pods_Truck24UITests.framework */; };
+		FA93B51C321A0CA845F3B51D /* Pods_YukBormiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2C7B58D7B3E5C6B8234908 /* Pods_YukBormiUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +142,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D2C7B58D7B3E5C6B8234908 /* Pods_YukBormiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YukBormiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2700EFDD4450B8AFCB04001A /* Pods_YukBormi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YukBormi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B245794DEDD9760E3F21C3 /* Pods-YukBormiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormiTests/Pods-YukBormiTests.release.xcconfig"; sourceTree = "<group>"; };
+		2AE86C56E47D8FFEBBACE6EB /* Pods-YukBormiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormiUITests/Pods-YukBormiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3472258A93F408E245284A6B /* Pods-YukBormi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormi.release.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormi/Pods-YukBormi.release.xcconfig"; sourceTree = "<group>"; };
+		3999AEFA5953F0842F61356B /* Pods-Truck24Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24Tests/Pods-Truck24Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B495AFFB14C9FA0321DAD2D /* Pods-Truck24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24UITests/Pods-Truck24UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5343AA3BEA708F5EE07961AF /* Pods_Truck24.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Truck24.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56EAE7ED2118DC9869768509 /* Pods_Truck24UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Truck24UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6728818A7851135F3390BEF4 /* Pods-Truck24Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24Tests/Pods-Truck24Tests.release.xcconfig"; sourceTree = "<group>"; };
+		71A80EACE01411DC3C5554D4 /* Pods-YukBormi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormi/Pods-YukBormi.debug.xcconfig"; sourceTree = "<group>"; };
 		90606AD51E97E58F00471D87 /* SMSVerification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSVerification.swift; sourceTree = "<group>"; };
 		90606AD71E98B14C00471D87 /* CarData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarData.swift; sourceTree = "<group>"; };
 		90606AD91E98C31700471D87 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = placeholder.jpg; path = Cach/placeholder.jpg; sourceTree = SOURCE_ROOT; };
@@ -155,39 +174,37 @@
 		908A63701E9A25400015F4AF /* PubDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubDetails.swift; sourceTree = "<group>"; };
 		908A63731E9A393D0015F4AF /* trackLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trackLocation.png; path = Cach/trackLocation.png; sourceTree = SOURCE_ROOT; };
 		908A63781E9A44B00015F4AF /* NearCarMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearCarMap.swift; sourceTree = "<group>"; };
-		908A637A1E9A45380015F4AF /* PubWayOnMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubWayOnMap.swift; sourceTree = "<group>"; };
 		908A637C1E9A99600015F4AF /* OffersList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersList.swift; sourceTree = "<group>"; };
 		908A637E1E9A99860015F4AF /* OfferCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		9094E9BA1E9C8F3100542BD6 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		9094E9BC1E9CBF5500542BD6 /* location_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location_black.png; path = Cach/location_black.png; sourceTree = SOURCE_ROOT; };
 		9094E9BE1E9CC00600542BD6 /* offer_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = offer_icon.png; path = Cach/offer_icon.png; sourceTree = SOURCE_ROOT; };
-		90AFCF201E979256009A0F67 /* Truck24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Truck24.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		909B46001EDCA96A004572F3 /* ChooseCarType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCarType.swift; sourceTree = "<group>"; };
+		909B46011EDCA96A004572F3 /* ChooseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseType.swift; sourceTree = "<group>"; };
+		909B46061EDCA9A2004572F3 /* Inroduction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inroduction.swift; sourceTree = "<group>"; };
+		909B46071EDCA9A2004572F3 /* LogInCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInCustomer.swift; sourceTree = "<group>"; };
+		909B46081EDCA9A2004572F3 /* NearList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearList.swift; sourceTree = "<group>"; };
+		909B46091EDCA9A2004572F3 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		909B460A1EDCA9A2004572F3 /* SignInCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInCustomer.swift; sourceTree = "<group>"; };
+		909B460B1EDCA9A2004572F3 /* SignInDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInDriver.swift; sourceTree = "<group>"; };
+		909B460C1EDCA9A2004572F3 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		909B46181EDCAA5B004572F3 /* CarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		909B46191EDCAA5B004572F3 /* CarShort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarShort.swift; sourceTree = "<group>"; };
+		909B461A1EDCAA5B004572F3 /* PublicationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicationCell.swift; sourceTree = "<group>"; };
+		909B461B1EDCAA5B004572F3 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
+		90AFCF201E979256009A0F67 /* YukBormi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YukBormi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCF231E979256009A0F67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90AFCF251E979256009A0F67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		90AFCF281E979256009A0F67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90AFCF2A1E979256009A0F67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90AFCF2D1E979256009A0F67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90AFCF2F1E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90AFCF341E979256009A0F67 /* Truck24Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Truck24Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCF341E979256009A0F67 /* YukBormiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YukBormiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCF381E979256009A0F67 /* Truck24Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truck24Tests.swift; sourceTree = "<group>"; };
 		90AFCF3A1E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Truck24UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCF3F1E979256009A0F67 /* YukBormiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YukBormiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCF431E979256009A0F67 /* Truck24UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truck24UITests.swift; sourceTree = "<group>"; };
 		90AFCF451E979256009A0F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90AFCF551E9792C6009A0F67 /* Agreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Agreement.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/Agreement.swift; sourceTree = "<group>"; };
-		90AFCF561E9792C6009A0F67 /* ChooseCarType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseCarType.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/ChooseCarType.swift; sourceTree = "<group>"; };
-		90AFCF581E9792C6009A0F67 /* ChooseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseType.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/ChooseType.swift; sourceTree = "<group>"; };
-		90AFCF5A1E9792C6009A0F67 /* Inroduction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Inroduction.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/Inroduction.swift; sourceTree = "<group>"; };
-		90AFCF5B1E9792C6009A0F67 /* LogInCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInCustomer.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/LogInCustomer.swift; sourceTree = "<group>"; };
-		90AFCF5C1E9792C6009A0F67 /* NearList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearList.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/NearList.swift; sourceTree = "<group>"; };
-		90AFCF5D1E9792C6009A0F67 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/PopUpViewController.swift; sourceTree = "<group>"; };
-		90AFCF5E1E9792C6009A0F67 /* SignInCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInCustomer.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/SignInCustomer.swift; sourceTree = "<group>"; };
-		90AFCF5F1E9792C6009A0F67 /* SignInDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInDriver.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/SignInDriver.swift; sourceTree = "<group>"; };
-		90AFCF601E9792C6009A0F67 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Singleton.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/manage_scripts/Singleton.swift; sourceTree = "<group>"; };
-		90AFCF6D1E9792F1009A0F67 /* CarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarCell.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/Data_scripts/CarCell.swift; sourceTree = "<group>"; };
-		90AFCF6E1E9792F1009A0F67 /* CarShort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarShort.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/Data_scripts/CarShort.swift; sourceTree = "<group>"; };
-		90AFCF6F1E9792F1009A0F67 /* PublicationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicationCell.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/Data_scripts/PublicationCell.swift; sourceTree = "<group>"; };
-		90AFCF701E9792F1009A0F67 /* TypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeCell.swift; path = ../../Projects/Local_Swift_Projects/Track24/Track24/Data_scripts/TypeCell.swift; sourceTree = "<group>"; };
 		90AFCFC51E97DB38009A0F67 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backButton.png; path = Cach/backButton.png; sourceTree = SOURCE_ROOT; };
 		90AFCFC61E97DB38009A0F67 /* call_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = call_icon.png; path = Cach/call_icon.png; sourceTree = SOURCE_ROOT; };
 		90AFCFC71E97DB38009A0F67 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car.png; path = Cach/car.png; sourceTree = SOURCE_ROOT; };
@@ -208,10 +225,15 @@
 		90AFCFD71E97DB38009A0F67 /* user_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_icon.png; path = Cach/user_icon.png; sourceTree = SOURCE_ROOT; };
 		90AFCFD81E97DB38009A0F67 /* UserIntro.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = UserIntro.jpeg; path = Cach/UserIntro.jpeg; sourceTree = SOURCE_ROOT; };
 		90AFCFD91E97DB38009A0F67 /* weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weight.png; path = Cach/weight.png; sourceTree = SOURCE_ROOT; };
+		90B6C7851ED6A65E00D35CA9 /* myFinishedOrdersForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myFinishedOrdersForDriver.swift; sourceTree = "<group>"; };
+		90B6C7871ED7050200D35CA9 /* RouteGoogle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteGoogle.swift; sourceTree = "<group>"; };
 		90BE19561EA256E300FB16B1 /* SendLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendLocation.swift; sourceTree = "<group>"; };
 		90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myOrdersForDriver.swift; sourceTree = "<group>"; };
 		90BE195C1EA3BD7800FB16B1 /* car_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_icon.png; path = Cach/car_icon.png; sourceTree = SOURCE_ROOT; };
 		90BE195E1EA3F73200FB16B1 /* AcceptedOrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedOrderInfo.swift; sourceTree = "<group>"; };
+		90D011661F078A1700427A4A /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = Cach/map.png; sourceTree = SOURCE_ROOT; };
+		90D011671F078A1700427A4A /* setting_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting_white.png; path = Cach/setting_white.png; sourceTree = SOURCE_ROOT; };
+		90D0116A1F078B0100427A4A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = Cach/calendar.png; sourceTree = SOURCE_ROOT; };
 		90DAF3831EBA53640043F704 /* A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = A.png; path = Cach/A.png; sourceTree = SOURCE_ROOT; };
 		90DAF3841EBA53640043F704 /* B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = B.png; path = Cach/B.png; sourceTree = SOURCE_ROOT; };
 		90DAF3871EBAEB970043F704 /* DonePublicationsCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonePublicationsCustomer.swift; sourceTree = "<group>"; };
@@ -246,7 +268,13 @@
 		90E5DF641E9BE324001BBB6F /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting.png; path = Cach/setting.png; sourceTree = SOURCE_ROOT; };
 		90E5DF651E9BE324001BBB6F /* user_icon_whte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_icon_whte.png; path = Cach/user_icon_whte.png; sourceTree = SOURCE_ROOT; };
 		90E5DF6B1E9BF08F001BBB6F /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = Cach/list.png; sourceTree = SOURCE_ROOT; };
-		90FF98201EAFCC820062A116 /* CarCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarCategoryView.swift; sourceTree = "<group>"; };
+		AF3930833B20B35FB26BDC47 /* Pods-YukBormiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormiTests/Pods-YukBormiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C8E89BB2862E4A89289F390E /* Pods-YukBormiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YukBormiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YukBormiUITests/Pods-YukBormiUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF38658E0CB8BB61DCEB6B24 /* Pods_Truck24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Truck24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7AEF2B43F132423408995C4 /* Pods-Truck24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24/Pods-Truck24.debug.xcconfig"; sourceTree = "<group>"; };
+		F0A57B0B10265B51B5ECE931 /* Pods-Truck24.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24.release.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24/Pods-Truck24.release.xcconfig"; sourceTree = "<group>"; };
+		F34311E8F803B283166D564C /* Pods-Truck24UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truck24UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Truck24UITests/Pods-Truck24UITests.release.xcconfig"; sourceTree = "<group>"; };
+		FF883CCA9302A750D29E5F9B /* Pods_YukBormiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YukBormiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +282,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492E24A018FF689A79C998D9 /* Pods_Truck24.framework in Frameworks */,
+				3BEF16CB90E4E8C8DA6AC12B /* Pods_YukBormi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +291,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376EDD3BC667908DB729FBD1 /* Pods_Truck24Tests.framework in Frameworks */,
+				3003B8C10B4D1343605CD5A2 /* Pods_YukBormiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,12 +300,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DE44E6A8514647A0ECF3C5 /* Pods_Truck24UITests.framework in Frameworks */,
+				FA93B51C321A0CA845F3B51D /* Pods_YukBormiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D490820EBCDD834CB272E28 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7AEF2B43F132423408995C4 /* Pods-Truck24.debug.xcconfig */,
+				F0A57B0B10265B51B5ECE931 /* Pods-Truck24.release.xcconfig */,
+				3999AEFA5953F0842F61356B /* Pods-Truck24Tests.debug.xcconfig */,
+				6728818A7851135F3390BEF4 /* Pods-Truck24Tests.release.xcconfig */,
+				4B495AFFB14C9FA0321DAD2D /* Pods-Truck24UITests.debug.xcconfig */,
+				F34311E8F803B283166D564C /* Pods-Truck24UITests.release.xcconfig */,
+				71A80EACE01411DC3C5554D4 /* Pods-YukBormi.debug.xcconfig */,
+				3472258A93F408E245284A6B /* Pods-YukBormi.release.xcconfig */,
+				AF3930833B20B35FB26BDC47 /* Pods-YukBormiTests.debug.xcconfig */,
+				28B245794DEDD9760E3F21C3 /* Pods-YukBormiTests.release.xcconfig */,
+				C8E89BB2862E4A89289F390E /* Pods-YukBormiUITests.debug.xcconfig */,
+				2AE86C56E47D8FFEBBACE6EB /* Pods-YukBormiUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		879EF0C7B9E9BA600BF32E91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5343AA3BEA708F5EE07961AF /* Pods_Truck24.framework */,
+				CF38658E0CB8BB61DCEB6B24 /* Pods_Truck24Tests.framework */,
+				56EAE7ED2118DC9869768509 /* Pods_Truck24UITests.framework */,
+				2700EFDD4450B8AFCB04001A /* Pods_YukBormi.framework */,
+				FF883CCA9302A750D29E5F9B /* Pods_YukBormiTests.framework */,
+				0D2C7B58D7B3E5C6B8234908 /* Pods_YukBormiUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		90AFCF171E979256009A0F67 = {
 			isa = PBXGroup;
 			children = (
@@ -281,15 +347,17 @@
 				90AFCF371E979256009A0F67 /* Truck24Tests */,
 				90AFCF421E979256009A0F67 /* Truck24UITests */,
 				90AFCF211E979256009A0F67 /* Products */,
+				7D490820EBCDD834CB272E28 /* Pods */,
+				879EF0C7B9E9BA600BF32E91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		90AFCF211E979256009A0F67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90AFCF201E979256009A0F67 /* Truck24.app */,
-				90AFCF341E979256009A0F67 /* Truck24Tests.xctest */,
-				90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */,
+				90AFCF201E979256009A0F67 /* YukBormi.app */,
+				90AFCF341E979256009A0F67 /* YukBormiTests.xctest */,
+				90AFCF3F1E979256009A0F67 /* YukBormiUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,11 +409,11 @@
 		90AFCF541E97927D009A0F67 /* data_scripts */ = {
 			isa = PBXGroup;
 			children = (
-				90AFCF601E9792C6009A0F67 /* Singleton.swift */,
-				90AFCF6D1E9792F1009A0F67 /* CarCell.swift */,
-				90AFCF6E1E9792F1009A0F67 /* CarShort.swift */,
-				90AFCF6F1E9792F1009A0F67 /* PublicationCell.swift */,
-				90AFCF701E9792F1009A0F67 /* TypeCell.swift */,
+				909B46181EDCAA5B004572F3 /* CarCell.swift */,
+				909B46191EDCAA5B004572F3 /* CarShort.swift */,
+				909B461A1EDCAA5B004572F3 /* PublicationCell.swift */,
+				909B461B1EDCAA5B004572F3 /* TypeCell.swift */,
+				909B460C1EDCA9A2004572F3 /* Singleton.swift */,
 				90606AD71E98B14C00471D87 /* CarData.swift */,
 				90606AE11E991A8200471D87 /* PublicationData.swift */,
 				90606AE31E991A9100471D87 /* Publication.swift */,
@@ -407,6 +475,9 @@
 		90DAF3B11EBF9D520043F704 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				90D0116A1F078B0100427A4A /* calendar.png */,
+				90D011661F078A1700427A4A /* map.png */,
+				90D011671F078A1700427A4A /* setting_white.png */,
 				90DAF3AC1EBF9CDD0043F704 /* error.png */,
 				90DAF3A91EBBB5620043F704 /* location_grey.png */,
 				90DAF3831EBA53640043F704 /* A.png */,
@@ -450,9 +521,9 @@
 		90FF98221EB345A80062A116 /* ForCustomer */ = {
 			isa = PBXGroup;
 			children = (
-				90AFCF5E1E9792C6009A0F67 /* SignInCustomer.swift */,
+				909B460A1EDCA9A2004572F3 /* SignInCustomer.swift */,
 				908A63781E9A44B00015F4AF /* NearCarMap.swift */,
-				90AFCF5C1E9792C6009A0F67 /* NearList.swift */,
+				909B46081EDCA9A2004572F3 /* NearList.swift */,
 				90606ADB1E98E9FC00471D87 /* CarDetails.swift */,
 				90606AE51E991AB200471D87 /* MyPublications.swift */,
 				908A63701E9A25400015F4AF /* PubDetails.swift */,
@@ -470,12 +541,13 @@
 		90FF98231EB345BB0062A116 /* ForDriver */ = {
 			isa = PBXGroup;
 			children = (
+				909B460B1EDCA9A2004572F3 /* SignInDriver.swift */,
 				90E5DF591E9B8970001BBB6F /* OrderDetails.swift */,
 				90E5DF531E9B590A001BBB6F /* OrderListForDriver.swift */,
-				90AFCF5F1E9792C6009A0F67 /* SignInDriver.swift */,
 				90BE19581EA26C1100FB16B1 /* myOrdersForDriver.swift */,
 				90DAF3891EBB80670043F704 /* SetImages.swift */,
 				90DAF38D1EBB87DB0043F704 /* DriverSettings.swift */,
+				90B6C7851ED6A65E00D35CA9 /* myFinishedOrdersForDriver.swift */,
 			);
 			name = ForDriver;
 			sourceTree = "<group>";
@@ -483,16 +555,14 @@
 		90FF98241EB345C40062A116 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				909B46061EDCA9A2004572F3 /* Inroduction.swift */,
+				909B46071EDCA9A2004572F3 /* LogInCustomer.swift */,
+				909B46091EDCA9A2004572F3 /* PopUpViewController.swift */,
+				909B46001EDCA96A004572F3 /* ChooseCarType.swift */,
+				909B46011EDCA96A004572F3 /* ChooseType.swift */,
 				90606AD51E97E58F00471D87 /* SMSVerification.swift */,
-				90AFCF5D1E9792C6009A0F67 /* PopUpViewController.swift */,
-				90AFCF5B1E9792C6009A0F67 /* LogInCustomer.swift */,
-				90AFCF5A1E9792C6009A0F67 /* Inroduction.swift */,
-				90AFCF581E9792C6009A0F67 /* ChooseType.swift */,
-				90AFCF561E9792C6009A0F67 /* ChooseCarType.swift */,
-				90AFCF551E9792C6009A0F67 /* Agreement.swift */,
-				908A637A1E9A45380015F4AF /* PubWayOnMap.swift */,
 				90E5DF5D1E9BDCFA001BBB6F /* Settings.swift */,
-				90FF98201EAFCC820062A116 /* CarCategoryView.swift */,
+				90B6C7871ED7050200D35CA9 /* RouteGoogle.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -500,57 +570,66 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		90AFCF1F1E979256009A0F67 /* Truck24 */ = {
+		90AFCF1F1E979256009A0F67 /* YukBormi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24" */;
+			buildConfigurationList = 90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormi" */;
 			buildPhases = (
+				3B0E8194AB505C4BDADA8C62 /* [CP] Check Pods Manifest.lock */,
 				90AFCF1C1E979256009A0F67 /* Sources */,
 				90AFCF1D1E979256009A0F67 /* Frameworks */,
 				90AFCF1E1E979256009A0F67 /* Resources */,
+				9EC2F5C1C1E62E2B145EF458 /* [CP] Embed Pods Frameworks */,
+				99CD94A215C18D20BFF3DCB3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Truck24;
+			name = YukBormi;
 			productName = Truck24;
-			productReference = 90AFCF201E979256009A0F67 /* Truck24.app */;
+			productReference = 90AFCF201E979256009A0F67 /* YukBormi.app */;
 			productType = "com.apple.product-type.application";
 		};
-		90AFCF331E979256009A0F67 /* Truck24Tests */ = {
+		90AFCF331E979256009A0F67 /* YukBormiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24Tests" */;
+			buildConfigurationList = 90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormiTests" */;
 			buildPhases = (
+				114F97405CD0E500DE77162B /* [CP] Check Pods Manifest.lock */,
 				90AFCF301E979256009A0F67 /* Sources */,
 				90AFCF311E979256009A0F67 /* Frameworks */,
 				90AFCF321E979256009A0F67 /* Resources */,
+				ECB67E203A41A10FD03EEA29 /* [CP] Embed Pods Frameworks */,
+				D39C0EC964E8630163E31513 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				90AFCF361E979256009A0F67 /* PBXTargetDependency */,
 			);
-			name = Truck24Tests;
+			name = YukBormiTests;
 			productName = Truck24Tests;
-			productReference = 90AFCF341E979256009A0F67 /* Truck24Tests.xctest */;
+			productReference = 90AFCF341E979256009A0F67 /* YukBormiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		90AFCF3E1E979256009A0F67 /* Truck24UITests */ = {
+		90AFCF3E1E979256009A0F67 /* YukBormiUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24UITests" */;
+			buildConfigurationList = 90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormiUITests" */;
 			buildPhases = (
+				989567800FF89E61F79653E8 /* [CP] Check Pods Manifest.lock */,
 				90AFCF3B1E979256009A0F67 /* Sources */,
 				90AFCF3C1E979256009A0F67 /* Frameworks */,
 				90AFCF3D1E979256009A0F67 /* Resources */,
+				66CAB869FF054BEC7737ABD4 /* [CP] Embed Pods Frameworks */,
+				A709C398E8339269416273BE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				90AFCF411E979256009A0F67 /* PBXTargetDependency */,
 			);
-			name = Truck24UITests;
+			name = YukBormiUITests;
 			productName = Truck24UITests;
-			productReference = 90AFCF3F1E979256009A0F67 /* Truck24UITests.xctest */;
+			productReference = 90AFCF3F1E979256009A0F67 /* YukBormiUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -587,7 +666,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "Truck24" */;
+			buildConfigurationList = 90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "YukBormi" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -600,9 +679,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				90AFCF1F1E979256009A0F67 /* Truck24 */,
-				90AFCF331E979256009A0F67 /* Truck24Tests */,
-				90AFCF3E1E979256009A0F67 /* Truck24UITests */,
+				90AFCF1F1E979256009A0F67 /* YukBormi */,
+				90AFCF331E979256009A0F67 /* YukBormiTests */,
+				90AFCF3E1E979256009A0F67 /* YukBormiUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -636,6 +715,7 @@
 				908A63751E9A393D0015F4AF /* trackLocation.png in Resources */,
 				90AFCFED1E97DB38009A0F67 /* UserIntro.jpeg in Resources */,
 				90DAF3B31EBFA2610043F704 /* circle_mask_blue.png in Resources */,
+				90D011681F078A1700427A4A /* map.png in Resources */,
 				90DAF3AD1EBF9CDD0043F704 /* empty.png in Resources */,
 				90AFCFDE1E97DB38009A0F67 /* checkBlack.png in Resources */,
 				90AFCFDF1E97DB38009A0F67 /* Checked.jpeg in Resources */,
@@ -643,6 +723,7 @@
 				90AFCF2E1E979256009A0F67 /* LaunchScreen.storyboard in Resources */,
 				90AFCF2B1E979256009A0F67 /* Assets.xcassets in Resources */,
 				90E5DF671E9BE324001BBB6F /* help.png in Resources */,
+				90D011691F078A1700427A4A /* setting_white.png in Resources */,
 				90E5DF6A1E9BE324001BBB6F /* user_icon_whte.png in Resources */,
 				90DAF3861EBA53640043F704 /* B.png in Resources */,
 				90AFCFE51E97DB38009A0F67 /* LongRectangle.png in Resources */,
@@ -661,6 +742,7 @@
 				90E5DF681E9BE324001BBB6F /* inProcess.png in Resources */,
 				90DAF3901EBB89B30043F704 /* driver.jpg in Resources */,
 				90DAF3A31EBBA8420043F704 /* Icon-App-29x29@2x.png in Resources */,
+				90D0116B1F078B0100427A4A /* calendar.png in Resources */,
 				90E5DF601E9BE158001BBB6F /* draw-back-sam.jpg in Resources */,
 				90E5DF661E9BE324001BBB6F /* done.png in Resources */,
 				90AFCFE31E97DB38009A0F67 /* husan-ios.png in Resources */,
@@ -690,20 +772,158 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		114F97405CD0E500DE77162B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3B0E8194AB505C4BDADA8C62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66CAB869FF054BEC7737ABD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormiUITests/Pods-YukBormiUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		989567800FF89E61F79653E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99CD94A215C18D20BFF3DCB3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormi/Pods-YukBormi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EC2F5C1C1E62E2B145EF458 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormi/Pods-YukBormi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A709C398E8339269416273BE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormiUITests/Pods-YukBormiUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D39C0EC964E8630163E31513 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormiTests/Pods-YukBormiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECB67E203A41A10FD03EEA29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YukBormiTests/Pods-YukBormiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		90AFCF1C1E979256009A0F67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				90606AE41E991A9100471D87 /* Publication.swift in Sources */,
+				909B460E1EDCA9A2004572F3 /* LogInCustomer.swift in Sources */,
 				908A636D1E994CDE0015F4AF /* AddPublication.swift in Sources */,
-				90AFCF671E9792C6009A0F67 /* LogInCustomer.swift in Sources */,
 				908A636B1E9940270015F4AF /* CarFilter.swift in Sources */,
 				90DAF38E1EBB87DB0043F704 /* DriverSettings.swift in Sources */,
-				90AFCF6C1E9792C6009A0F67 /* Singleton.swift in Sources */,
-				90AFCF6A1E9792C6009A0F67 /* SignInCustomer.swift in Sources */,
+				909B46101EDCA9A2004572F3 /* PopUpViewController.swift in Sources */,
+				909B46031EDCA96A004572F3 /* ChooseType.swift in Sources */,
 				90DAF38A1EBB80670043F704 /* SetImages.swift in Sources */,
-				90AFCF641E9792C6009A0F67 /* ChooseType.swift in Sources */,
+				90B6C7881ED7050200D35CA9 /* RouteGoogle.swift in Sources */,
 				90BE195F1EA3F73200FB16B1 /* AcceptedOrderInfo.swift in Sources */,
 				90E5DF5A1E9B8970001BBB6F /* OrderDetails.swift in Sources */,
 				9094E9BB1E9C8F3100542BD6 /* Details.swift in Sources */,
@@ -711,36 +931,35 @@
 				90606ADC1E98E9FC00471D87 /* CarDetails.swift in Sources */,
 				90606AE61E991AB200471D87 /* MyPublications.swift in Sources */,
 				908A63691E9934D20015F4AF /* VSMapView.swift in Sources */,
+				909B461F1EDCAA5B004572F3 /* TypeCell.swift in Sources */,
 				908A63791E9A44B00015F4AF /* NearCarMap.swift in Sources */,
-				90AFCF611E9792C6009A0F67 /* Agreement.swift in Sources */,
 				90E5DF5C1E9BDA00001BBB6F /* OfferDetails.swift in Sources */,
+				909B461C1EDCAA5B004572F3 /* CarCell.swift in Sources */,
 				90BE19571EA256E300FB16B1 /* SendLocation.swift in Sources */,
 				90DAF3881EBAEB970043F704 /* DonePublicationsCustomer.swift in Sources */,
-				90AFCF691E9792C6009A0F67 /* PopUpViewController.swift in Sources */,
 				908A63711E9A25400015F4AF /* PubDetails.swift in Sources */,
-				90AFCF721E9792F1009A0F67 /* CarShort.swift in Sources */,
 				90E5DF5E1E9BDCFA001BBB6F /* Settings.swift in Sources */,
 				90BE19591EA26C1100FB16B1 /* myOrdersForDriver.swift in Sources */,
-				90AFCF661E9792C6009A0F67 /* Inroduction.swift in Sources */,
+				909B46131EDCA9A2004572F3 /* Singleton.swift in Sources */,
 				90AFCF261E979256009A0F67 /* ViewController.swift in Sources */,
+				909B46121EDCA9A2004572F3 /* SignInDriver.swift in Sources */,
 				90606AD81E98B14C00471D87 /* CarData.swift in Sources */,
 				90E5DF581E9B5A58001BBB6F /* OrderForDriverData.swift in Sources */,
+				909B460D1EDCA9A2004572F3 /* Inroduction.swift in Sources */,
 				90606AD61E97E58F00471D87 /* SMSVerification.swift in Sources */,
+				909B461D1EDCAA5B004572F3 /* CarShort.swift in Sources */,
+				909B461E1EDCAA5B004572F3 /* PublicationCell.swift in Sources */,
 				90606AE21E991A8200471D87 /* PublicationData.swift in Sources */,
+				90B6C7861ED6A65E00D35CA9 /* myFinishedOrdersForDriver.swift in Sources */,
 				908A63631E992E6D0015F4AF /* SetCoordinates.swift in Sources */,
-				90AFCF731E9792F1009A0F67 /* PublicationCell.swift in Sources */,
+				909B46021EDCA96A004572F3 /* ChooseCarType.swift in Sources */,
 				90AFCF241E979256009A0F67 /* AppDelegate.swift in Sources */,
-				90AFCF741E9792F1009A0F67 /* TypeCell.swift in Sources */,
-				90AFCF6B1E9792C6009A0F67 /* SignInDriver.swift in Sources */,
-				908A637B1E9A45380015F4AF /* PubWayOnMap.swift in Sources */,
 				908A63671E99325F0015F4AF /* CarPlacement.swift in Sources */,
 				908A637F1E9A99860015F4AF /* OfferCell.swift in Sources */,
-				90FF98211EAFCC820062A116 /* CarCategoryView.swift in Sources */,
+				909B46111EDCA9A2004572F3 /* SignInCustomer.swift in Sources */,
 				90E5DF541E9B590A001BBB6F /* OrderListForDriver.swift in Sources */,
-				90AFCF621E9792C6009A0F67 /* ChooseCarType.swift in Sources */,
-				90AFCF711E9792F1009A0F67 /* CarCell.swift in Sources */,
+				909B460F1EDCA9A2004572F3 /* NearList.swift in Sources */,
 				90E5DF561E9B595B001BBB6F /* OrderForDriver.swift in Sources */,
-				90AFCF681E9792C6009A0F67 /* NearList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,12 +984,12 @@
 /* Begin PBXTargetDependency section */
 		90AFCF361E979256009A0F67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 90AFCF1F1E979256009A0F67 /* Truck24 */;
+			target = 90AFCF1F1E979256009A0F67 /* YukBormi */;
 			targetProxy = 90AFCF351E979256009A0F67 /* PBXContainerItemProxy */;
 		};
 		90AFCF411E979256009A0F67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 90AFCF1F1E979256009A0F67 /* Truck24 */;
+			target = 90AFCF1F1E979256009A0F67 /* YukBormi */;
 			targetProxy = 90AFCF401E979256009A0F67 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -890,13 +1109,15 @@
 		};
 		90AFCF491E979256009A0F67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71A80EACE01411DC3C5554D4 /* Pods-YukBormi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
 				INFOPLIST_FILE = Truck24/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.YukBormi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -905,13 +1126,15 @@
 		};
 		90AFCF4A1E979256009A0F67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3472258A93F408E245284A6B /* Pods-YukBormi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
 				INFOPLIST_FILE = Truck24/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.YukBormi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -920,6 +1143,7 @@
 		};
 		90AFCF4C1E979256009A0F67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF3930833B20B35FB26BDC47 /* Pods-YukBormiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -929,12 +1153,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truck24.app/Truck24";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YukBormi.app/YukBormi";
 			};
 			name = Debug;
 		};
 		90AFCF4D1E979256009A0F67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28B245794DEDD9760E3F21C3 /* Pods-YukBormiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -944,12 +1169,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MaCBook-air.Truck24Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truck24.app/Truck24";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YukBormi.app/YukBormi";
 			};
 			name = Release;
 		};
 		90AFCF4F1E979256009A0F67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8E89BB2862E4A89289F390E /* Pods-YukBormiUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
@@ -964,6 +1190,7 @@
 		};
 		90AFCF501E979256009A0F67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AE86C56E47D8FFEBBACE6EB /* Pods-YukBormiUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 8F7GJ2ANG4;
@@ -979,7 +1206,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "Truck24" */ = {
+		90AFCF1B1E979256009A0F67 /* Build configuration list for PBXProject "YukBormi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90AFCF461E979256009A0F67 /* Debug */,
@@ -988,7 +1215,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24" */ = {
+		90AFCF481E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90AFCF491E979256009A0F67 /* Debug */,
@@ -997,7 +1224,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24Tests" */ = {
+		90AFCF4B1E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90AFCF4C1E979256009A0F67 /* Debug */,
@@ -1006,7 +1233,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "Truck24UITests" */ = {
+		90AFCF4E1E979256009A0F67 /* Build configuration list for PBXNativeTarget "YukBormiUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90AFCF4F1E979256009A0F67 /* Debug */,
