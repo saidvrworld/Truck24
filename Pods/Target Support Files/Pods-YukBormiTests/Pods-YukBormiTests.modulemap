@@ -1,0 +1,6 @@
+framework module Pods_YukBormiTests {
+  umbrella header "Pods-YukBormiTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
