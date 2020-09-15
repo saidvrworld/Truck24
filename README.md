@@ -1,0 +1,2 @@
+# Truck24
+This project offers ride-sharing service, for freight transport. Service lets customer to find drivers with appropriate car for his load, then after entering the scales of his load and destination where it should be delivered, he schedules time for it to be delivered. Project worked on IOS,Android and WEB. I developed IOS, and Web Application for this project. IOS and Web app used API from server part of project. I developed IOS part in XCODE using swift. For Web App I used python and Django framework.
